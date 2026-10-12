@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -918,6 +918,49 @@ body.phone .sendrow .btn.primary { flex: 1 1 auto; min-width: 0; }
 body.phone .apcyc { justify-content: flex-start; gap: 10px; text-align: left; padding: 6px 10px; }
 body.phone .apcyc .mix { position: static; transform: none; flex-shrink: 0; }
 
+/* ---- W&B fuel loading assistant (1.4.fuel_load, owner's sketch) ---- */
+.wb-loadbtn { align-self: flex-end; margin-bottom: 1px; }
+.wb-casehead small { font-weight: 400; color: var(--dim); letter-spacing: 0; margin-left: 6px; text-transform: none; }
+.fld.bad input[type=text] { border-color: var(--bad); box-shadow: 0 0 0 1px var(--bad); }
+.wb-loadreset { margin-left: 12px; margin-right: auto; }
+.wb-ghost { opacity: .32; pointer-events: none; filter: grayscale(.6); }
+.wb-curdist .fld { flex: 1 1 0; min-width: 0; }
+.wb-curdist .fld input[type=text] { width: 100% !important; }
+.wb-planrow { align-items: stretch; }
+.wb-planrow .res.wb-addres { flex: 0 1 200px; }
+.wb-order { display: flex; gap: 8px; margin: 6px 0 8px; }
+.wb-tank {
+  flex: 1 1 0; min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--panel2); color: var(--ink);
+  font: 700 12px -apple-system, sans-serif; letter-spacing: .04em;
+}
+.wb-tank .n { width: 22px; height: 22px; border-radius: 11px; border: 1px dashed var(--dim); color: var(--ink); font-size: 12px; line-height: 20px; }
+.wb-tank small { font: 700 12px -apple-system, sans-serif; color: var(--entry); }
+.wb-tank.on { border-color: var(--acc); }
+.wb-tank.on .n { background: var(--acc); border: 1px solid var(--acc); color: #fff; }
+.wb-tank.none { opacity: .5; }
+.wb-tank.none small { color: var(--dim); font-weight: 400; }
+.wb-tank:active { background: var(--acc); color: #fff; }
+.wb-stephdr, .wb-step { display: grid; grid-template-columns: 1fr auto 72px; align-items: center; column-gap: 10px; }
+.wb-stephdr { margin: 4px 0 2px; }
+.wb-stephdr span { font-size: 10px; color: var(--dim); letter-spacing: .05em; text-align: center; }
+.wb-step { padding: 5px 0; border-top: 1px solid var(--line); }
+.wb-step .who { display: flex; align-items: center; gap: 8px; font: 700 13px -apple-system, sans-serif; color: var(--ink); letter-spacing: .03em; }
+.wb-step .who .n { width: 20px; height: 20px; border-radius: 10px; background: var(--acc); color: #fff; font-size: 11px; line-height: 20px; text-align: center; flex-shrink: 0; }
+.wb-step .who small { color: var(--entry); font-size: 12px; }
+.wb-step .fin { text-align: center; font: 700 18px -apple-system, sans-serif; color: var(--ink); }
+.wb-step .fin small { font-size: 10px; color: var(--dim); font-weight: 400; margin-left: 2px; }
+/* the pump's rolling counter: white digits on black drums, tenths in red like the pump */
+.wb-odo { display: inline-flex; align-items: center; gap: 2px; padding: 3px 5px; border-radius: 6px; background: #0a0a0a; border: 1px solid #333; }
+.wb-odo .d { display: inline-block; width: 17px; height: 26px; line-height: 26px; text-align: center; border-radius: 3px;
+  background: linear-gradient(#2a2a2a, #111 45%, #000 55%, #1c1c1c); color: #f4f4f4; font: 700 17px ui-monospace, Menlo, Consolas, monospace; }
+.wb-odo .d.z { color: #555; }
+.wb-odo .d.t { background: linear-gradient(#5a1a1a, #300 45%, #200 55%, #3a1010); color: #ff9c9c; }
+.wb-odo .dot { color: #ddd; font: 700 16px ui-monospace, monospace; width: 6px; text-align: center; }
+body.light .wb-odo { border-color: #888; }
+.wb-final { margin-top: 8px; }
+.wb-loaded { margin-top: 6px; }
+
 </style>
 </head>
 <body>
@@ -954,7 +997,7 @@ D.fig8_22={"figure":"8-22","poh_page":"8-52","scan_page":54,"title":"TOTAL LANDI
 D.fig8_23={"figure":"8-23","poh_page":"8-53","scan_page":55,"title":"LANDING GROUND ROLL, FLAPS UP","source":"N8247J POH Section 8 p.8-53 (VB-1213), Released 11/12/78","title_footnote":"Landing Ground Roll, Flaps UP (A/F 0213 & UP); triangle-1 = and prior airplanes modified per PAC Option #93.","conditions":["Idle power","Flaps - up","Level, paved, dry runway","Maximum effective braking"],"notes":["POH CAUTION (Section 8 p.8-16, transcribed verbatim - the printed page really does read SHCEDULED): LANDING DISTANCE PRESENTATIONS ARE BASED ON ESTABLISHING IDLE POWER AT THE 50-FOOT OBSTACLE HEIGHT, MAINTAINING THE SHCEDULED [sic] APPROACH SPEED UNTIL TRANSITIONING TO THE FLARE AND EXECUTING A FLARE WITHOUT FLOATING. IF LANDING DISTANCE IS NOT CRITICAL A MORE COMFORTABLE APPROACH AND FLARE MAY BE EXECUTED BY MAINTAINING PARTIAL POWER TO THE FLARE. THE AIR DISTANCE (TOTAL DISTANCE MINUS GROUND ROLL) FROM THE 50-FOOT OBSTACLE HEIGHT MAY INCREASE BY AS MUCH AS 250 PERCENT.","Exactly four conditions are printed on this figure. There is NO landing-gear item and NO 50-foot-obstacle item on Fig 8-23 - do not add them.","The OAT+weight grid tops out at 3356 ft (its frame line; the last heavy gridline inside it is 3250). Only the wind box reaches 4000 ft. Printed right-hand distance labels are 500/1000/1500/2000/2500/3000/3500/4000, so the axis floor is 500 ft, not 0.","Grid pitch: one fine square = 50 ft / 2 deg C / 50 lb / 2 kt; heavy lines every 5 fine squares = 250 ft / 10 deg C / 250 lb / 10 kt. The printed distance labels are every 500 ft but the heavy gridlines are every 250 ft.","Printed OAT extents of the pressure-altitude curves, re-measured 2026-08-20 on a 0.5 deg C grain (+/-0.5 C - the strokes end mid-square and do not carry 0.1 C precision): S.L. -20.5..+50.5, 2000 -24.5..+48.0, 4000 -27.5..+45.5, 6000 -31.0..+42.0, 8000 -36.5..+38.5, 10000 -40.5..+35.0 deg C. Values outside those extents are null - never extrapolated. S.L. is the ONLY curve that reaches the +50 gridline; the 2000-ft curve stops at about +48, so its +50 cell is null (an earlier revision of this file carried 2115 ft there, which is not on the print). Only 10000 reaches -40. Caveat on the S.L. hot end: from about +49.5 the S.L. curve runs underneath the printed example line and the 1900-ft gridline, which lie within 2 px of it, so its last degree cannot be separated from them; its +50 cell is carried on a <=1 C judgement and is the one soft cell in this panel.","TERMINUS COLUMNS (2026-08-21): every curve whose printed extent above ran more than ~1.5 deg C past its nearest original 10-degree gridline got an extra oat_c column at its terminus, rounded inward to a whole degree, so the app no longer returns null in a printed band just because it falls between two 10-degree columns (this used to blank ~10% of the readable envelope, e.g. field OAT +43 C or -24 C at common airport elevations). 8 columns were added: -36 (8000/10000 only), -27 (4000/6000/8000/10000), -24 (2000/4000/6000/8000/10000), 35 (all six, at 10000's terminus), 38 (S.L./2000/4000/6000/8000, at 8000's terminus), 42 (S.L./2000/4000/6000, at 6000's terminus), 45 (S.L./2000/4000, at 4000's terminus), 48 (S.L./2000, at 2000's terminus). Every original 10-degree cell is untouched (regression-checked: 1440 evalThreePanel points at every original gridline OAT x 6 PA x 4 weight x 6 wind, byte-identical before/after; a full -40..+50 x 0..10000-ft sweep shows 360 (OAT,PA) pairs that used to return null now return a value, and zero pairs that used to return a value now return null). A residual null band still remains where two ADJACENT pressure-altitude curves have genuinely different printed extents (e.g. PA 1000 ft at OAT -24 C needs both the S.L. and PA-2000 curves, and S.L. is not printed that cold) - that is a real limit of the printed chart, not a data gap, and is correctly flagged rather than extrapolated. See checkpoints/fig8-23.checkpoint.md for the full recipe and per-cell measurements.","The weight-panel reference line sits at OAT-equivalent about +60 C, not at the +50 C gridline, so every pressure-altitude curve ends well short of it. That is correct: the OAT-panel value is carried right to the reference line along a constant-distance line."],"speeds_kias":{"comment":"Approach speed by gross weight, read verbatim from the printed table: 6000 = 111 KIAS (128 MPH), 5500 = 107 KIAS (123 MPH), 5000 = 102 KIAS (117 MPH), 4500 = 98 KIAS (113 MPH). POH example box: 4900 lb = 101 KIAS (116 MPH).","6000":111,"5500":107,"5000":102,"4500":98},"distance_axis":{"unit":"ft","min":500,"max":4000},"oat_panel":{"comment":"Ground roll (ft) at the 6000-lb reference line where each pressure-altitude curve crosses the OAT gridline. Every curve was isolated with a sheared run-length filter, walked stroke-by-stroke and read with a local polynomial fit at each gridline. Three fully independent trace pipelines now agree: the shipped values at the original 10 columns are the mean of the first two, and a third independent re-trace (2026-08-20) reproduces all 45 non-null cells to 2.8 ft rms, max 6.9 ft. null = OAT beyond that curve's printed extent; every extent was re-cut in the same pass by scanning the raw stroke thickness along the fitted path outward until it dies (see notes[4]). TERMINUS COLUMNS (2026-08-21, FIXER2): 8 extra oat_c columns (-36,-27,-24,35,38,42,45,48) were added at each curve's printed terminus, rounded inward to whole degrees, so evalThreePanel no longer returns null in the printed band beyond a curve's last 10-degree gridline (previously ~10% of the readable envelope, e.g. +43C or -24C at common field elevations). Each new cell is the mean of two independent reads on a fresh render (calibration re-verified against the checkpoint's session-4 anchors to <0.5 px): a local-linear fit through clean odd-degree flanking columns (avoiding the fine/heavy gridline that sits on several of the new even-degree columns), and a direct single-column read at the terminus itself. The two methods agree to 4.6 ft rms, 9.3 ft max, in the same range as the original 45-cell trace; monotonicity holds in both OAT and pressure-altitude directions across the full 18-column table. None of the original 10 columns were touched (regression-checked: 1440 evalThreePanel points at every original gridline OAT x 6 PA x 4 weight x 6 wind, byte-identical before/after). See checkpoints/fig8-23.checkpoint.md ADDENDUM 2026-08-21 (terminus close-out) for the full recipe and per-cell measurements.","oat_c":[-40,-36,-30,-27,-24,-20,-10,0,10,20,30,35,38,40,42,45,48,50],"pressure_alt_ft":[0,2000,4000,6000,8000,10000],"distance_ft":[[null,null,null,null,null,1370,1435,1510,1585,1660,1740,1775,1805,1815,1835,1855,1880,1895],[null,null,null,null,1485,1515,1590,1670,1750,1830,1915,1960,1990,2010,2035,2060,2095,null],[null,null,null,1615,1640,1675,1760,1845,1940,2035,2135,2190,2220,2245,2265,2300,null,null],[null,null,1735,1765,1795,1840,1950,2055,2165,2275,2390,2450,2480,2505,2535,null,null,null],[null,1870,1935,1970,2005,2050,2160,2275,2390,2520,2655,2730,2780,null,null,null,null,null],[2025,2080,2155,2195,2230,2285,2420,2555,2700,2850,3000,3075,null,null,null,null,null,null]]},"weight_panel":{"comment":"All nine printed guidelines. at_ref = the 250-ft heavy gridline the guideline leaves the 6000-lb reference line on; the 5500/5000/4500 values were traced independently twice and agree to 3 ft rms (max 7 ft). Every guideline runs from the reference line to the 4500-lb gridline and stops there.","weight_lb":[6000,5500,5000,4500],"guidelines":[{"at_ref":3250,"distance_ft":[3250,2705,2285,1935]},{"at_ref":3000,"distance_ft":[3000,2515,2145,1825]},{"at_ref":2750,"distance_ft":[2750,2320,1990,1695]},{"at_ref":2500,"distance_ft":[2500,2120,1820,1560]},{"at_ref":2250,"distance_ft":[2250,1920,1650,1420]},{"at_ref":2000,"distance_ft":[2000,1725,1495,1290]},{"at_ref":1750,"distance_ft":[1750,1520,1320,1150]},{"at_ref":1500,"distance_ft":[1500,1305,1145,1005]},{"at_ref":1250,"distance_ft":[1250,1080,945,830]}]},"wind_panel":{"headwind":{"comment":"All ten printed headwind guidelines traced from the wind reference line to the 30-kt gridline, twice and independently (agreement 3 ft rms, max 9 ft). Ground roll is strongly wind-sensitive here: about -7.7 %/10 kt at the top of the fan and -8.7 %/10 kt at the bottom.","wind_kt":[0,10,20,30],"guidelines":[{"at_ref":3250,"distance_ft":[3250,3005,2755,2515]},{"at_ref":3000,"distance_ft":[3000,2775,2545,2315]},{"at_ref":2750,"distance_ft":[2750,2545,2330,2120]},{"at_ref":2500,"distance_ft":[2500,2315,2130,1950]},{"at_ref":2250,"distance_ft":[2250,2085,1915,1740]},{"at_ref":2000,"distance_ft":[2000,1850,1690,1535]},{"at_ref":1750,"distance_ft":[1750,1615,1480,1345]},{"at_ref":1500,"distance_ft":[1500,1385,1260,1135]},{"at_ref":1250,"distance_ft":[1250,1160,1050,945]},{"at_ref":1000,"distance_ft":[1000,925,835,750]}]},"tailwind":{"comment":"The tailwind guidelines are printed DASHED and span 0-10 kt only, pivoting on the same reference-line anchors as the headwind fan. They are steep (about 3.9 px of rise per px of run on a 6x render) and mostly buried in the headwind fan, so they are represented by the printed family's one-parameter form distance = at_ref * (1 + 0.030 * kt), i.e. x1.15 at 5 kt and x1.30 at 10 kt. SLOPE EVIDENCE (re-measured from scratch 2026-08-20 after an audit challenged it): the only tailwind-only region on the sheet is the 3250..4000 ft band above the top headwind guideline. Two dashed lines cross it; their pixels were extracted row by row after subtracting a median column background (the graph paper here is itself printed as dashes and dots, so a run-length filter will not remove it). The upper line is the at_ref 3250 guideline - it enters the band at the reference line itself, so its anchor is fixed by geometry rather than by extrapolation - and it fits distance = 3230 + 94.9*kt over kt 0.6..8.0 from 94 points, rms 5.2 ft, with no residual trend: k = 0.0294. The second fits 2960 + 95.6*kt over kt 3.4..9.2, but its intercept is a 3.4-kt extrapolation so it does not constrain k on its own. Forcing both onto the exact 250-ft anchors and solving one global k gives k = 0.029 (rms 19 ft); a matched-filter family scan over the same band peaks between 0.028 and 0.032 and collapses above 0.033. Measured k = 0.029 +/- 0.002; 0.030 is inside that band and is the longer-distance (conservative) end of it, so it is kept. TRAP: the wind box's vertical gridlines lean right with depth - the 0-kt reference line measures x = 2922.3 at y ~ 1640 but x = 2928.7 at y ~ 2620 on the 6x render - so using the bottom-of-sheet wind axis in this band shrinks every kt by about 15% and inflates the apparent k to 0.034-0.035. The 3250 guideline leaves the 4000-ft box top at 7.7 kt, so its 10-kt cell is null (off the printed chart).","wind_kt":[0,5,10],"guidelines":[{"at_ref":3250,"distance_ft":[3250,3735,null]},{"at_ref":3000,"distance_ft":[3000,3450,3900]},{"at_ref":2750,"distance_ft":[2750,3160,3575]},{"at_ref":2500,"distance_ft":[2500,2875,3250]},{"at_ref":2250,"distance_ft":[2250,2590,2925]},{"at_ref":2000,"distance_ft":[2000,2300,2600]},{"at_ref":1750,"distance_ft":[1750,2010,2275]},{"at_ref":1500,"distance_ft":[1500,1725,1950]},{"at_ref":1250,"distance_ft":[1250,1440,1625]},{"at_ref":1000,"distance_ft":[1000,1150,1300]}]}},"validation":{"poh_example":{"oat_c":15,"pa_ft":3000,"weight_lb":4900,"wind_kt":10,"wind_type":"headwind","expect_ft":1300},"reproduced_ft":1276,"intermediate_reads":{"after_oat_panel_at_6000ref":1889,"after_weight_panel":1379},"notes":"Reproduced by running this JSON through the app's own evaluator (app/qa_examples.js, 'ldg roll flaps up') along the POH example path (Section 8 p.8-16 worked example, which states 1300 ft for Fig 8-23): 1276.3 ft, -24 ft = -1.8%, inside the +/-3% gate. Re-checked 2026-08-20 after the PA-2000 hot-end correction; that cell is nowhere near this example's path, so the number is unchanged. The residual is the draftsman's own construction, not the digitized panels. His three horizontal dashes were re-measured independently on my own calibration and land at 1900.4 ft out of the OAT panel, 1407.1 ft out of the weight panel and 1305.6 ft at the distance axis (session-2/3 readings of 1901 / 1408 / 1307 reproduce within 1.5 ft). This JSON gives 1889 ft at a strict linear PA-3000 interpolation, so his eyeball between the 2000 and 4000 curves sits about 11 ft high; his 1407-ft weight-panel exit corresponds on this weight family to a turn at about 4960 lb rather than the stated 4900 lb. Feeding his own drawn intermediate (1407 ft) into this JSON's wind panel returns 1301 ft against his drawn 1306 and the printed 1300. His example vertical dash sits at x=1841.5 against x_of_oat(15)=1842.2, so the OAT axis is right to about 0.1 deg C."},"confidence":{"oat_panel":"high","weight_panel":"high","wind_panel":"medium","notes":"Re-digitized 2026-08-20 from the ACTUAL N8247J POH scan (page 8-53), replacing retired training-copy data whose weight panel was synthetic (factors borrowed from Fig 8-22) and whose tailwind was borrowed. Nothing here is carried over from that file or from any sibling figure. Distance calibration is a least-squares fit over interior heavy gridlines in three separate x-strips; three independent derivations give 93.78 / 93.80 / 93.92 px per 250 ft with a -0.0059 px/px scan skew (residual rms 0.95-1.03 px = 2.5-2.7 ft) and agree to under 2 ft anywhere on the sheet. A quadratic term was tested and is not needed (0.6 px over the whole 3500-ft span). A trapezoid correction for vertical-gridline drift with y (up to 8 px at the top of the sheet) is applied to every read; it fits to 0.5 px rms and IS LOAD-BEARING in the wind box - see the tailwind comment. Values are recorded to 5 ft rather than the guide's half-fine-square (25 ft) grain because the independent trace pipelines agree to about 3 ft rms, so 25-ft quantization would have injected more error than the measurement carries. WHAT IS ACTUALLY VERIFIED: (a) oat_panel - all 45 non-null cells reproduced by a third independent trace to 2.8 ft rms, max 6.9 ft (that one is PA 6000 at -30 C, 0.8 C from its cold end where a local fit is one-sided); the curve count was verified visually on the isolated-stroke mask (exactly 6 pressure-altitude curves) and each curve's two printed ends were re-cut by scanning raw stroke thickness outward along the fitted path. One cell that an earlier revision shipped (PA 2000 at +50 C) had no ink behind it and is now null. One cell is a judgement call and is flagged as such in notes[4]: S.L. at +50 C, whose curve merges into the printed example line about half a degree short of the gridline. (b) weight_panel and headwind fan - 9 and 10 guidelines, count verified on the mask, every shipped path scores higher against the scan's ink than the same path displaced +/-25 ft. (c) wind_panel is rated medium ONLY because of the tailwind family: those lines are dashed, steep and mostly overlaid on the headwind fan, so they are a fitted one-parameter family (two lines measured, k = 0.029 +/- 0.002, 0.030 shipped) rather than ten individually traced curves. Two smaller judgement calls: (1) at_ref is set to the exact 250-ft ladder, since the measured anchor SPACING is 250.0 +/- 6 ft, while the measured anchor POSITIONS scatter about -6 ft (weight fan) and +4 ft (headwind fan) from it - a stroke-geometry bias at the reference line that the independent pipelines reproduce; using the measured positions instead would move results by under 10 ft. (2) The 30-kt column carries an extra +/-9 ft of uncertainty because the printed right border is an 11-px stroke whose centroid (3215) sits 3.5 px outside the 30-kt gridline itself (3211.5); the gridline was used. (d) 2026-08-21: oat_panel gained 8 terminus columns (31 new cells) beyond the 45 original non-null cells, closing the OAT-axis holes described in notes[4]; each new cell is the mean of two independently-parameterized reads on a fresh render whose calibration was re-verified against this file's own anchors to <0.5 px, agreeing with each other to 4.6 ft rms / 9.3 ft max (in the same range as the original 45-cell trace), monotone in both OAT and pressure-altitude across all 18 columns, with zero change to any of the 45 original cells (1440-point evalThreePanel regression sweep, byte-identical). oat_panel stays \"high\"."}};
 D.fig9_23={"figure":"9-23","poh_page":"9-53","source":"N8247J POH Section 9 - Airplane & Systems Description, Figure 9-23, printed page 9-53 (scan page 62) (REPORT: VB-1213, RELEASED 11/12/78). Both lines come from this one plate; the Sea Level Controller supplement carries no chart - see source_notes.","title":"Cabin Altitude VS Airplane Altitude/MAP @ 4.25 psi \u0394P","applicability":"A/F 0157 and Subsequent","aircraft":"N8247J - Pressurization System Sea-Level Cabin Controller, Option No. 77 INSTALLED (Section 11 supplement index item 4; equipment amendment 'Sea Level Controller (77)-1'). The S.L. CONTROLLER line is therefore the applicable controller line; the dashed STD CONTROLLER line on the same plate does NOT apply to this airplane and is deliberately not digitized.","conditions":["Maximum operating differential pressure \u0394P = 4.25 psi; safety relief differential 4.45 psi (Section 9 p.9-50).","S.L. CONTROLLER line applies to the sea-level pressurization controller (installed on N8247J).","MAP line read against the RIGHT (MAP ~ IN-HG) axis; minimum MAP is stated for 2200 RPM."],"source_notes":{"controller_line_from":"Section 9 base manual, Figure 9-23 (p.9-53), solid line labelled 'S.L. CONTROLLER'.","map_line_from":"Section 9 base manual, Figure 9-23 (p.9-53), solid line labelled 'MAP LINE', read on the right-hand MAP ~ IN-HG axis.","sea_level_controller_supplement":"Section 11 Supplement 'PRESSURIZATION SYSTEM SEA-LEVEL CABIN CONTROLLER, OPTION NO. 77', FAA approved 27 MAY 1974, 3 pages. It contains NO figure and NO performance data: Sections 1, 2, 4, 5, 6 and 7 all state 'Text of this section not affected by supplement.' Only Section 3 (Normal Operating Procedures) is amended - set the Cabin Altitude Control outer ring to 1,000 ft above field elevation before starting engines (10,000 ft if unpressurized flight is planned), and select the desired cabin cruise altitude after passing 1,000 ft above field elevation. The supplement therefore neither supersedes nor augments Figure 9-23.","pressurization_figure_inventory":"Section 9 scan pages 53 and 55 = Fig 9-20 environmental systems schematics; 59 = Fig 9-21 pressurization controller; 61 = Fig 9-22 typical flight profile; 62 = Fig 9-23 (this chart); 65 = Fig 9-24/9-25 pressurization and bleed-air valves. Figure 9-23 is the only cabin-pressurization performance chart in the manual.","max_differential":"4.25 psi maximum operating differential pressure, 4.45 psi safety relief (Section 9 p.9-50). This yields approximately 11,000 ft cabin altitude at 25,000 ft cruise altitude; the Oxygen System text (p.9-56) states cabin altitude will not exceed 11,075 ft with the airplane not exceeding 25,000 ft.","controller_schedule":"The Cabin Pressurization Controller has a Cabin Altitude Control (outer selection ring / inner set ring) and a Cabin Rate Control (to approx. 1000 FPM). The STANDARD controller begins pressurizing at 5,000 ft, i.e. minimum selectable cabin altitude is 5,000 ft. The OPTIONAL SEA LEVEL controller (Option 77, installed on N8247J) begins at sea level, i.e. cabin altitude may be selected all the way down to sea level. The controllers are otherwise identical, and the 4.25 psi maximum-\u0394P schedule (the S.L. CONTROLLER line below) is the same. The practical effect on N8247J: takeoff cabin selection is field elevation + 1,000 ft rather than the 5,000 ft floor of the standard controller."},"axes":{"x":{"name":"CABIN ALT","unit":"1000 ft","min_label":"SL","labels":["SL",1,2,3,4,5,6,7,8,9,10,11,12],"note":"SL = sea level = 0 ft"},"y_left":{"name":"AIRPLANE ALT","unit":"1000 ft","labels":["SL",2,4,6,8,10,12,14,16,18,20,22,24,26]},"y_right":{"name":"MAP","unit":"in-Hg","min":19.0,"max":28.0,"labels":[19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0]}},"axis_correspondence":{"comment":"The left AIRPLANE ALT axis and the right MAP axis share the same horizontal gridlines; the right axis is a re-labelling at 1.0 in-Hg per 2000 ft. MAP = 19.0 + airplane_axis_ft/2000. Verified directly on the scan: the printed E\u2192F construction line (labelled 20.4 in-Hg) measures 20.36-20.39 and the printed 20.0 in-Hg floor line measures 19.96-20.00 under this mapping.","map_19_0_at":"airplane SL (0 ft)","map_28_0_at":"airplane 18,000 ft","inhg_per_airplane_1000ft":0.5,"pixels":{"cabin_per_1000ft_px":167.6,"airplane_per_1000ft_px":84.9,"note":"nominal values on the zoom-8 portrait render of scan page 62 (rot=0). The scan is skewed/keystoned, so the actual reading used a bilinear warp fitted to 238 vertical- and 232 horizontal-gridline samples (rms 8 ft cabin / 22 ft airplane)."}},"controller_line":{"name":"S.L. CONTROLLER","style":"solid","comment":"Maximum-differential (4.25 psi) line for the sea-level controller. Straight line. For a given airplane altitude, read across to this line then down for the MINIMUM selectable cabin altitude. Pairs are (cabin_alt_ft, airplane_alt_ft) sampled at each 1000-ft cabin gridline; airplane values rounded to nearest 50 ft. Underlying robust straight fit to 1,849 traced pixel samples: airplane_ft = 9,475 + 1.40881 x cabin_ft, rms 72 ft.","line_extent":"From the left edge (cabin SL, airplane ~9,450 ft) up to cabin ~11,050 ft (airplane ~25,050 ft), just short of the top of the grid. Tabulated to the last full gridline, cabin 11,000 ft.","points":[{"cabin_alt_ft":0,"airplane_alt_ft":9450},{"cabin_alt_ft":1000,"airplane_alt_ft":10900},{"cabin_alt_ft":2000,"airplane_alt_ft":12300},{"cabin_alt_ft":3000,"airplane_alt_ft":13700},{"cabin_alt_ft":4000,"airplane_alt_ft":15100},{"cabin_alt_ft":5000,"airplane_alt_ft":16500},{"cabin_alt_ft":6000,"airplane_alt_ft":17950},{"cabin_alt_ft":7000,"airplane_alt_ft":19350},{"cabin_alt_ft":8000,"airplane_alt_ft":20750},{"cabin_alt_ft":9000,"airplane_alt_ft":22150},{"cabin_alt_ft":10000,"airplane_alt_ft":23550},{"cabin_alt_ft":11000,"airplane_alt_ft":24950}]},"map_line":{"name":"MAP LINE","style":"solid","axis":"right (MAP ~ in-Hg)","comment":"Minimum manifold pressure required to hold a selected cabin altitude (at 2200 RPM). Straight line read against the RIGHT axis. Pairs are (cabin_alt_ft, map_inhg) at each 1000-ft cabin gridline, rounded to 0.01 in-Hg. Underlying robust straight fit to 878 traced pixel samples: MAP = 28.510 - 0.00162015 x cabin_ft (rms 0.022 in-Hg).","line_extent":"From the left edge (cabin SL, MAP ~28.51 in-Hg, slightly above the 28.0 top label - the printed line runs past the top label) down-right to where it meets the printed horizontal 20.0 in-Hg floor line. The drawn floor line begins at cabin ~5,160 ft and runs to the right-hand edge (cabin 12,000); the sloping line's own straight-fit 20.0 crossing is cabin ~5,250 ft. The POH NOTE states 5,200 ft, which is adopted as the terminal point.","points":[{"cabin_alt_ft":0,"map_inhg":28.51},{"cabin_alt_ft":1000,"map_inhg":26.89},{"cabin_alt_ft":2000,"map_inhg":25.27},{"cabin_alt_ft":3000,"map_inhg":23.65},{"cabin_alt_ft":4000,"map_inhg":22.03},{"cabin_alt_ft":5000,"map_inhg":20.41},{"cabin_alt_ft":5200,"map_inhg":20.0}],"poh_note":"All selected cabin altitudes above 5200 ft can be obtained with a minimum 20.0 in-Hg MAP and 2200 RPM, independent of airplane altitude. The chart draws this as a solid horizontal 20.0 in-Hg line from cabin ~5,160 ft to the right edge of the grid.","terminal_point_note":"The (5200, 20.0) terminal point is taken from the printed NOTE rather than from the traced line (which reads 20.09 at cabin 5,200). This keeps the app continuous with core.js's hard 20.0 in-Hg floor above cabin 5,200 ft. It puts a slightly steeper slope on the last 200 ft of the line (-2.05 vs -1.62 in-Hg per 1000 ft); the affected band is under 0.1 in-Hg wide."},"validation":{"check_controller_15000":{"source":"Figure 9-23 SAMPLE PROBLEM steps 1-3, printed page 9-53 (scan page 62)","printed":"airplane 15,000 ft (pt A) -> minimum cabin 3,900 ft (pt C)","my_read":"straight fit gives cabin 3,922 ft at airplane 15,000 ft; interpolating the tabulated rounded points gives 3,929 ft","delta":"+22 ft (fit) / +29 ft (tabulated) = 0.3 of one fine grid square","cross_checks":"The printed construction lines themselves measure 14,982-15,005 ft (A\u2192B horizontal) and cabin 3,885-3,914 ft (B\u2192C vertical) under this calibration."},"check_controller_25000":{"source":"Section 9 printed page 9-50 ('approximately an 11,000 ft Cabin altitude at 25,000 ft cruise altitude'), corroborated on printed page 9-56 ('cabin altitude will not exceed 11,075 feet with airplane not exceeding 25,000 ft altitude when pressurized')","printed":"airplane 25,000 ft -> cabin ~11,000 ft","my_read":"straight fit gives cabin 11,020 ft at airplane 25,000 ft; the tabulated points end at cabin 11,000 / airplane 24,950","delta":"+20 ft"},"check_map_5000":{"source":"Figure 9-23 SAMPLE PROBLEM, minimum-MAP procedure step 3 (pt D -> pt F), printed page 9-53","printed":"cabin 5,000 ft -> 20.4 in-Hg","my_read":"20.41 in-Hg","delta":"+0.01 in-Hg","cross_check":"the printed E\u2192F construction line itself measures 20.36-20.39 in-Hg under this calibration"},"check_map_floor_5200":{"source":"Figure 9-23 NOTE, printed page 9-53","printed":"20.0 in-Hg minimum above cabin 5,200 ft","my_read":"the drawn horizontal 20.0 in-Hg line begins at cabin ~5,160 ft and measures 19.96-20.00 in-Hg; the sloping MAP line's own straight-fit 20.0 crossing is cabin ~5,250 ft","delta":"\u00b145 ft about the printed 5,200 ft"},"check_map_3900":{"source":"Figure 9-23 SAMPLE PROBLEM, minimum-MAP procedure step 3 parenthetical, printed page 9-53","printed":"cabin 3,900 ft -> 22.4 in-Hg","my_read":"22.19 in-Hg","delta":"-0.21 in-Hg","verdict":"DISCREPANCY IN THE POH TEXT, not in the read. The printed pair (3900, 22.4) + (5000, 20.4) implies a slope of -1.82 in-Hg per 1000 ft, which extrapolates to 29.5 in-Hg at cabin SL - well off the top of the plate - and to 20.0 in-Hg at cabin 5,120 ft. The drawn line's slope is -1.62 in-Hg per 1000 ft and is consistent with 28.5 at cabin SL, 20.4 at 5,000 ft and 20.0 at ~5,200 ft. An independent digitization from a different POH copy of the same plate also read 22.2. The drawn line is treated as authoritative."},"cross_check_cabin_8000":{"note":"cabin 8,000 ft falls at airplane 20,750 ft on the new line (archive: 20,750 ft) - i.e. just below FL210, not inside 21,000-22,000. Inversely, airplane 21,000 ft (the POH's worked FL210 example) gives a minimum cabin of ~8,180 ft, consistent with the POH selecting a comfortable 8,500 ft cabin for that leg (p.9-51/9-54)."}},"diff_vs_retired_training_copy":{"comment":"data/_retired_training_poh/fig9-23.json was digitized from a different physical POH copy of the SAME plate (REPORT: VB-1213, RELEASED 11/12/78). The N8247J plate is identical - same sample problem, same numbers, same two controller lines. All differences are re-reading noise.","controller_line_ft":"cabin 0/3000/4000/5000/8000/9000/10000/11000 unchanged; cabin 1000, 2000, 6000, 7000 each +50 ft (10,850\u219210,900; 12,250\u219212,300; 17,900\u219217,950; 19,300\u219219,350). Max difference 50 ft, i.e. a quarter of a fine grid square.","map_line_inhg":"28.5\u219228.51, 26.9\u219226.89, 25.25\u219225.27, 23.65\u219223.65, 22.0\u219222.03, 20.4\u219220.41, 20.0@5200 unchanged. Max difference 0.03 in-Hg.","conclusion":"No aircraft-specific correction was warranted. N8247J's Sea Level Controller (Option 77) changes only the minimum selectable cabin altitude (sea level instead of the standard controller's 5,000 ft floor) - which is precisely the S.L. CONTROLLER line that was already digitized. The 4.25 psi max-\u0394P schedule and the minimum-MAP line are common to both controllers."},"confidence":"high","confidence_notes":"Both lines traced by column tracking on a run-length-filtered binary mask of a zoom-8 render of Actual Scans page 62, then mapped through a bilinear warp fitted to the printed grid (necessary: the scan is skewed, and a single linear px\u2194unit mapping leaves \u00b170 ft of error). Warp residuals: 8 ft rms on cabin, 22 ft rms on airplane altitude. Line fits: controller 1,849 samples / 72 ft rms, MAP 878 samples / 44 ft rms (0.022 in-Hg). Four independent printed construction lines (A\u2192B at 15,000 ft, B\u2192C at cabin 3,900 ft, D at cabin 5,000 ft, E\u2192F at 20.4 in-Hg, plus the 20.0 in-Hg floor line) all reproduce within 18 ft / 0.04 in-Hg, which validates the calibration independently of the curve tracing. The dashed STD CONTROLLER line and the dashed example construction lines were excluded. Only unresolved item: the POH's parenthetical '22.4 in-Hg at cabin 3,900 ft', which conflicts with its own drawn line by 0.21 in-Hg (see validation.check_map_3900)."};
 D.fig9_28={"figure":"9-28","poh_page":"9-60","source":"N8247J POH Section 9 - Airplane & Systems Description, Figure 9-28 'Capacity VS Oxygen Pressure', printed page 9-60 (scan page 69) (REPORT: VB-1213, RELEASED 11/12/78).","title":"Capacity VS Oxygen Pressure","purpose":"Converts an oxygen supply-gauge reading (gage psi) to percent of cylinder capacity, so a partially charged system's duration can be taken off Figure 9-27 and multiplied by that percentage.","poh_note_verbatim":"NOTE: To use above chart: - Check supply gauge in cabin. - Convert to percent of capacity. - Read duration from Oxygen Duration Chart (Figure 9-27) and multiply by percent of capacity. This will give oxygen duration with a partially charged system.","conditions":["Scott 8500-series system, 11 cu ft cylinder (325 liters at 70 F and 760 mm Hg), CHARGED TO 1800 PSIG - stated on the Figure 9-27 plate, printed page 9-58.","Gage pressure, i.e. the cabin supply gauge on the regulator assembly below the copilot's side window.","The companion duration table is Figure 9-27 (printed page 9-58), already digitized as aircraft_tables.json -> oxygen_duration.","Cylinder over-pressure protection: the safety outlet disc ruptures above 2700 psi (printed page 9-59). The chart itself carries no line above 1800 psig."],"axes":{"x":{"name":"% CAPACITY","unit":"percent","min":0,"max":100,"major_labels":[0,10,20,30,40,50,60,70,80,90,100],"fine_square":2,"gridlines":51},"y":{"name":"GAGE PRESSURE - PSI","unit":"psi (gauge)","min":0,"max":2000,"major_labels":[0,250,500,750,1000,1250,1500,1750,2000],"fine_square":50,"gridlines":41}},"line":{"name":"capacity vs gage pressure","style":"solid","count":"the plate carries exactly ONE line - no curve family, no dashed example trace","line_extent":"From the bottom-left frame corner (0 % capacity, 0 psi) up to the right frame at 100 % capacity, where it terminates at 1800 psi. It does NOT continue to the 2000-psi top of the pressure axis; pressures above 1800 psig are off the printed chart.","comment":"Sampled at every printed 10 % gridline by intersecting the traced line with the fitted grid model, then rounded to the nearest 5 psi. Rounding is finer than the guide's 'half a fine square' (25 psi) because this is a single ruled straight line traced from 1,906 pixel samples against a grid model with 2.2 px (3.7 psi) rms - quantizing to 25 psi would add more error than it removes. Raw un-rounded reads are in validation.gridline_reads.","points":[{"pct_capacity":0,"gage_psi":0},{"pct_capacity":10,"gage_psi":185},{"pct_capacity":20,"gage_psi":360},{"pct_capacity":30,"gage_psi":540},{"pct_capacity":40,"gage_psi":715},{"pct_capacity":50,"gage_psi":895},{"pct_capacity":60,"gage_psi":1080},{"pct_capacity":70,"gage_psi":1260},{"pct_capacity":80,"gage_psi":1440},{"pct_capacity":90,"gage_psi":1615},{"pct_capacity":100,"gage_psi":1800}]},"line_by_pressure":{"comment":"The same single line read the other way - at every printed 250-psi gridline - which is the direction the app uses (gauge reading in, percent of capacity out). Rounded to 0.1 % capacity. The 2000-psi gridline is not listed: the printed line ends at 1800 psi / 100 %.","points":[{"gage_psi":0,"pct_capacity":0.0},{"gage_psi":250,"pct_capacity":13.7},{"gage_psi":500,"pct_capacity":28.1},{"gage_psi":750,"pct_capacity":42.0},{"gage_psi":1000,"pct_capacity":55.8},{"gage_psi":1250,"pct_capacity":69.3},{"gage_psi":1500,"pct_capacity":83.4},{"gage_psi":1750,"pct_capacity":97.3},{"gage_psi":1800,"pct_capacity":100.0}]},"linearity":{"verdict":"LINEAR THROUGH THE ORIGIN. The printed line is a straight ruled line from (0 %, 0 psi) to (100 %, 1800 psi). Percent of capacity = gage_psi / 1800 x 100 reproduces the plate everywhere within an eighth of a fine grid square.","measured_straight_fit_chart_units":"gage_psi = 17.97855 x pct_capacity + 0.209 (least squares on 825 traced samples spanning 2.2 % to 96.8 % capacity; rms 6.41 psi, max residual 17.14 psi)","endpoint_slope":"(1798.4 - (-0.2)) / 100 = 17.986 psi per percent, i.e. 1800 psi at 100 % capacity","max_departure_from_strict_proportionality":"5.9 psi at 50 % capacity = 0.12 of a 50-psi fine square; equivalently 0.33 % capacity at 500-1000 psi = 0.16 of a 2 % fine square. Deviations alternate in sign along the line (+3.7, +0.5, -1.6, -2.7, -5.9, -1.2, +1.8, +1.0, -2.9, -1.6 psi at the 10 % gridlines), i.e. trace/ink scatter, not curvature.","curvature_test":"A quadratic fit to the same samples gives 0.0019 psi/%^2 and lowers the rms only from 6.41 to 6.28 psi - the quadratic departs from the straight fit by at most 1.4 psi over the whole span. Independently, the mean residual of the traced pixels from the straight pixel-space fit, binned every 250 px of x, never exceeds 4.1 px (7 psi) and does not bow systematically.","implication_for_the_app":"core.js o2DurationMin's frac = pressurePsig / 1800 IS the chart, not an approximation of it. Clamping frac at 1.0 for readings above 1800 psig is correct in the sense that the printed line stops at 1800 psi / 100 % - the chart offers no reading above that, so anything higher is off-chart and must be clamped and flagged, never extrapolated."},"usage":{"procedure":"1) read the cabin supply gauge (psi); 2) enter this chart to get percent of capacity; 3) take the duration for the number of persons and the altitude from Figure 9-27 (aircraft_tables.oxygen_duration) and multiply it by that percentage.","off_chart":"Below 0 psi and above 1800 psig / 100 % capacity there is no printed line. Clamp and flag."},"validation":{"comment":"Figure 9-28 prints no worked example and no dashed construction trace, so the validation below is (a) two printed anchor points that the line must hit by construction, both verified on the scan, and (b) the independent grid-model cross-check.","anchor_100pct":{"printed":"the line terminates on the right-hand (100 % capacity) frame; the Figure 9-27 plate states the cylinder is CHARGED TO 1800 PSIG, so full capacity must read 1800 psi","my_read":"at the right frame the traced line is at y = 1151.86 px; the printed 1800-psi fine gridline at that same column is at y = 1150.0 px","delta":"1.9 px = 3.1 psi = 0.06 of a fine square","visual_check":"charts-png/crops/fixG_p69_top100.png (zoom 10) - the line meets the right frame one fine square above the 1750-psi major line"},"anchor_origin":{"printed":"the line leaves the bottom-left frame corner, i.e. 0 psi = 0 % capacity","my_read":"the straight fit gives -0.16 psi at the 0 % gridline","delta":"0.2 psi","visual_check":"charts-png/crops/fixG_p69_origin.png (zoom 10) - the line emerges from the corner where the left frame meets the bottom frame"},"anchor_50pct":{"printed":"no printed value; used as a mid-span consistency anchor","my_read":"894.1 psi at 50 % capacity, i.e. 2.9 fine squares above the 750-psi major line","cross_check":"measured independently on charts-png/crops/fixG_p69_anchor50.png as 2.94 fine squares (897 psi)"},"gridline_reads":{"comment":"un-rounded reads at each printed 10 % gridline, psi","pct_capacity":[0,10,20,30,40,50,60,70,80,90,100],"gage_psi":[-0.16,183.72,360.47,538.42,717.31,894.13,1078.83,1261.83,1440.96,1617.13,1798.42]},"inverse_reads":{"comment":"un-rounded reads at each printed 250-psi gridline, percent capacity","gage_psi":[0,250,500,750,1000,1250,1500,1750],"pct_capacity":[0.01,13.72,28.11,41.96,55.85,69.33,83.45,97.34]},"overlay_check":"All eleven computed 10 %-gridline crossings were drawn back onto the raw scan; every marker sits on the printed line (scratch image verify_overlay.png, reproduced by the scripts listed in the checkpoint)."},"confidence":"high","confidence_notes":"Single straight ruled line on a clean 41 x 51 grid, traced by run-length-stripping the grid from a locally-thresholded zoom-8 render of Actual Scans page 69 and RANSAC-fitting the remainder (1,906 inlier pixel clusters, residual rms 6.9 px = 12 psi). The plate is skewed, so pixel-to-unit conversion uses a per-gridline linear model fitted to 194 columns of horizontal gridlines (rms 2.15 px) and 277 rows of vertical gridlines (rms 0.92 px) rather than one global scale. Both printed anchors (origin, and 1800 psig at 100 %) reproduce within 3 psi. No smudged or unreadable region; nothing on the plate was excluded except the page furniture and the printed NOTE text.","notes":"The task brief cited printed page 9-68 for this figure; the figure is actually on printed page 9-60 (scan page 69). The reference to it ('See Figure 9-27 Oxygen Duration chart and Figure 9-28, Capacity VS Oxygen Pressure to determine oxygen duration') is in the body text on printed page 9-59. No handwritten annotations appear on this page."};
-D.version={"version": "1.4", "published": {"ipad": "2026-10-08", "phone": "2026-10-08"}, "built": "2026-10-08"};
+D.version={"version": "1.5", "published": {"ipad": "2026-10-12", "phone": "2026-10-12"}, "built": "2026-10-12"};
 </script>
 <script>
 /* core.js — math engine.
@@ -1627,6 +1670,78 @@ var Core = (function () {
     return { wingL_gal: wingEach, wingR_gal: wingEach, fus_gal: fus, clampedTo: clampedTo, warn: warn };
   }
 
+  // ---------- fuel loading assistant (1.4.fuel_load, owner 2026-10-08) ----------
+  // What to put in each tank to bring the fuel ON BOARD up to a planned ramp
+  // total, starting from whatever the last flight left in the tanks.
+  //   cur: { wingL, wingR, fus } gal on board now (from the Shadin total and
+  //        the fuselage gauge — see tab_wb); targetGal: the planned total.
+  // The ADDITION follows the POH fueling rule (2-3 / 5-1: no wing fuel unless
+  // the fuselage is full; the remainder divided equally between the wings):
+  //   1. fuselage up to its base capacity (41.5)
+  //   2. the lower wing until the two wings match
+  //   3. both wings evenly to capacity (62 each)
+  //   4. (mod ON only) the fuselage extra
+  // Nothing is ever taken OUT of a tank, so a tank already above its standard
+  // share keeps it — a tankered landing (lots of wing fuel left) ends with a
+  // different split than a from-empty load of the same total, and the W&B
+  // moment differs with it (wing arm 170 vs fuselage 213).
+  // Returns { add:{wingL,wingR,fus}, addTotal, onBoard,
+  //           final:{wingL,wingR,fus,total}, std:{wingL,wingR,fus} (the
+  //           from-empty split of the same total), standard (final = std
+  //           within 0.25 gal per tank), why (one line when not standard),
+  //           warn[] }.
+  function wbFuelLoadPlan(cur, targetGal, modOn) {
+    var f = wbData().fuel, warn = [];
+    var wingCap = f.wing_usable_gal_per_side, fusBase = f.fus_usable_gal;
+    var modExtra = (modOn && f.fus_mod) ? f.fus_mod.extra_gal : 0;
+    var fusCap = fusBase + modExtra, maxTotal = fusCap + 2 * wingCap;
+    function num(v) { return (typeof v === 'number' && isFinite(v) && v > 0) ? v : 0; }
+    var L = num(cur && cur.wingL), R = num(cur && cur.wingR), F = num(cur && cur.fus);
+    if (L > wingCap) { warn.push('left wing on board above usable ' + wingCap + ' gal — taken as full'); L = wingCap; }
+    if (R > wingCap) { warn.push('right wing on board above usable ' + wingCap + ' gal — taken as full'); R = wingCap; }
+    if (F > fusCap) { warn.push('fuselage on board above usable ' + fusCap.toFixed(1) + ' gal — taken as full'); F = fusCap; }
+    var target = num(targetGal);
+    if (target > maxTotal) { warn.push('planned total exceeds usable capacity (' + maxTotal.toFixed(1) + ' gal) — clamped'); target = maxTotal; }
+    var onBoard = L + R + F, add = target - onBoard, aL = 0, aR = 0, aF = 0;
+    if (add <= 1e-9) {
+      if (add < -0.05) warn.push('already ' + (-add).toFixed(1) + ' gal above the planned total — nothing to add');
+      add = 0;
+    } else {
+      var rem = add;
+      aF = Math.min(rem, Math.max(0, fusBase - F)); rem -= aF;                 // 1
+      if (rem > 1e-9 && L !== R) {                                               // 2
+        var up = Math.min(rem, Math.abs(L - R), wingCap - Math.min(L, R));
+        if (L < R) aL += up; else aR += up;
+        rem -= up;
+      }
+      if (rem > 1e-9) {                                                          // 3
+        var roomL = wingCap - (L + aL), roomR = wingCap - (R + aR);
+        var each = Math.max(0, Math.min(rem / 2, roomL, roomR));
+        aL += each; aR += each; rem -= 2 * each;
+        var more = Math.min(rem, Math.max(roomL - each, roomR - each));        // one wing full, the other not
+        if (more > 1e-9) { if (roomL - each > roomR - each) aL += more; else aR += more; rem -= more; }
+      }
+      if (rem > 1e-9 && modExtra > 0) {                                          // 4
+        var x = Math.min(rem, fusCap - (F + aF)); aF += x; rem -= x;
+      }
+      if (rem > 1e-6) warn.push(rem.toFixed(1) + ' gal will not fit — tanks full');
+    }
+    var fin = { wingL: L + aL, wingR: R + aR, fus: F + aF };
+    fin.total = fin.wingL + fin.wingR + fin.fus;
+    var sd = wbDistributeFuel(fin.total, modOn);
+    var std = { wingL: sd.wingL_gal, wingR: sd.wingR_gal, fus: sd.fus_gal };
+    var standard = Math.abs(fin.wingL - std.wingL) <= 0.25 && Math.abs(fin.wingR - std.wingR) <= 0.25 &&
+                   Math.abs(fin.fus - std.fus) <= 0.25;
+    var why = '';
+    if (!standard) {
+      if (Math.abs(fin.wingL - fin.wingR) > 0.25) why = 'wings uneven (L ' + fin.wingL.toFixed(1) + ' / R ' + fin.wingR.toFixed(1) + ')';
+      else if (fin.fus < std.fus - 0.25) why = 'fuselage not full (' + fin.fus.toFixed(1) + ' of ' + std.fus.toFixed(1) + ') — more in the wings than a standard load';
+      else why = 'more in the fuselage than a standard load (' + fin.fus.toFixed(1) + ' vs ' + std.fus.toFixed(1) + ')';
+    }
+    return { add: { wingL: aL, wingR: aR, fus: aF }, addTotal: aL + aR + aF, onBoard: onBoard,
+             final: fin, std: std, standard: standard, why: why, warn: warn };
+  }
+
   // Configured empty weight/moment from the licensed figures and the cabin
   // furniture as installed (movable seats, 1.2.1.wb.1). units: [{weight,
   // stdArm, arm}] — stdArm is the arm the seat occupies in the licensed
@@ -1883,7 +1998,7 @@ var Core = (function () {
     evalServiceCeiling: evalServiceCeiling, ceilingMsl: ceilingMsl,
     cruiseLookup: cruiseLookup, cruiseRows: cruiseRows,
     cruiseWeightKtasCorr: cruiseWeightKtasCorr,
-    wbFwdLimit: wbFwdLimit, wbAftLimit: wbAftLimit, wbDistributeFuel: wbDistributeFuel,
+    wbFwdLimit: wbFwdLimit, wbAftLimit: wbAftLimit, wbDistributeFuel: wbDistributeFuel, wbFuelLoadPlan: wbFuelLoadPlan,
     wbConfigEmpty: wbConfigEmpty,
     wbState: wbState, wbCheck: wbCheck, wbBurnLine: wbBurnLine, wbAutoCurtailments: wbAutoCurtailments,
     profileAtAltitude: profileAtAltitude, profileBest: profileBest,
@@ -1981,6 +2096,14 @@ var UI = (function () {
     wbBaggage: 0, wbFuelGal: 100, wbTaxiGal: 5, wbLdgFuelGal: 30,
     wbCurtOn: false, wbCurtFwd: 1.0, wbCurtAft: 1.0, wbCurtWt: 100,
     wbPushed: null,          // {zfw, fuel} last sent to DEP
+    // fuel loading assistant (1.4.fuel_load): what the gauges said before
+    // fueling, the wing imbalance the pilot knows about (L minus R, gal), the
+    // order the tanks get filled, and the load last accepted into W&B
+    wbLoadShadin: null, wbLoadFusGauge: null, wbLoadCur: null, wbLoadOrder: [],
+    wbLoadOpen: false, wbLoadLast: '',   // dialog open + which gauge was typed last: a reload (iOS
+                                         // drops a backgrounded page) reopens it where it was
+    scrollTab: '', scrollY: 0,           // #page scroll of the last-used tab, restored on reload
+    wbFuelLoaded: null,      // {wingL, wingR, fus, total, standard, why}; wbLoadCur = hand-adjusted on-board split
     // feature toggles (settings → FEATURES)
     features: {
       wb: true, wbCurtail: true, wbAutoCurtail: true, wbMargins: false,   // auto curtailments ON (owner 2026-08-23)
@@ -2019,6 +2142,8 @@ var UI = (function () {
     if (def === null) {                     // nullable keys: null or a number,
       if (v === null) return true;          // except wbPushed = {zfw, fuel}
       if (k === 'wbPushed') return isObj(v) && isNum(v.zfw) && isNum(v.fuel);
+      if (k === 'wbFuelLoaded') return isObj(v) && isNum(v.wingL) && isNum(v.wingR) && isNum(v.fus);
+      if (k === 'wbLoadCur') return isObj(v) && isNum(v.wingL) && isNum(v.wingR) && isNum(v.fus);
       if (k === 'depWx' || k === 'ldgWx') return isObj(v) && typeof v.src === 'string';
       if (k === 'emerWx') return isObj(v) && isObj(v.wind);
       return isNum(v);
@@ -2279,19 +2404,49 @@ var UI = (function () {
   // 2026-08-23). commitFn re-renders the page, so the "next" input is
   // re-found by index in the fresh DOM. Fields outside #page (modals) just
   // blur. Same-gesture focus keeps the iPad keyboard up.
-  function enterAdvance(input, commitFn) {
-    var idx = -1;
+  // Enter / Tab / Shift+Tab in ANY text field: commit, then move to the
+  // next (previous) text field of the same page or dialog. Every field in
+  // the app commits on change/blur, and a page or dialog redraws itself on
+  // commit — so the move is: find the field's place, blur it (the commit),
+  // then re-query the SAME container and focus the neighbour. Handled once
+  // at the document (boot), not per field (owner, Android 2026-10-11: Tab
+  // and Enter lost the focus wherever a redraw followed the commit).
+  var ADV_SEL = 'input[type=text]:not([disabled])';
+  function fieldBox(input) {
+    var box = input.parentNode;
+    for (; box && box !== document.body; box = box.parentNode) {
+      if (box.className && (' ' + box.className + ' ').indexOf(' modal-body ') >= 0) return box;
+    }
+    return pageEl || document.getElementById('page');
+  }
+  function advanceFrom(input, dir) {
+    var idx = -1, box = null;
+    try { box = fieldBox(input); if (box) idx = Array.prototype.slice.call(box.querySelectorAll(ADV_SEL)).indexOf(input); } catch (e) {}
+    try { input.blur(); } catch (e) {}          // the commit (change + blur listeners)
     try {
-      var page = document.getElementById('page');
-      if (page) idx = Array.prototype.slice.call(page.querySelectorAll('.fld input[type=text]')).indexOf(input);
+      if (box && !box.parentNode) box = document.querySelector('.modal-body') || pageEl;   // the dialog rebuilt itself
+      if (!box || idx < 0) return;
+      var seq = box.querySelectorAll(ADV_SEL), j = idx + dir;
+      if (j >= 0 && j < seq.length) seq[j].focus();
     } catch (e) {}
-    commitFn();
-    try {
-      var page2 = document.getElementById('page');
-      var seq2 = page2 ? page2.querySelectorAll('.fld input[type=text]') : [];
-      if (idx >= 0 && idx + 1 < seq2.length) { seq2[idx + 1].focus(); return; }
-    } catch (e) {}
-    try { input.blur(); } catch (e) {}
+  }
+  function enterAdvance(input, commitFn) { if (commitFn) commitFn(); advanceFrom(input, 1); }   // kept for callers
+  function bindKeyboard() {
+    document.addEventListener('keydown', function (ev) {
+      var t = ev.target;
+      if (!t || t.tagName !== 'INPUT' || t.type !== 'text' || t.hasAttribute('data-noadvance')) return;
+      if (ev.key === 'Enter') { ev.preventDefault(); advanceFrom(t, 1); }
+      else if (ev.key === 'Tab') { ev.preventDefault(); advanceFrom(t, ev.shiftKey ? -1 : 1); }
+    });
+    // phone: once the keyboard is up (it shrinks the viewport — see the
+    // viewport meta) bring the focused field into view above it
+    document.addEventListener('focusin', function (ev) {
+      var t = ev.target;
+      if (!phone || !t || (t.tagName !== 'INPUT' && t.tagName !== 'TEXTAREA')) return;
+      setTimeout(function () {
+        try { if (document.activeElement === t) t.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
+      }, 350);
+    });
   }
 
   // placeholder holding the space a chart/result would occupy, naming what
@@ -2344,6 +2499,7 @@ var UI = (function () {
     // :active immediately (and un-sticks a long-press "latched" highlight)
     // when a touch listener exists on the document
     try { document.addEventListener('touchstart', function () {}, { passive: true }); } catch (e) {}
+    bindKeyboard();
     // reopen on the last-used tab; after the configured idle window (settings
     // → AUTO RESET, default 24 h, 0 = never), reset to the first tab and ASK
     // before wiping anything — the pilot may want to keep the departure
@@ -2361,9 +2517,18 @@ var UI = (function () {
     } else {
       activeTab = typeof store.tab === 'string' ? store.tab : 'dep';
     }
+    if (stale) { store.wbLoadOpen = false; store.scrollY = 0; }
     store.lastUsed = Date.now();
     saveStore();
     render();
+    // the page comes back where it was: iOS/Android drop a backgrounded web
+    // app and reload it (owner 2026-10-09)
+    if (!stale && store.scrollTab === activeTab && store.scrollY > 0) pageEl.scrollTop = store.scrollY;
+    var scrollT = null;
+    pageEl.addEventListener('scroll', function () {
+      if (scrollT) return;
+      scrollT = setTimeout(function () { scrollT = null; store.scrollTab = activeTab; store.scrollY = pageEl.scrollTop; saveStore(); }, 300);
+    });
     if (stale) {
       clearModal('WELCOME BACK', 'The app was idle for over ' +
         (idleMs < 3600000 ? Math.round(idleMs / 1000) + ' seconds (DEV)' : hrs + ' hours') + '.');
@@ -2601,11 +2766,6 @@ var UI = (function () {
     // the DOM — synchronous so iOS treats it as part of the tap gesture and
     // raises the keyboard (a setTimeout focus would not)
     if (opts.focus) input.setAttribute('data-autofocus', '1');
-    input.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Enter') {
-        enterAdvance(input, function () { commit(parse(input.value)); });
-      }
-    });
     if (opts.allowNeg) {
       sign.addEventListener('click', function () {
         var v = getV();
@@ -2805,9 +2965,6 @@ var UI = (function () {
     });
     winput.addEventListener('change', windCommit);
     winput.addEventListener('blur', windCommit);
-    winput.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Enter') { enterAdvance(winput, windCommit); }
-    });
     wrow.appendChild(winput);
     if (!phone) wrow.appendChild(el('span', 'unit', '°M / kt'));   // phone: the label says °M
     wf.appendChild(wrow);
@@ -2852,6 +3009,7 @@ var UI = (function () {
     function close() {
       if (scrim.parentNode) scrim.parentNode.removeChild(scrim);
       if (curModal && curModal.el === scrim) curModal = null;
+      if (opts && opts.onClose) opts.onClose();
     }
     x.addEventListener('click', close);
     scrim.addEventListener('click', function (ev) { if (ev.target === scrim) close(); });
@@ -3661,7 +3819,7 @@ var Airports = (function () {
     var m = U.modal(title, function (b) {
       var inp = U.el('input', 'apsearch');
       inp.type = 'text'; inp.placeholder = 'ICAO / name'; inp.setAttribute('autocapitalize', 'characters');
-      inp.setAttribute('autocomplete', 'off'); inp.setAttribute('autocorrect', 'off'); inp.setAttribute('data-autofocus', '1');
+      inp.setAttribute('autocomplete', 'off'); inp.setAttribute('autocorrect', 'off'); inp.setAttribute('data-autofocus', '1'); inp.setAttribute('data-noadvance', '1');
       b.appendChild(inp);
       var list = U.el('div', 'aplist'); b.appendChild(list);
       function fill() {
@@ -3751,7 +3909,6 @@ var Airports = (function () {
           wxIn = { src: 'MANUAL', wind: w2, altWinds: [], label: 'return wind' }; showWind(); rebuild();
         }
         wi.addEventListener('change', wcommit);
-        wi.addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { wcommit(); wi.blur(); } });
         wi.addEventListener('focus', function () { setTimeout(function () { try { wi.setSelectionRange(0, wi.value.length); } catch (e) {} }, 0); });
         showWind();
       } else {
@@ -4615,8 +4772,7 @@ var Weather = (function () {
         if (!p) { inp.value = etd == null ? '' : fmtEtd(etd, etdZ, tz, now); return; }
         etd = p.ms; etdZ = p.zulu; st.depEtd = etd; st.depEtdZulu = etdZ; U.set('depEtd', etd); draw();
       }
-      inp.addEventListener('change', commit);
-      inp.addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { commit(); inp.blur(); } });
+      inp.addEventListener('change', commit);   // Enter / Tab: document handler (ui.js bindKeyboard)
       inp.addEventListener('focus', function () { setTimeout(function () { try { inp.setSelectionRange(0, inp.value.length); } catch (e) {} }, 0); });
       row.appendChild(inp);
       if (etd != null) row.appendChild(U.el('span', 'etdalt', fmtEtd(etd, !etdZ, tz, now)));   // the other clock
@@ -4684,7 +4840,6 @@ var Weather = (function () {
           manual = { dir: Math.min(360, +mm[1]), spd: Math.min(60, +mm[2]) }; wi.value = manual.dir + '/' + manual.spd;
         }
         wi.addEventListener('change', wcommit);
-        wi.addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { wcommit(); wi.blur(); } });
         mw.appendChild(wi);
         body.appendChild(mw);
       }
@@ -5747,6 +5902,195 @@ var Weather = (function () {
     });
   }
 
+  // ----- fuel loading assistant (1.4.fuel_load) -----
+  // On board now: the Shadin total and the fuselage gauge (accurate on the
+  // ground) give the default split — the rest evenly in the wings — which the
+  // pilot can adjust tank by tank (owner's sketch 2026-10-08). The three
+  // tanks are checked against the Shadin figure (±0.5 gal) — the Shadin box
+  // goes red when they disagree. Returns null until both gauges are in.
+  function fuelOnBoardNow() {
+    var s2 = U.store;
+    if (s2.wbLoadShadin == null || !isFinite(s2.wbLoadShadin) || s2.wbLoadFusGauge == null || !isFinite(s2.wbLoadFusGauge)) return null;
+    var c = s2.wbLoadCur;
+    if (c && isFinite(c.wingL) && isFinite(c.wingR) && isFinite(c.fus)) {
+      return { wingL: c.wingL, wingR: c.wingR, fus: c.fus, total: c.wingL + c.wingR + c.fus, shadin: s2.wbLoadShadin, manual: true };
+    }
+    var fus = Math.min(s2.wbLoadFusGauge, s2.wbLoadShadin);
+    var wings = Math.max(0, s2.wbLoadShadin - fus);
+    return { wingL: wings / 2, wingR: wings / 2, fus: fus, total: s2.wbLoadShadin, shadin: s2.wbLoadShadin, manual: false };
+  }
+  var TANK_NAME = { L: 'L WING', F: 'FUSELAGE', R: 'R WING' };
+  var TANK_KEY = { L: 'wingL', F: 'fus', R: 'wingR' };
+
+  // fuel-pump style rolling counter: three whole-gallon drums + tenths
+  function odometer(v) {
+    var t = Math.max(0, Math.round(v * 10)), whole = Math.floor(t / 10), tenth = t % 10;
+    var str = String(whole); while (str.length < 3) str = '0' + str;
+    var h = '<span class="wb-odo">', lead = true;
+    for (var k = 0; k < str.length; k++) {
+      var zero = lead && str[k] === '0' && k < str.length - 1;
+      if (str[k] !== '0') lead = false;
+      h += '<span class="d' + (zero ? ' z' : '') + '">' + str[k] + '</span>';
+    }
+    return h + '<span class="dot">.</span><span class="d t">' + tenth + '</span></span>';
+  }
+
+  // the entries live only while the dialog is open (owner 2026-10-09): a
+  // hand-set imbalance or a typo must not carry into the next fueling. They
+  // are saved while it is open, with wbLoadOpen, so a reload (the phone drops
+  // a backgrounded app) reopens the dialog exactly where it was.
+  function resetFuelLoad(open) {
+    var s2 = U.store;
+    s2.wbLoadShadin = null; s2.wbLoadFusGauge = null; s2.wbLoadCur = null; s2.wbLoadOrder = []; s2.wbLoadLast = '';
+    U.set('wbLoadOpen', !!open);
+  }
+  var fuelLoadRestored = false;
+  function openFuelLoad(restore) {
+    var s2 = U.store, dd = d();
+    if (!restore) resetFuelLoad(true); else { s2.wbLoadOpen = true; }
+    var mref = U.modal('FUEL LOADING', function (b) {
+      // RESET beside the title: back to blank gauges
+      var rb = U.el('button', 'btn sm wb-loadreset', 'RESET');
+      rb.addEventListener('click', function () { resetFuelLoad(true); draw(); });
+      var head = b.parentNode.querySelector('.modal-head');
+      head.insertBefore(rb, head.children[1]);
+      function draw() {
+        b.innerHTML = '';
+        var fusCap = dd.fuel.fus_usable_gal + (s2.wbFusModOn ? dd.fuel.fus_mod.extra_gal : 0);
+        var wingCap = dd.fuel.wing_usable_gal_per_side;
+        // --- on board now: the two gauges ---
+        b.appendChild(U.el('div', 'wb-casehead', 'ON BOARD NOW'));
+        var g = U.el('div', 'grid'); b.appendChild(g);
+        var shadinFld = U.num(g, { label: 'Shadin', unit: 'gal', min: 0, max: maxDistributable(), dp: 1, size: 5, allowNull: true, focus: s2.wbLoadShadin == null,
+          getFn: function () { return s2.wbLoadShadin; },
+          setFn: function (v) { s2.wbLoadShadin = v; s2.wbLoadCur = null; s2.wbLoadLast = 'shadin'; U.set('wbLoadShadin', v); draw(); } });
+        var fusFld = U.num(g, { label: 'Fus fuel', unit: 'gal', min: 0, max: fusCap, dp: 1, size: 4, allowNull: true,
+          getFn: function () { return s2.wbLoadFusGauge; },
+          setFn: function (v) { s2.wbLoadFusGauge = v; s2.wbLoadCur = null; s2.wbLoadLast = 'fus'; U.set('wbLoadFusGauge', v); draw(); } });
+        var now = fuelOnBoardNow();
+        // the Shadin total cannot be below what the fuselage alone holds: box
+        // the figure typed last until it is fixed
+        if (now && s2.wbLoadShadin < s2.wbLoadFusGauge - 0.05) {
+          var lastIn = s2.wbLoadLast, culprit = lastIn === 'fus' ? fusFld : shadinFld;
+          culprit.className += ' bad';
+          b.appendChild(U.el('div', 'caution', 'Check ' + (lastIn === 'fus' ? 'Fus fuel' : 'Shadin') + ': Shadin ' +
+            s2.wbLoadShadin.toFixed(1) + ' < fus fuel ' + s2.wbLoadFusGauge.toFixed(1) + '.'));
+          now = null;
+        }
+        // until both gauges are in, the rest is drawn greyed out and inert so
+        // the pilot sees what is coming (owner 2026-10-11)
+        var ghost = !now, wrap = b;
+        if (ghost) {
+          now = { wingL: null, fus: null, wingR: null, total: 0, shadin: 0 };
+          wrap = U.el('div', 'wb-ghost'); b.appendChild(wrap);
+        }
+        // --- current distribution, tank by tank, adjustable ---
+        wrap.appendChild(U.el('div', 'wb-casehead', 'CURRENT DIST <small>tap a tank to adjust</small>'));
+        var gc = U.el('div', 'grid wb-curdist'); wrap.appendChild(gc);
+        ['L', 'F', 'R'].forEach(function (t) {
+          var k = TANK_KEY[t];
+          U.num(gc, { label: TANK_NAME[t], unit: 'gal', min: 0, max: t === 'F' ? fusCap : wingCap, dp: 1, size: 4, allowNull: ghost,
+            getFn: function () { return now[k]; },
+            setFn: function (v) {
+              var c = { wingL: now.wingL, wingR: now.wingR, fus: now.fus }; c[k] = v;
+              s2.wbLoadCur = c; U.set('wbLoadCur', c); draw();
+            } });
+        });
+        var mismatch = !ghost && Math.abs(now.total - now.shadin) > 0.5;
+        if (mismatch) {
+          shadinFld.className += ' bad';
+          wrap.appendChild(U.el('div', 'caution', 'Check fuel numbers: current dist ' + now.total.toFixed(1) +
+            (now.total < now.shadin ? ' < ' : ' > ') + 'Shadin total ' + now.shadin.toFixed(1)));
+        }
+        // --- planned total (editable here too) and what to add ---
+        var target = fuelResolve().total;
+        var plan = ghost ? null : C.wbFuelLoadPlan(now, target, s2.wbFusModOn);   // exact; only the display is to 0.1
+        var gp = U.el('div', 'grid wb-planrow'); wrap.appendChild(gp);
+        U.num(gp, { label: 'Planned total', unit: 'gal', min: 0, max: maxDistributable(), dp: 1, size: 5,
+          getFn: function () { return target; },
+          setFn: function (v) { s2.wbFuelGal = v; s2.wbFuelMode = 'auto'; s2.wbFuelLoaded = null; U.set('wbFuelGal', v); draw(); } });
+        var addRes = U.res(gp, 'Add', ghost ? '—' : plan.addTotal.toFixed(1) + ' <small>gal</small>', !ghost && plan.addTotal > 0 ? 'good' : 'warn');
+        addRes.className += ' wb-addres';
+        if (ghost) {
+          wrap.appendChild(U.el('div', 'wb-casehead', 'LOADING ORDER <small>tap the tanks in the order you will fuel</small>'));
+          var grow = U.el('div', 'wb-order'); wrap.appendChild(grow);
+          ['L', 'F', 'R'].forEach(function (t) { grow.appendChild(U.el('button', 'wb-tank', '<span class="n"></span><b>' + TANK_NAME[t] + '</b><small>&nbsp;</small>')); });
+          wrap.appendChild(U.el('div', 'wb-stephdr', '<span></span><span>PUMP TOTAL</span><span>FINAL DIST</span>'));
+          var inert = wrap.querySelectorAll('input, button');
+          for (var q = 0; q < inert.length; q++) inert[q].disabled = true;
+          return;
+        }
+        U.warnChips(b, plan.warn);
+        if (plan.addTotal <= 0) return;
+        // --- loading order: tap the tanks as they will be fueled ---
+        b.appendChild(U.el('div', 'wb-casehead', 'LOADING ORDER <small>tap the tanks in the order you will fuel</small>'));
+        var order = (s2.wbLoadOrder || []).slice();
+        var row = U.el('div', 'wb-order'); b.appendChild(row);
+        ['L', 'F', 'R'].forEach(function (t) {
+          var pos = order.indexOf(t), addV = plan.add[TANK_KEY[t]], none = addV <= 0.05;
+          var tile = U.el('button', 'wb-tank' + (pos >= 0 ? ' on' : '') + (none ? ' none' : ''),
+            '<span class="n">' + (pos >= 0 ? (pos + 1) : '') + '</span><b>' + TANK_NAME[t] + '</b>' +
+            '<small>' + (none ? 'nothing' : '+' + addV.toFixed(1)) + '</small>');
+          if (!none) tile.addEventListener('click', function () {
+            var o2 = order.indexOf(t) >= 0 ? [t] : order.concat([t]);   // re-tapping a numbered tank starts over from it
+            s2.wbLoadOrder = o2; U.set('wbLoadOrder', o2); draw();
+          });
+          row.appendChild(tile);
+        });
+        // --- steps: pump total (rolling counter) and the tank's final quantity ---
+        var seq = order.filter(function (t) { return plan.add[TANK_KEY[t]] > 0.05; });
+        var left = ['L', 'F', 'R'].filter(function (t) { return plan.add[TANK_KEY[t]] > 0.05 && seq.indexOf(t) < 0; });
+        if (seq.length) {
+          var hdr = U.el('div', 'wb-stephdr', '<span></span><span>PUMP TOTAL</span><span>FINAL DIST</span>'); b.appendChild(hdr);
+          var pump = 0;
+          seq.forEach(function (t, i) {
+            var k = TANK_KEY[t]; pump += plan.add[k];
+            var r = U.el('div', 'wb-step',
+              '<span class="who"><span class="n">' + (i + 1) + '</span>' + TANK_NAME[t] + '<small>+' + plan.add[k].toFixed(1) + '</small></span>' +
+              odometer(pump) + '<span class="fin">' + plan.final[k].toFixed(1) + '<small>gal</small></span>');
+            b.appendChild(r);
+          });
+        }
+        if (left.length) {
+          b.appendChild(U.el('div', 'note', (seq.length ? 'Then tap ' : 'Tap ') + left.map(function (t) { return TANK_NAME[t]; }).join(' / ') +
+            (left.length > 1 ? ' in your order' : '') + '.'));
+          return;
+        }
+        // --- all chosen: the result ---
+        var fin = plan.final;
+        b.appendChild(U.el('div', 'note wb-final', 'After loading: L <b>' + fin.wingL.toFixed(1) + '</b> · F <b>' + fin.fus.toFixed(1) + '</b> · R <b>' +
+          fin.wingR.toFixed(1) + '</b> = <b>' + fin.total.toFixed(1) + ' gal</b> ' +
+          (plan.standard ? '<span class="chip src">standard load</span>' : '<span class="chip warn">non-standard — ' + plan.why + '</span>')));
+        var ok = U.el('button', 'btn primary', 'SET W&B FUEL TO THIS LOAD');
+        ok.style.marginTop = '10px';
+        ok.addEventListener('click', function () {
+          s2.wbWingL_gal = +fin.wingL.toFixed(2); s2.wbWingR_gal = +fin.wingR.toFixed(2); s2.wbFusGal = +fin.fus.toFixed(2);
+          s2.wbFuelMode = 'manual';
+          s2.wbFuelLoaded = { wingL: s2.wbWingL_gal, wingR: s2.wbWingR_gal, fus: s2.wbFusGal, total: +fin.total.toFixed(1),
+                              standard: plan.standard, why: plan.why };
+          U.set('wbFuelLoaded', s2.wbFuelLoaded);
+          if (mref) mref.close();
+        });
+        b.appendChild(ok);
+      }
+      draw();
+    }, { onClose: function () { resetFuelLoad(false); } });
+  }
+  // first W&B render after a reload: the dialog was open, so bring it back
+  function restoreFuelLoad() {
+    if (fuelLoadRestored) return;
+    fuelLoadRestored = true;
+    if (U.store.wbLoadOpen && U.store.wbView === 'weights') setTimeout(function () { openFuelLoad(true); }, 0);
+  }
+
+  // the load last accepted from the assistant, while the tanks still hold it
+  function loadedMatches() {
+    var s2 = U.store, ld = s2.wbFuelLoaded;
+    if (!ld || s2.wbFuelMode !== 'manual') return null;
+    if (Math.abs(ld.wingL - s2.wbWingL_gal) > 0.05 || Math.abs(ld.wingR - s2.wbWingR_gal) > 0.05 || Math.abs(ld.fus - s2.wbFusGal) > 0.05) return null;
+    return ld;
+  }
+
   function fuelTanksSvg() {
     var s2 = U.store, dd = d(), fuel = fuelResolve();
     var wingCap = dd.fuel.wing_usable_gal_per_side;
@@ -5868,6 +6212,11 @@ var Weather = (function () {
       getFn: function () { return s2.wbFuelMode === 'manual' ? fuelResolve().total : s2.wbFuelGal; },
       setFn: function (v) { s2.wbFuelGal = v; s2.wbFuelMode = 'auto'; U.set('wbFuelGal', v); }
     });
+    // fuel loading assistant: what to put in each tank to reach TOTAL FUEL
+    // from what is on board (owner 2026-10-08)
+    var loadBtn = U.el('button', 'btn primary wb-loadbtn', 'LOAD FUEL…');
+    loadBtn.addEventListener('click', openFuelLoad);
+    gf.appendChild(loadBtn);
     // slider 0..max — while dragging, the tank pictograms and the CG envelope
     // update live IN PLACE (no full re-render, which would destroy the slider
     // mid-drag); the value is persisted on release
@@ -5903,9 +6252,17 @@ var Weather = (function () {
     var fuel = r.fuel;
     tanksNode = fuelTanksSvg();
     sf.appendChild(tanksNode);
+    var loaded = loadedMatches();
     sf.appendChild(U.el('div', 'note',
       'Change total fuel for auto distribution. Tap each tank to edit manually.' +
       (s2.wbFuelMode === 'manual' ? ' <span class="chip src">MANUAL</span>' : '')));
+    // the assistant's load, as long as the tanks still hold it — a
+    // non-standard split (tankered fuel, uneven wings) is called out here
+    if (loaded) {
+      sf.appendChild(U.el('div', 'note wb-loaded', '<span class="chip src">LOADED</span> L ' + loaded.wingL.toFixed(1) +
+        ' · F ' + loaded.fus.toFixed(1) + ' · R ' + loaded.wingR.toFixed(1) + ' gal — ' +
+        (loaded.standard ? 'standard load' : '<span class="chip warn">non-standard</span> ' + loaded.why)));
+    }
     var gf2 = U.el('div', 'grid'); sf.appendChild(gf2);
     U.num(gf2, { label: 'Taxi allowance', key: 'wbTaxiGal', unit: 'gal', min: 0, max: 15, size: 3 });
     U.num(gf2, { label: 'Fuel at landing', key: 'wbLdgFuelGal', unit: 'gal', min: 0, max: maxD, size: 4, dp: 1 });
@@ -6710,7 +7067,7 @@ var Weather = (function () {
   UI.registerTab({
     id: 'wb', label: 'W&B', sub: 'load·cg',
     dyn: function () { return { hidden: !U.feat('wb') }; },
-    render: function (page) { PF.use(U.isPhone()); render(page); }
+    render: function (page) { PF.use(U.isPhone()); render(page); restoreFuelLoad(); }
   });
 })();
 
@@ -6840,10 +7197,7 @@ var Weather = (function () {
       setTimeout(function () { try { input.setSelectionRange(0, input.value.length); } catch (e) {} }, 0);
     });
     input.addEventListener('change', commit);
-    input.addEventListener('blur', commit);
-    input.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Enter') U.enterAdvance(input, commit);
-    });
+    input.addEventListener('blur', commit);   // Enter / Tab: document handler (ui.js bindKeyboard)
     return input;
   }
 
@@ -6871,7 +7225,8 @@ var Weather = (function () {
     var arr = arrCopy();
     var o;
     if (isNew) {
-      o = { label: nextLabel(arr), h: 200, hu: 'agl', d: 1.0, du: 'nm' };
+      var fe = U.store.fieldElev;
+      o = { label: nextLabel(arr), h: fe != null ? Math.round(fe + 200) : 200, hu: fe != null ? 'msl' : 'agl', d: 6076, du: 'ft' };
       arr.push(o); idx = arr.length - 1;
       U.set('depObstacles', arr);
     } else {
