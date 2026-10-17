@@ -772,6 +772,9 @@ svg.crz-chart text { font-family: -apple-system, sans-serif; }
 .etdrow { display: flex; align-items: center; gap: 8px; margin: 10px 0 12px; flex-wrap: wrap; }
 .etdlab { font: 700 10px -apple-system, sans-serif; color: var(--dim); letter-spacing: .06em; text-transform: uppercase; }
 .etdchips button { min-width: 0; padding: 0 8px; font-size: 12px; }
+.etdlz button { min-width: 36px; padding: 0 8px; font-size: 12px; font-weight: 700; }
+.etdtime { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.etderr { margin: -6px 0 10px; }
 .etdin { width: 10ch; min-height: 36px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel2); color: var(--entry);
   font: 700 16px monospace; text-align: center; text-transform: uppercase; }
 .etdin:focus { border-color: var(--acc); outline: none; }
@@ -924,6 +927,16 @@ body.phone .apcyc .mix { position: static; transform: none; flex-shrink: 0; }
 .fld.bad input[type=text] { border-color: var(--bad); box-shadow: 0 0 0 1px var(--bad); }
 .wb-loadreset { margin-left: 12px; margin-right: auto; }
 .wb-ghost { opacity: .32; pointer-events: none; filter: grayscale(.6); }
+/* phone: FLAPS and MARGIN on one row (owner 2026-10-16) */
+body.phone .page-dep .seg button { min-width: 46px; padding: 0 10px; }
+body.phone .tomargin .tgl { min-width: 0; padding: 0 7px; font-size: 10px; }
+body.phone .tomargin .row { gap: 4px; }
+/* IFR TAKEOFF MINIMUMS notes under the climbout chart (1.5.obst) */
+.dernotes { margin: 8px 0 2px; font-size: 12px; line-height: 1.5; color: var(--ink); }
+.dernotes .dnh { font-weight: 700; letter-spacing: .04em; margin-bottom: 2px; }
+.dernotes .dnl.bad { color: var(--bad); font-weight: 700; }
+.dernotes .dnl.warn { color: var(--warnc); }
+.dernotes small { color: var(--dim); font-size: 11px; margin-left: 6px; }
 .wb-curdist .fld { flex: 1 1 0; min-width: 0; }
 .wb-curdist .fld input[type=text] { width: 100% !important; }
 .wb-planrow { align-items: stretch; }
@@ -970,7 +983,7 @@ body.light .wb-odo { border-color: #888; }
 </div>
 <script>
 var D={};D.aircraft_tables={"source":"N8247J Aerostar 601P POH (VB-1213): Section 2 Operating Limitations (p.2-1/2-2/2-3), Section 5 Operational Data (p.5-1/5-2), Section 8 Performance (Fig 8-1 p.8-17, Fig 8-9 p.8-25, Fig 8-10 p.8-26, Fig 8-11 p.8-27, Fig 8-18 p.8-48, Fig 8-19 p.8-49). All primary values are in KNOTS (CAS/IAS/KIAS/KCAS) per the actual N8247J book \u2014 the retired training-copy POH previously used for this file wrongly implied MPH for the position-error table; that has been corrected.","weights":{"max_takeoff_lb":6000,"max_landing_lb":6000,"max_ramp_lb":6000,"wing_fuel_placard":"All weight in excess of 5900 lbs must be fuel in the wings.","usable_fuel_gal_perf_charts":165.5,"fuel_density_lb_per_gal":6.0,"usable_fuel_note":"Section 2 p.2-2: Fuel (165.5 gals useable) = 993 lbs (confirms 6.0 lb/gal). Placard #18 (p.2-4): TOTAL USABLE FUEL 165.5 U.S. GAL (fuselage 41.5 + each wing 62). POH ch.7 lists 174.5 \u2014 open co-owner question; app uses 165.5 cap."},"airspeed_limits_mph_cas_ias":{"comment":"Legacy MPH-equivalent limits, kept for backward compatibility with any consumer still reading this key. These are NOT independently sourced from a Section-2-in-MPH table (the N8247J Section 2 table is in KNOTS, see limits_kt) \u2014 they are unit conversions (kt x 1.15078) of the same N8247J knot limits, verified consistent (e.g. 167 kt Va -> 192 mph rounds to the 191 below within POH-typical rounding). Prefer limits_kt for new code.","vne":[280,278],"vno":[250,248],"gear_down_max_mph":180,"gear_retraction_max_mph":150,"va_design_maneuvering_mph":191,"demonstrated_crosswind_mph":17},"limits_kt":{"comment":"Section 2 AIRSPEED LIMITATIONS table, p.2-1 (KTS CAS/IAS as printed) cross-checked against Instrument Dial Markings p.2-2 and Placards p.2-3. Decrease Vne and Vno by 4 kt per 1000 ft above 24,000 ft.","vne":{"cas":243,"ias":241},"vno":{"cas":217,"ias":215},"va":{"cas":167,"ias":166},"vfe":{"cas":175,"ias":174,"comment":"Vf20 - max speed for lowering 20 deg of flaps (Section 2 item 5). This is the more permissive 'flaps extended' limit; see vf_full_flaps for the full-flap (45 deg) limit."},"vf_full_flaps":{"cas":149,"ias":148,"comment":"Vf - max speed for LOWERING FULL (45 deg) flaps (Section 2 item 4). Matches the top end of position_error_kt.gear_down_flaps_full (149/148)."},"vle":{"cas":157,"ias":156},"vlo":{"cas":130,"ias":130,"comment":"Vlo - max speed for GEAR RETRACTION (Section 2 item 7, first line)."},"vlo_extension":{"cas":157,"ias":156,"comment":"Vlo - max speed for GEAR EXTENSION (Section 2 item 7, second line) - numerically equal to Vle as printed."},"vmc":{"cas":80,"ias":84},"demonstrated_crosswind_kt":15,"demonstrated_crosswind_comment":"Section 2 PLACARDS p.2-3, verbatim: \"DEMONSTRATED CROSSWIND VELOCITY - 15 KTS.\" Not a limitation, a demonstrated value. Threshold and display are in KNOTS. The legacy airspeed_limits_mph_cas_ias.demonstrated_crosswind_mph (17) is a unit conversion of an older source and is NO LONGER USED by the app; it is retained only for backward compatibility."},"position_error_kt":{"comment":"Section 5 p.5-1 AIRSPEED SYSTEM POSITION ERROR, N8247J POH (VB-1213). Values are KNOTS (the N8247J book; the retired training-copy POH previously used for this file was MPH and is no longer the source). Instrument error NOT included. Digit-verified visually against charts-png-n8247j/ch05_p1_position_error.png.","gear_flaps_up":{"cas":[77,83,87,91,96,104,122,139,174,243],"ias":[85,89,91,95,98,105,122,138,173,241]},"gear_down_flaps_full":{"cas":[69,74,78,87,130,142,149],"ias":[76,78,81,88,129,140,148]}},"alt_static_note":{"comment":"Section 5 p.5-1 ALTERNATE STATIC SYSTEM, verbatim-ish.","text":"When aircraft is equipped with alternate static system, its use will result in the same indicated airspeed (within +/- 2 kts) and the same indicated altitude (within +/- 30 feet) as the normal system."},"stall_speeds_kias_kcas":{"comment":"Figure 8-1 (A/F 0213 & UP), N8247J POH p.8-17, knots, zero thrust, zero instrument error assumed. bank angles: 0/20/40/60 deg. Each entry [IAS, CAS]. Digit-verified visually against charts-png-n8247j/fig8-01_stall_speeds.png - identical to prior file.","bank_deg":[0,20,40,60],"configs":[{"weight_lb":6000,"flaps":"UP","gear":"UP","speeds":[[86,79],[85,82],[94,90],[111,111]]},{"weight_lb":6000,"flaps":"20","gear":"DOWN","speeds":[[81,75],[82,77],[87,85],[103,104]]},{"weight_lb":6000,"flaps":"45","gear":"DOWN","speeds":[[77,71],[77,73],[83,81],[99,100]]},{"weight_lb":5500,"flaps":"UP","gear":"UP","speeds":[[83,76],[82,79],[91,87],[108,108]]},{"weight_lb":5500,"flaps":"20","gear":"DOWN","speeds":[[78,72],[79,74],[85,83],[101,102]]},{"weight_lb":5500,"flaps":"45","gear":"DOWN","speeds":[[74,68],[74,70],[80,78],[95,96]]},{"weight_lb":5000,"flaps":"UP","gear":"UP","speeds":[[79,72],[78,75],[86,82],[101,101]]},{"weight_lb":5000,"flaps":"20","gear":"DOWN","speeds":[[74,68],[75,70],[80,78],[96,97]]},{"weight_lb":5000,"flaps":"45","gear":"DOWN","speeds":[[71,65],[71,67],[76,74],[91,92]]},{"weight_lb":4500,"flaps":"UP","gear":"UP","speeds":[[75,68],[73,70],[82,78],[97,97]]},{"weight_lb":4500,"flaps":"20","gear":"DOWN","speeds":[[71,65],[72,67],[76,74],[91,92]]},{"weight_lb":4500,"flaps":"45","gear":"DOWN","speeds":[[67,61],[67,63],[72,70],[86,87]]}],"altitude_loss_ft":{"power_off":200,"power_on":300,"single_engine":90}},"oxygen_duration":{"comment":"Section 5 p.5-2, N8247J POH (VB-1213), Scott 8500 series, 11 cu ft cylinder charged to 1800 psig. Minimum duration hh:mm. Digit-verified visually against charts-png-n8247j/ch05_p2_rpm_map_envelope.png - identical to prior file.","altitudes_ft":[8000,10000,15000,20000,25000],"persons":{"1":["4:57","3:43","2:19","1:41","1:19"],"2":["2:28","1:51","1:09","0:50","0:39"],"3":["1:39","1:14","0:46","0:33","0:26"],"4":["1:14","0:55","0:34","0:25","0:19"],"5":["0:59","0:44","0:27","0:20","0:16"],"6":["0:49","0:37","0:23","0:16","0:13"]},"partial_charge":"Duration scales by percent of capacity per Figure 9-28 (POH 9-59/9-60 procedure: read the supply gauge, convert to percent of capacity, multiply this table's duration by it). METHOD: the app reads the digitized figure (data/fig9-28.json), which is a straight ruled line through the origin - 0 psig = 0 percent, 1800 psig = 100 percent. FALLBACK ONLY: percent = pressure_psig / 1800 is computed and flagged when fig9-28.json is not in the build. Readings above the 1800 psig full charge are off-chart - clamped to 100 percent and flagged, never extrapolated.","oxygen_required_light_ft":"12000 +/- 500 cabin altitude"},"holding":{"comment":"Figure 8-18, N8247J POH p.8-48: straight line through origin - fuel is linear with time at 45% power, 2200 RPM, economy mixture, approx 10.3 GPH PER ENGINE (20.6 GPH total). POH note: refer to cruise presentations for MAP to obtain 45% power. Example: 45 min = 15.5 gal. Verified via CONDITIONS box on Fig 8-18 - identical to prior file.","gph_per_engine":10.3,"gph_total":20.6,"rpm":2200,"power_pct":45,"mixture":"economy"},"pressurization":{"max_diff_psi":4.25,"safety_valve_psi":"4.35 +/- 0.10 (safety valve; POH system text also cites 4.45 psi safety relief - app displays 4.25 operating)","cabin_alt_at_fl250_ft":11000,"controller":"Sea-level controller installed per POH revisions (standard-controller text struck through).","rate_control_max_fpm":1000,"ideal_cabin_climb_fpm":"300-600 (POH tips: plan 500-600; cabin should reach cruise cabin altitude BEFORE the airplane levels off)","ideal_cabin_descent_fpm":300,"min_map_note":"All selected cabin altitudes above 5200 ft can be obtained with a minimum 20.0 in-Hg MAP and 2200 RPM, independent of airplane altitude (Fig 9-23 note). Below 5200 ft cabin, read MAP line (data/fig9-23.json).","dump":"Guarded NORMAL/DUMP switch opens safety valve; squat switch opens it on ground.","nominal_profiles":"POH example: airplane climb 1000 fpm nominal, descent 1500 fpm nominal; cabin meets aircraft using rate = cabin altitude change / airplane time to altitude."},"climb_speeds_kias":{"comment":"Twin (Fig 8-9, p.8-25), single engine (Fig 8-10, p.8-26), balked landing (Fig 8-11, p.8-27) speed-schedule tables printed on each nomograph; descent (Fig 8-19, p.8-49) CONDITIONS box item 5. All confirmed by direct read of the rendered N8247J chart images - identical to prior file.","twin_engine_by_weight":{"6000":118,"5500":113,"5000":108,"4500":103},"single_engine_all_weights":109,"balked_landing_all_weights":87,"descent_kias":215},"rpm_map_envelope":{"comment":"Section 5 p.5-2, N8247J POH (VB-1213), RPM-MAP envelope for continuous operation (Lycoming IO-540-S1A5 w/ Hartzell HC-C3YR-2/C8468-8R propeller). POH note: for efficient engine operation, keep RPM above 2200. Boundary upper limit as (rpm, max_map_inhg) segments. Re-derived via pixel-calibrated trace of charts-png-n8247j/ch05_p2_rpm_map_envelope.png (see checkpoints/aircraft_tables.checkpoint.md for the calibration) - confirmed IDENTICAL to the prior file's values, including the (2000, 26.7) start point.","boundary":[[2000,26.7],[2100,28.0],[2400,28.0],[2400,29.5],[2575,29.5]],"right_limit_rpm":2575}};
-D.wb_n8247j={"source":"N8247J POH Section 7 (VB-1213) + Section 2 p.2-2 limits + Section 9 pp.9-26/9-28 fuel feed; licensed EW from 8/28/2025 Equipment Change form (A&P 2755063). Middle/bench seat weights from 601P optional equipment list 88-EL 'Furnishing Instl - Executive Interior' (Ted Smith form, training-copy POH) \u2014 user-approved secondary source for SEAT WEIGHTS ONLY. Owner verified all seat weights and arms 2026-08-22.","datum_note":"FS 0.00 = 150.0 in forward of wing leading edge (inboard of nacelle). Moments in POH tables are lb-in/1000.","licensed":{"as_of":"2025-08-28","empty_weight_lb":4444.22,"empty_cg_in":166.6041,"empty_moment_lbin":740425.159,"oil_included":true,"oil_note":"N8247J weighing condition is OIL: Full - oil is in the licensed empty weight. Do NOT apply the POH sample-problem +45 lb oil line."},"seats":[{"id":"pilot","name":"Pilot seat","weight_lb":23.5,"arm_in":96.0,"removable":false,"verified":true,"src":"N8247J equip list p.7-12 (700525-513)"},{"id":"copilot","name":"Copilot seat","weight_lb":23.5,"arm_in":96.0,"removable":true,"verified":true,"src":"N8247J equip list p.7-12 (700525-516)"},{"id":"midL","name":"Middle seat L","weight_lb":35.0,"arm_in":132.0,"removable":true,"verified":true,"src":"601P opt equip list 88-EL (710060-501); weight/arm owner-verified 2026-08-22"},{"id":"midR","name":"Middle seat R","weight_lb":35.0,"arm_in":132.0,"removable":true,"verified":true,"src":"601P opt equip list 88-EL (710060-501); weight/arm owner-verified 2026-08-22"},{"id":"bench","name":"Aft bench seat","weight_lb":56.0,"arm_in":165.0,"removable":true,"verified":true,"src":"601P opt equip list 88-EL (710069-503); weight/arm owner-verified 2026-08-22"}],"stations":{"pilot_copilot":{"arm_in":96.0,"range_in":[94.0,102.0],"label":"Pilot / Copilot"},"mid_pax":{"arm_in":132.0,"range_in":[127.0,135.0],"label":"Middle passengers"},"bench_pax":{"arm_in":165.0,"range_in":[161.0,165.0],"label":"Aft bench passengers"},"shelf":{"arm_in":177.0,"label":"Shelf","verified":false,"src":"owner estimate 2026-08-22: about 12 in aft of the bench station (165). No POH placard weight limit digitized yet - add max_lb when known."},"wing_fuel":{"arm_in":170.0,"label":"Wing fuel"},"fus_fuel":{"arm_in":213.0,"label":"Fuselage fuel"},"baggage":{"arm_in":250.0,"range_in":[224.0,265.0],"max_lb":240,"label":"Baggage"}},"limits":{"max_takeoff_lb":6000,"max_landing_lb":6000,"max_ramp_lb":6000,"over_5900_must_be_wing_fuel":true,"max_zero_fuel_lb":null,"std_occupant_lb":170},"envelope":{"unit":"in aft of datum","fwd_limit":[{"wt":3600,"cg":157.66},{"wt":4600,"cg":157.66},{"wt":6000,"cg":160.67}],"aft_limit":[{"wt":3600,"cg":167.88},{"wt":6000,"cg":167.88}],"mac_labels":{"157.66":"12.2% MAC","160.67":"17.0% MAC","167.88":"28.5% MAC"}},"fuel":{"density_lb_per_gal":6.0,"wing_usable_gal_total":124.0,"wing_usable_gal_per_side":62.0,"wing_wb_extra_gal_total":4.0,"wing_wb_extra_note":"Wings fueled to filler neck hold +2 gal/side usable - for W&B computation only, not flight planning (POH 7-1).","fus_usable_gal":41.5,"wing_arm_in":170.0,"fus_arm_in":213.0,"fus_mod":{"extra_gal":20.0,"verified":false,"default_on":false,"note":"Owner-reported seat-pocket-sheet modification enlarging the fuselage tank capacity by ~20 gal (41.5 -> 61.5 gal, total capacity 165.5 -> 185.5). UNVERIFIED - not identified from any public STC/Section-2 source, and it CONFLICTS with the Section 2 placards ('DO NOT INSERT NOZZLE OVER 3. INCHES', 'TOTAL USABLE FUEL 165.5 U.S. GAL'). Would move CG about 1 inch aft when used. Default OFF; only enable per explicit owner confirmation (needs a scan of the seat-pocket sheet to verify)."},"burn_model":{"type":"point1_point2","basis":"POH 7-2 certified straight-line check: the CG-vs-weight line runs from the takeoff (max-fuel) point to the zero-fuel point; a landing marker is placed on that line at landing weight. Both extremes must fall inside the envelope (POH 7-1). Implemented by core.js wbBurnLine/wbState - NOT a fuel-feed simulation.","historical":{"type":"design_line","wings_dry_fus_gal":14.0,"wings_dry_fus_range_gal":[12.0,16.0],"low_fuel_light_fus_gal":12.0,"note":"RETIRED 2026-08-21 (owner-corrected #2). POH 9-26/9-28: all three tanks feed simultaneously and seek a common level; by design wings run dry with ~12-16 gal in fuselage. An earlier build modeled the DISPLAYED CG track as proportional simultaneous depletion along the line (wing 124, fus 41.5)->(wing 0, fus 14), then fuselage only. Superseded because the certified compliance check is the straight Point I -> Point II line (POH 7-2), not Section 9 feed physics. Kept here for provenance only - core.js no longer reads this block."}}},"placards":{"aft_cg_ballast":"POH 7-1: some equipment combinations may require additional cabin weight with light cabin load (e.g. pilot only) to keep CG forward of the aft limit.","wing_fuel_rule":"All weight in excess of 5900 lb must be fuel in the wings (POH 2-2)."},"validation":{"comment":"POH Section 7 p.7-2 sample problem. EW 4145 / moment 678930. Pilot+copilot 170 each @96, 2 mid pax 340 total @132, 2 bench pax 340 total @165, wing fuel 97.2 gal, fus fuel 41.5 gal, no baggage.","point1":{"weight_lb":5997,"moment_k":964.7,"cg_in":160.86},"point2_after_burn_plus_reserve_24_6gal_fus":{"weight_lb":5313,"moment_k":844.07,"cg_in":158.87},"point2_expected_result":"FAILS forward limit (limit at 5313 lb is ~159.19 in; 158.87 is forward of it) - the POH itself says the loading must be rearranged.","reserve_note":"POH models the 24.6 gal minimum reserve as fuselage fuel (moment 31.52k = 148 lb x 213 in / 1000)."}};
+D.wb_n8247j={"source":"N8247J POH Section 7 (VB-1213) + Section 2 p.2-2 limits + Section 9 pp.9-26/9-28 fuel feed; licensed EW from 8/28/2025 Equipment Change form (A&P 2755063). Middle/bench seat weights from 601P optional equipment list 88-EL 'Furnishing Instl - Executive Interior' (Ted Smith form, training-copy POH) \u2014 user-approved secondary source for SEAT WEIGHTS ONLY. Owner verified all seat weights and arms 2026-08-22.","datum_note":"FS 0.00 = 150.0 in forward of wing leading edge (inboard of nacelle). Moments in POH tables are lb-in/1000.","licensed":{"as_of":"2025-08-28","empty_weight_lb":4444.22,"empty_cg_in":166.6041,"empty_moment_lbin":740425.159,"oil_included":true,"oil_note":"N8247J weighing condition is OIL: Full - oil is in the licensed empty weight. Do NOT apply the POH sample-problem +45 lb oil line."},"seats":[{"id":"pilot","name":"Pilot seat","weight_lb":23.5,"arm_in":96.0,"removable":false,"verified":true,"src":"N8247J equip list p.7-12 (700525-513)"},{"id":"copilot","name":"Copilot seat","weight_lb":23.5,"arm_in":96.0,"removable":true,"verified":true,"src":"N8247J equip list p.7-12 (700525-516)"},{"id":"midL","name":"Middle seat L","weight_lb":35.0,"arm_in":132.0,"removable":true,"verified":true,"src":"601P opt equip list 88-EL (710060-501); weight/arm owner-verified 2026-08-22"},{"id":"midR","name":"Middle seat R","weight_lb":35.0,"arm_in":132.0,"removable":true,"verified":true,"src":"601P opt equip list 88-EL (710060-501); weight/arm owner-verified 2026-08-22"},{"id":"bench","name":"Aft bench seat","weight_lb":56.0,"arm_in":165.0,"removable":true,"verified":true,"src":"601P opt equip list 88-EL (710069-503); weight/arm owner-verified 2026-08-22"}],"stations":{"pilot_copilot":{"arm_in":96.0,"range_in":[94.0,102.0],"label":"Pilot / Copilot"},"mid_pax":{"arm_in":132.0,"range_in":[127.0,135.0],"label":"Middle passengers"},"bench_pax":{"arm_in":165.0,"range_in":[161.0,165.0],"label":"Aft bench passengers"},"shelf":{"arm_in":177.0,"label":"Shelf","verified":false,"src":"owner estimate 2026-08-22: about 12 in aft of the bench station (165). No POH placard weight limit digitized yet - add max_lb when known."},"wing_fuel":{"arm_in":170.0,"label":"Wing fuel"},"fus_fuel":{"arm_in":213.0,"label":"Fuselage fuel"},"baggage":{"arm_in":250.0,"range_in":[224.0,265.0],"max_lb":240,"label":"Baggage"}},"limits":{"max_takeoff_lb":6000,"max_landing_lb":6000,"max_ramp_lb":6000,"over_5900_must_be_wing_fuel":true,"max_zero_fuel_lb":null,"std_occupant_lb":170},"envelope":{"unit":"in aft of datum","fwd_limit":[{"wt":3600,"cg":157.66},{"wt":4600,"cg":157.66},{"wt":6000,"cg":160.67}],"aft_limit":[{"wt":3600,"cg":167.88},{"wt":6000,"cg":167.88}],"mac_labels":{"157.66":"12.2% MAC","160.67":"17.0% MAC","167.88":"28.5% MAC"}},"fuel":{"density_lb_per_gal":6.0,"wing_usable_gal_total":124.0,"wing_usable_gal_per_side":62.0,"wing_wb_extra_gal_total":4.0,"wing_wb_extra_note":"Wings fueled to filler neck hold +2 gal/side usable - for W&B computation only, not flight planning (POH 7-1).","fus_usable_gal":41.5,"wing_arm_in":170.0,"fus_arm_in":213.0,"fus_mod":{"extra_gal":20.0,"verified":false,"default_on":true,"note":"Owner-reported seat-pocket-sheet modification enlarging the fuselage tank capacity by ~20 gal (41.5 -> 61.5 gal, total capacity 165.5 -> 185.5). UNVERIFIED - not identified from any public STC/Section-2 source, and it CONFLICTS with the Section 2 placards ('DO NOT INSERT NOZZLE OVER 3. INCHES', 'TOTAL USABLE FUEL 165.5 U.S. GAL'). Would move CG about 1 inch aft when used. Was default OFF pending confirmation; the owner set the default ON 2026-10-17 (the Setup toggle still turns it off). Still unverified against a public source."},"burn_model":{"type":"point1_point2","basis":"POH 7-2 certified straight-line check: the CG-vs-weight line runs from the takeoff (max-fuel) point to the zero-fuel point; a landing marker is placed on that line at landing weight. Both extremes must fall inside the envelope (POH 7-1). Implemented by core.js wbBurnLine/wbState - NOT a fuel-feed simulation.","historical":{"type":"design_line","wings_dry_fus_gal":14.0,"wings_dry_fus_range_gal":[12.0,16.0],"low_fuel_light_fus_gal":12.0,"note":"RETIRED 2026-08-21 (owner-corrected #2). POH 9-26/9-28: all three tanks feed simultaneously and seek a common level; by design wings run dry with ~12-16 gal in fuselage. An earlier build modeled the DISPLAYED CG track as proportional simultaneous depletion along the line (wing 124, fus 41.5)->(wing 0, fus 14), then fuselage only. Superseded because the certified compliance check is the straight Point I -> Point II line (POH 7-2), not Section 9 feed physics. Kept here for provenance only - core.js no longer reads this block."}}},"placards":{"aft_cg_ballast":"POH 7-1: some equipment combinations may require additional cabin weight with light cabin load (e.g. pilot only) to keep CG forward of the aft limit.","wing_fuel_rule":"All weight in excess of 5900 lb must be fuel in the wings (POH 2-2)."},"validation":{"comment":"POH Section 7 p.7-2 sample problem. EW 4145 / moment 678930. Pilot+copilot 170 each @96, 2 mid pax 340 total @132, 2 bench pax 340 total @165, wing fuel 97.2 gal, fus fuel 41.5 gal, no baggage.","point1":{"weight_lb":5997,"moment_k":964.7,"cg_in":160.86},"point2_after_burn_plus_reserve_24_6gal_fus":{"weight_lb":5313,"moment_k":844.07,"cg_in":158.87},"point2_expected_result":"FAILS forward limit (limit at 5313 lb is ~159.19 in; 158.87 is forward of it) - the POH itself says the loading must be rearranged.","reserve_note":"POH models the 24.6 gal minimum reserve as fuselage fuel (moment 31.52k = 148 lb x 213 in / 1000)."}};
 D.fig8_03={"figure":"8-3","poh_page":"8-19","title":"TOTAL TAKEOFF DISTANCE TO 50-FOOT OBSTACLE, FLAPS 20 DEGREES","source":"N8247J POH Section 8 p.8-19/8-20 (VB-1213)","conditions":["2575 RPM and 29.5 in MAP prior to brake release","Flaps 20 degrees","Landing gear extended (retraction initiated at or beyond 50-foot obstacle)","Level, paved, dry runway","NOTE: if power is applied without the brakes set, distances apply from the point where full power is applied"],"speeds_kias":{"6000":{"takeoff":87,"obstacle50":90},"5750_and_less":{"takeoff":85,"obstacle50":88}},"distance_axis":{"unit":"ft","min":0,"max":7000},"oat_panel":{"comment":"distance (ft) read on the shared distance scale where each pressure-altitude curve crosses the OAT gridline; this is the value carried horizontally to the 6000-lb reference line. null = OAT gridline beyond that curve's printed extent. oat_c mixes the ten printed 10-deg-C gridlines with 7 extra terminus columns (-35,-27,-23,34,38,44,46) inserted 2026-08-21 so a curve's printed extent isn't lost between its last gridline and its actual ink terminus (see traced_oat_extent_c for the measured extent used for each curve, and checkpoints/fig8-03.checkpoint.md ADDENDUM for the method). All ten original gridline columns are unchanged from the initial digitization.","oat_c":[-40,-35,-30,-27,-23,-20,-10,0,10,20,30,34,38,40,44,46,50],"pressure_alt_ft":[0,2000,4000,6000,8000,10000],"distance_ft":[[null,null,null,null,null,1900,2070,2220,2410,2640,2860,2960,3070,3130,3250,3310,3430],[null,null,null,null,2030,2080,2260,2450,2670,2920,3180,3290,3410,3460,3600,3670,null],[null,null,null,2130,2210,2260,2470,2700,2940,3200,3500,3640,3770,3850,3990,null,null],[null,null,2260,2330,2420,2470,2720,2980,3240,3570,3910,4070,4240,4330,null,null,null],[null,2400,2530,2600,2700,2770,3030,3300,3620,3960,4400,4580,4780,null,null,null,null],[2580,2700,2840,2930,3040,3130,3430,3730,4090,4480,4960,5210,null,null,null,null,null]],"traced_oat_extent_c":{"0":[-20.5,50.69],"2000":[-23.42,46.79],"4000":[-27.46,44.15],"6000":[-30.81,41.22],"8000":[-35.4,38.16],"10000":[-40.28,34.53]}},"weight_panel":{"comment":"each printed guideline sampled at the weight gridlines; at_ref = its distance value where it crosses the 6000-lb reference line. The chart's guidelines enter the reference line at every 500 ft; those entering above 5500 ft are hidden behind the speed table box, and the 1000-ft guideline was extrapolated from the ratio trend (too shallow to trace on this scan). The family is NOT purely multiplicative - the 5500-lb ratio rises from 0.78 at at_ref 5500 to 0.84 at at_ref 1500.","weight_lb":[6000,5500,5000,4500],"guidelines":[{"at_ref":5500,"distance_ft":[5500,4310,3740,3230]},{"at_ref":5000,"distance_ft":[5000,3950,3420,2980]},{"at_ref":4500,"distance_ft":[4500,3580,3130,2720]},{"at_ref":4000,"distance_ft":[4000,3250,2840,2460]},{"at_ref":3500,"distance_ft":[3500,2900,2530,2230]},{"at_ref":3000,"distance_ft":[3000,2500,2190,1940]},{"at_ref":2500,"distance_ft":[2500,2090,1840,1620]},{"at_ref":2000,"distance_ft":[2000,1660,1460,1320]},{"at_ref":1500,"distance_ft":[1500,1260,1110,1000]},{"at_ref":1000,"distance_ft":[1000,840,750,670]}]},"wind_panel":{"comment":"headwind guidelines traced individually (they enter the 0-kt reference line at every 500 ft). The tailwind fan is proportional: a single ratio applies to every guideline, measured as 1.000 / 1.090 / 1.180 at 0 / 5 / 10 kt tailwind.","headwind":{"wind_kt":[0,10,20,30],"guidelines":[{"at_ref":5500,"distance_ft":[5500,5180,4870,4550]},{"at_ref":5000,"distance_ft":[5000,4700,4420,4140]},{"at_ref":4500,"distance_ft":[4500,4230,3950,3670]},{"at_ref":4000,"distance_ft":[4000,3750,3500,3240]},{"at_ref":3500,"distance_ft":[3500,3260,3030,2800]},{"at_ref":3000,"distance_ft":[3000,2790,2590,2390]},{"at_ref":2500,"distance_ft":[2500,2320,2150,1980]},{"at_ref":2000,"distance_ft":[2000,1850,1710,1570]},{"at_ref":1500,"distance_ft":[1500,1390,1280,1170]},{"at_ref":1000,"distance_ft":[1000,920,850,790]},{"at_ref":500,"distance_ft":[500,460,420,390]}]},"tailwind":{"wind_kt":[0,5,10],"guidelines":[{"at_ref":5500,"distance_ft":[5500,5990,6490]},{"at_ref":5000,"distance_ft":[5000,5450,5900]},{"at_ref":4500,"distance_ft":[4500,4900,5310]},{"at_ref":4000,"distance_ft":[4000,4360,4720]},{"at_ref":3500,"distance_ft":[3500,3820,4130]},{"at_ref":3000,"distance_ft":[3000,3270,3540]},{"at_ref":2500,"distance_ft":[2500,2730,2950]},{"at_ref":2000,"distance_ft":[2000,2180,2360]},{"at_ref":1500,"distance_ft":[1500,1640,1770]},{"at_ref":1000,"distance_ft":[1000,1090,1180]},{"at_ref":500,"distance_ft":[500,550,590]}]}},"validation":{"poh_example":{"oat_c":20,"pa_ft":2000,"weight_lb":5500,"wind_kt":10,"wind_type":"headwind","expect_ft":2200},"reproduced_ft":2258,"intermediate_reads":{"after_oat_panel":2920,"after_weight_panel":2434},"notes":"Reproduced by interpolating this JSON along the POH example path: +2.6% vs the printed 2200 ft, inside the +/-3% tolerance. The chart's own printed dashed example line was located on the scan and agrees with the digitized panels through the first two panels (it leaves the 2000-ft PA curve at y=2920 ft and reaches the wind reference line at 2440 ft, vs 2434 ft interpolated here); the residual difference is in the wind panel, where the printed dashed segment is drawn about half a fine square steeper than the printed headwind guidelines it is supposed to parallel."},"confidence":{"oat_panel":"high","weight_panel":"high","wind_panel":"medium","notes":"Traced from the N8247J scan by pixel analysis (directional morphological filtering to isolate the printed curves from the grid) and verified by colour overlay on the original scan; see checkpoints/fig8-03.checkpoint.md for the pixel calibration. The distance scale was anchored on the printed right-hand axis (14 major gridlines = 7000 ft) with a per-column correction for the ~8 px page skew across the sheet. OAT and weight panels: every printed curve/guideline traced individually, residual RMS 1-2 px (7-14 ft). Wind panel medium: the headwind guidelines traced cleanly, but the tailwind fan is short, steep and grid-obscured - its ratio (1.000/1.090/1.180 at 0/5/10 kt) comes from a joint fit across all guidelines over 0-8 kt and is extrapolated to 10 kt. The 1000-ft weight guideline and the 500/1000-ft outer wind guidelines are extrapolated from the ratio trend; they are outside the range this figure can actually produce. 2026-08-21 addendum: 7 terminus columns were added to the oat_panel (see checkpoints/fig8-03.checkpoint.md ADDENDUM) from a curve model rebuilt off the original saved mask/calibration and pixel-verified against the scan at every new terminus; all 10 original gridline columns are unchanged."}};
 D.fig8_04={"figure":"8-4","poh_page":"8-20","title":"Takeoff Ground Roll - Flaps 20 deg Down (A/F 0213 & UP)","source":"N8247J POH Section 8 p.8-20 (VB-1213)","conditions":["2575 RPM and 29.5 in MAP prior to brake release","Flaps - 20 deg","Level, paved, dry runway"],"notes":["If power is applied without the brakes set, distances apply from point where full power is applied.","Triangle symbol on the figure title: 'and prior airplanes modified per PAC Option #93'.","Three chained panels left-to-right: OAT/pressure-altitude -> weight -> wind. The horizontal (distance) value carries through the reference lines.","Distance grid runs 0 ft (bottom) to 5000 ft (top); labelled every 1000 ft, heavy lines every 500 ft, fine dotted squares every 100 ft. (Do not confuse with Fig 8-6 flaps-up ground roll, whose axis runs to 6000 ft.)","The OAT sub-box is short - it tops out at about 4200 ft. The weight sub-box reaches 5000 ft but the printed speed table covers its upper right corner (above about 3400 ft and right of about 5350 lb). Only the wind box, right of reference line 2, spans the full 0-5000 ft.","OAT panel distance values are at the 6000-lb weight reference line (reference line 1, 0 wind). Weight and wind panels scale that value.","Example takeoff speed printed on the chart for the worked example: 85 KIAS (98 MPH).","Digitized from the N8247J scan (scan page 22, landscape, rendered upright) by sheared-run-length curve extraction plus per-column pixel tracing against a 2-D least-squares pixel-to-distance calibration; every traced curve and guideline was overlaid back on the raw scan and visually confirmed, and every value was cross-checked by an independent direct column read at the gridlines. Handwritten annotations excluded."],"speeds_kias":{"6000":{"takeoff":87},"5750_and_less":{"takeoff":85}},"distance_axis":{"unit":"ft","min":0,"max":5000,"major_step":1000,"fine_step":100},"oat_panel":{"comment":"Ground roll (ft) at the 6000-lb reference line vs OAT (degC) for each pressure-altitude curve; null = OAT outside that curve's printed extent. The oat_c axis is the 10-C printed gridlines PLUS a column at each curve's ink-demonstrated printed terminus (-35,-27,-24,35,38,41,44,47), added 2026-08-21: a terminus lying between gridlines otherwise stranded the curve's whole printed band from the terminus to the first non-null gridline, because core.js interp1 only interpolates a bracket whose BOTH endpoints are printed. Terminus columns are read off the scan like any other column, rounded INWARD to whole degrees from the measured ink tip (conservative \u2014 never claims ink beyond what was traced); null where a curve does not reach that OAT. See fig8-04.checkpoint.md ADDENDUM (C) for the closure recipe and per-curve measurements.","oat_c":[-40,-35,-30,-27,-24,-20,-10,0,10,20,30,35,38,40,41,44,47,50],"pressure_alt_ft":[0,2000,4000,6000,8000,10000],"printed_oat_extent_c":[[-20.4,50.3],[-24.2,47.1],[-27.3,44.4],[-31.3,41.9],[-36.0,38.3],[-40.7,35.1]],"measured_ink_extent_c":[[-20.39,50.34],[-24.16,47.14],[-27.31,44.39],[-31.29,41.59],[-36.0,38.35],[-40.7,35.11]],"distance_ft":[[null,null,null,null,null,1460,1580,1700,1840,2010,2200,2270,2340,2390,2410,2480,2540,2600],[null,null,null,null,1560,1620,1770,1920,2080,2230,2440,2540,2610,2650,2680,2740,2800,null],[null,null,null,1650,1690,1750,1910,2090,2270,2470,2690,2810,2880,2920,2950,3020,null,null],[null,null,1780,1820,1880,1950,2120,2310,2510,2730,2960,3090,3170,3210,3240,null,null,null],[null,1910,2000,2060,2120,2190,2390,2590,2820,3060,3310,3440,3520,null,null,null,null,null],[2040,2130,2230,2290,2350,2430,2650,2890,3130,3390,3660,null,null,null,null,null,null,null]]},"weight_panel":{"comment":"Each printed guideline sampled at the four weight gridlines. at_ref = the guideline value where it meets reference line 1 (6000 lb). Six guidelines are printed, leaving the reference line on the 500-ft heavy gridlines from 4000 down to 1500 ft; they end at the 4500-lb gridline (the value then carries horizontally to reference line 2).","weight_lb":[6000,5500,5000,4500],"guidelines":[{"at_ref":4005,"distance_ft":[4005,3426,3100,2764]},{"at_ref":3510,"distance_ft":[3510,3006,2694,2387]},{"at_ref":3021,"distance_ft":[3021,2571,2308,2054]},{"at_ref":2507,"distance_ft":[2507,2155,1925,1697]},{"at_ref":1998,"distance_ft":[1998,1701,1530,1363]},{"at_ref":1499,"distance_ft":[1499,1283,1159,1023]}]},"wind_panel":{"headwind":{"comment":"Seven solid guidelines sloping down-right from the 0-kt reference line 2; ground roll decreases with headwind. at_ref = value at 0 kt. Every line is printed straight across the full 0-30 kt box.","wind_kt":[0,10,20,30],"guidelines":[{"at_ref":4002,"distance_ft":[4002,3754,3506,3259]},{"at_ref":3525,"distance_ft":[3525,3311,3100,2892]},{"at_ref":2997,"distance_ft":[2997,2821,2645,2471]},{"at_ref":2468,"distance_ft":[2468,2313,2157,2000]},{"at_ref":1956,"distance_ft":[1956,1835,1718,1604]},{"at_ref":1487,"distance_ft":[1487,1394,1301,1207]},{"at_ref":1001,"distance_ft":[1001,916,831,747]}]},"tailwind":{"comment":"Seven dashed guidelines rising to the right from the SAME seven reference-line points as the headwind family; ground roll increases with tailwind. Each printed line is straight. The last printed dash on each line lies between 9.7 and 14 kt, so the 5-kt and 10-kt samples are inside the print on every line - nothing is extrapolated. Multipliers on at_ref run x1.10-1.17 at 5 kt and x1.200-1.340 at 10 kt, rising as at_ref falls.","wind_kt":[0,5,10],"guidelines":[{"at_ref":4002,"distance_ft":[4002,4414,4827]},{"at_ref":3525,"distance_ft":[3525,3876,4229]},{"at_ref":2997,"distance_ft":[2997,3313,3630]},{"at_ref":2468,"distance_ft":[2468,2753,3039]},{"at_ref":1956,"distance_ft":[1956,2238,2521]},{"at_ref":1487,"distance_ft":[1487,1704,1922]},{"at_ref":1001,"distance_ft":[1001,1171,1342]}]}},"validation":{"poh_example":{"oat_c":20,"pa_ft":2000,"weight_lb":5500,"wind_kt":10,"expect_ft":1800},"reproduced_ft":1790,"intermediate_reads":{"after_oat_panel_6000lb":2230,"after_weight_panel_5500lb":1908},"printed_example_trace_reads":{"after_oat_panel_6000lb":2245,"after_weight_panel_5500lb":1948,"answer_line_ft":1812,"comment":"Measured on the chart's own dashed example trace: the carry line into reference line 1 reads 2245 ft (columns x=1880-2030, spread 2239-2247); the carry line into reference line 2 reads 1948 ft (columns x=3200-3220, spread 1947-1950); the final horizontal answer line reads 1812 ft (columns x=3560-3760, spread 1811-1814) against a printed answer of 1800 ft, i.e. the drafting itself sits about +12 ft high on this calibration."},"notes":"Chained through the digitized panels: OAT 20 C / PA 2000 -> 2230 ft at the 6000-lb reference line, weight 5500 lb -> 1908 ft, 10 kt headwind -> 1790 ft vs the printed 1800 ft (-10 ft, -0.6%). Residual breakdown against the chart's own dashed trace: the OAT read is 15 ft below the printed carry line (2230 vs 2245), the weight panel loses a further 25 ft (1908 vs 1948), and the wind panel then reads about 20 ft high, so the errors partially cancel. Entering the wind panel at the printed 1948 ft instead gives 1827 ft, 15 ft above the drawn answer line at 1812 ft. All well inside the +/-3% tolerance."},"confidence":{"oat_panel":"high","weight_panel":"high","wind_panel":"high","notes":"Distance calibration is a 2-D least-squares fit (a y-squared term is required - the page bows about 15 px) to 970 gridline samples, rms 4.9 ft, re-verified on a fresh render: grid bottom border reads -4.7/-4.6 ft, wind-box top border 5004.9 ft, weight-box top 5000.3 ft, and every 500-ft heavy line within -8..+11 ft of nominal. Horizontal calibration rms 3.4 px, verified against the printed bottom-axis labels within 8 px. OAT/PA panel: six curves extracted with a sheared run-length filter, overlay-verified against the printed 10/8/6/4/2/S.L. labels, and cross-checked by independent raw-ink column reads at every gridline (agreement <= 20 ft); monotone in PA at every OAT column. Weight panel: six printed guidelines (region above the top one and below the bottom one confirmed empty), cross-check <= 13 ft; guideline/at_ref ratios consistent at 0.851-0.860 / 0.764-0.774 / 0.677-0.682. The printed example's horizontal dashed carry line runs alongside guideline 4 near the 5000-lb gridline and initially corrupted that one read - it was re-measured from uncontaminated columns only (1925 ft, family-ratio prediction 1924). Headwind: seven printed guidelines traced per column over the full 0-30 kt, fit rms 1.6-1.9 px, cross-check <= 26 ft. Tailwind is the one HALF-SQUARE JUDGEMENT CALL on this figure: the dashes sit on the densest part of the grid and cannot be traced column by column, so each line was recovered as a straight line forced through its (well-determined) headwind reference point with the slope fitted to a thickness-filtered dash mask. An independent unanchored Hough on that mask found exactly seven lines at the same seven reference points (within 75 ft), and a fully independent raw-ink read at the 5-kt and 10-kt gridlines agrees with the model to <= 27 ft on all fourteen values, so the family is trusted; the least certain line is the 3525-ft one, whose upper half runs under the printed TAILWIND label (its free-fit slope and its anchored slope differ by 0.13 px/px, about 45 ft at 10 kt). Treat tailwind reads as +/-2%. TERMINUS CLOSURE (2026-08-21): the OAT curve model was rebuilt from a fresh render (calibration re-verified, unchanged) and GATED on reproducing all 33 originally-shipped gridline cells exactly before any new column was trusted (0 diffs). Eight terminus columns (-35,-27,-24,35,38,41,44,47) were then added at each curve's ink-demonstrated printed extent, rounded INWARD to whole degrees (i.e. never claiming ink past the traced pixel tip), and only where the gap to the nearest original gridline exceeded 1.5 C. All 8 fills are monotone with the surrounding family (no crossings). A before/after regression of evalThreePanel at all 10x6x4x5=1200 original-gridline/weight/wind combinations shows 0 changed values (see checkpoint ADDENDUM C); a fine sweep (OAT -40..50 step 1, PA 0..10000 step 250, 5500 lb, no wind) newly answers 288 previously-null combinations, including the addendum's named example (OAT 43 C, PA 1000 ft -> now 2221 ft; OAT -24 C, PA 1000 ft correctly stays null, since the S.L./2000-ft curves genuinely do not reach -24 C on the print)."}};
 D.fig8_05={"figure":"8-5","poh_page":"8-21","title":"Total Takeoff Distance To 50-Foot Obstacle - Flaps UP (A/F 0213 & UP)","source":"N8247J POH Section 8 p.8-21 (VB-1213)","conditions":["2575 RPM and 29.5 in MAP prior to brake release","Flaps - UP","Landing gear extended (retraction initiated at or beyond 50-foot obstacle)","Level, paved, dry runway"],"notes":["If power is applied without the brakes set, distances apply from point where full power is applied.","Triangle symbol on the figure title: 'and prior airplanes modified per PAC Option #93'.","Three chained panels left-to-right: OAT/pressure-altitude -> weight -> wind. The horizontal (distance) value carries through the reference lines.","Distance grid runs 1000 ft (bottom) to 7000 ft (top); labelled every 1000 ft, heavy lines every 500 ft, fine dotted squares every 100 ft.","The OAT and weight panels' grid box tops out at about 6200 ft; only the wind box (right of reference line 2) spans the full 1000-7000 ft.","OAT panel distance values are at the 6000-lb weight reference line (0 wind). Weight and wind panels scale that value.","Digitized from the N8247J scan by sheared-run-length curve extraction plus pixel tracing; every traced curve was overlaid back on the scan and visually confirmed against its printed label. Handwritten annotations excluded."],"speeds_kias":{"6000":{"takeoff":96,"obstacle50":100},"5500":{"takeoff":92,"obstacle50":96},"5000":{"takeoff":88,"obstacle50":93},"4750_and_less":{"takeoff":85,"obstacle50":90}},"distance_axis":{"unit":"ft","min":1000,"max":7000,"major_step":1000,"fine_step":100},"oat_panel":{"comment":"Distance (ft) at the 6000-lb reference line vs OAT (degC) for each pressure-altitude curve. null = OAT outside that curve's printed extent.","oat_c":[-40,-34,-30,-26,-22,-20,-10,0,10,20,30,35,38,40,42,45,48,50],"pressure_alt_ft":[0,2000,4000,6000,8000,10000],"printed_oat_extent_c":[[-20.2,51.0],[-22.7,48.6],[-26.3,45.3],[-30.4,42.3],[-34.5,38.2],[-40.3,35.1]],"distance_ft":[[null,null,null,null,null,2330,2550,2780,3010,3260,3520,3690,3780,3840,3900,3990,4090,4150],[null,null,null,null,2480,2530,2770,3000,3260,3540,3840,4010,4110,4190,4260,4380,4510,null],[null,null,null,2630,2730,2790,3040,3310,3600,3910,4240,4430,4540,4620,4700,4800,null,null],[null,null,2790,2900,3010,3070,3350,3640,3950,4290,4680,4900,5040,5140,5210,null,null,null],[null,2970,3090,3210,3330,3400,3720,4050,4410,4800,5240,5490,5640,null,null,null,null,null],[3130,3330,3450,3580,3700,3780,4110,4460,4850,5280,5810,6100,null,null,null,null,null,null]],"traced_oat_extent_c":{"0":[-20.34,50.98],"2000":[-22.88,48.61],"4000":[-26.47,45.32],"6000":[-30.51,42.35],"8000":[-34.56,38.33],"10000":[-40.4,35.21]}},"weight_panel":{"comment":"Each printed guideline sampled at the four weight gridlines. at_ref = the guideline distance where it meets reference line 1 (6000 lb). Nine guidelines are printed, spaced about 495 ft apart at the reference line; they end at the 4500-lb gridline (the value then carries horizontally to reference line 2).","weight_lb":[6000,5500,5000,4500],"guidelines":[{"at_ref":5948,"distance_ft":[5948,4587,3627,2874]},{"at_ref":5478,"distance_ft":[5478,4253,3358,2676]},{"at_ref":4963,"distance_ft":[4963,3886,3062,2476]},{"at_ref":4475,"distance_ft":[4475,3502,2749,2227]},{"at_ref":3992,"distance_ft":[3992,3118,2462,1997]},{"at_ref":3484,"distance_ft":[3484,2771,2201,1777]},{"at_ref":2969,"distance_ft":[2969,2368,1900,1518]},{"at_ref":2497,"distance_ft":[2497,1955,1578,1272]},{"at_ref":1986,"distance_ft":[1986,1587,1287,1069]}]},"wind_panel":{"headwind":{"comment":"Nine solid guidelines sloping down-right from the 0-kt reference line 2; distance decreases with headwind. at_ref = distance at 0 kt. Printed to 30 kt.","wind_kt":[0,10,20,30],"guidelines":[{"at_ref":6020,"distance_ft":[6020,5707,5394,5056]},{"at_ref":5526,"distance_ft":[5526,5209,4896,4581]},{"at_ref":5039,"distance_ft":[5039,4732,4456,4154]},{"at_ref":4534,"distance_ft":[4534,4260,4010,3749]},{"at_ref":4040,"distance_ft":[4040,3785,3552,3298]},{"at_ref":3552,"distance_ft":[3552,3283,3041,2789]},{"at_ref":3024,"distance_ft":[3024,2814,2614,2376]},{"at_ref":2571,"distance_ft":[2571,2370,2172,1964]},{"at_ref":2053,"distance_ft":[2053,1852,1716,1565]}]},"tailwind":{"comment":"Dashed guidelines rising to the right from the same nine reference-line points as the headwind family; distance increases with tailwind. Each printed line is straight and stops at about 10 kt. Measured as a proportional fan: x1.0855 at 5 kt, x1.171 at 10 kt (per-line measured spread 1.155-1.192). The 6020-ft line runs off the 7000-ft top of the grid at about 9.4 kt; its 10-kt value is the straight-line extension.","wind_kt":[0,5,10],"guidelines":[{"at_ref":6020,"distance_ft":[6020,6535,7049]},{"at_ref":5526,"distance_ft":[5526,5998,6471]},{"at_ref":5039,"distance_ft":[5039,5470,5901]},{"at_ref":4534,"distance_ft":[4534,4922,5309]},{"at_ref":4040,"distance_ft":[4040,4385,4731]},{"at_ref":3552,"distance_ft":[3552,3856,4159]},{"at_ref":3024,"distance_ft":[3024,3283,3541]},{"at_ref":2571,"distance_ft":[2571,2791,3011]},{"at_ref":2053,"distance_ft":[2053,2229,2404]}]}},"validation":{"poh_example":{"oat_c":20,"pa_ft":2000,"weight_lb":5500,"wind_kt":10,"expect_ft":2650},"reproduced_ft":2604,"intermediate_reads":{"after_oat_panel_6000lb":3540,"after_weight_panel_5500lb":2809.3},"printed_example_trace_reads":{"after_oat_panel_6000lb":3555,"after_weight_panel_5500lb":2834,"comment":"Measured directly off the printed dashed example line: its horizontal leg in the OAT panel sits at y=1036.5 px (3555 ft) and its horizontal leg between the 4500-lb line and reference line 2 at y=1226 px (2834 ft)."},"notes":"Chained through the digitized panels: OAT 20 C / PA 2000 -> 3540 ft at the 6000-lb reference line, weight 5500 lb -> 2809 ft, 10 kt headwind -> 2604 ft vs the printed 2650 ft (-46 ft, -1.8%). Inside the +/-3% tolerance. The shortfall is spread evenly over the three panels (each read runs 10-25 ft below the printed dashed example trace)."},"confidence":{"oat_panel":"high","weight_panel":"high","wind_panel":"medium","notes":"All three panels were extracted with a sheared run-length filter that isolates the printed line family (rejecting the grid, the ISA line and the dashed example trace) and then pixel-traced; every trace was overlaid back on the scan and confirmed against the printed labels (see checkpoints/fig8-05.checkpoint.md). OAT/PA: six curves, each read at every 10 C gridline over its printed extent, +/-30 ft. Weight: nine printed guidelines, at_ref read directly at reference line 1, +/-30 ft. Headwind: nine printed guidelines, full 0-30 kt, +/-40 ft. Tailwind is MEDIUM: the lines are dashed and sit on top of the densest part of the grid, so they were recovered by a Hough fit over the dash pattern rather than traced; the fan is straight and proportional (x1.171 at 10 kt) with a per-line measured spread of 1.155-1.192, so individual tailwind values carry about +/-1.5%%."}};
@@ -997,7 +1010,7 @@ D.fig8_22={"figure":"8-22","poh_page":"8-52","scan_page":54,"title":"TOTAL LANDI
 D.fig8_23={"figure":"8-23","poh_page":"8-53","scan_page":55,"title":"LANDING GROUND ROLL, FLAPS UP","source":"N8247J POH Section 8 p.8-53 (VB-1213), Released 11/12/78","title_footnote":"Landing Ground Roll, Flaps UP (A/F 0213 & UP); triangle-1 = and prior airplanes modified per PAC Option #93.","conditions":["Idle power","Flaps - up","Level, paved, dry runway","Maximum effective braking"],"notes":["POH CAUTION (Section 8 p.8-16, transcribed verbatim - the printed page really does read SHCEDULED): LANDING DISTANCE PRESENTATIONS ARE BASED ON ESTABLISHING IDLE POWER AT THE 50-FOOT OBSTACLE HEIGHT, MAINTAINING THE SHCEDULED [sic] APPROACH SPEED UNTIL TRANSITIONING TO THE FLARE AND EXECUTING A FLARE WITHOUT FLOATING. IF LANDING DISTANCE IS NOT CRITICAL A MORE COMFORTABLE APPROACH AND FLARE MAY BE EXECUTED BY MAINTAINING PARTIAL POWER TO THE FLARE. THE AIR DISTANCE (TOTAL DISTANCE MINUS GROUND ROLL) FROM THE 50-FOOT OBSTACLE HEIGHT MAY INCREASE BY AS MUCH AS 250 PERCENT.","Exactly four conditions are printed on this figure. There is NO landing-gear item and NO 50-foot-obstacle item on Fig 8-23 - do not add them.","The OAT+weight grid tops out at 3356 ft (its frame line; the last heavy gridline inside it is 3250). Only the wind box reaches 4000 ft. Printed right-hand distance labels are 500/1000/1500/2000/2500/3000/3500/4000, so the axis floor is 500 ft, not 0.","Grid pitch: one fine square = 50 ft / 2 deg C / 50 lb / 2 kt; heavy lines every 5 fine squares = 250 ft / 10 deg C / 250 lb / 10 kt. The printed distance labels are every 500 ft but the heavy gridlines are every 250 ft.","Printed OAT extents of the pressure-altitude curves, re-measured 2026-08-20 on a 0.5 deg C grain (+/-0.5 C - the strokes end mid-square and do not carry 0.1 C precision): S.L. -20.5..+50.5, 2000 -24.5..+48.0, 4000 -27.5..+45.5, 6000 -31.0..+42.0, 8000 -36.5..+38.5, 10000 -40.5..+35.0 deg C. Values outside those extents are null - never extrapolated. S.L. is the ONLY curve that reaches the +50 gridline; the 2000-ft curve stops at about +48, so its +50 cell is null (an earlier revision of this file carried 2115 ft there, which is not on the print). Only 10000 reaches -40. Caveat on the S.L. hot end: from about +49.5 the S.L. curve runs underneath the printed example line and the 1900-ft gridline, which lie within 2 px of it, so its last degree cannot be separated from them; its +50 cell is carried on a <=1 C judgement and is the one soft cell in this panel.","TERMINUS COLUMNS (2026-08-21): every curve whose printed extent above ran more than ~1.5 deg C past its nearest original 10-degree gridline got an extra oat_c column at its terminus, rounded inward to a whole degree, so the app no longer returns null in a printed band just because it falls between two 10-degree columns (this used to blank ~10% of the readable envelope, e.g. field OAT +43 C or -24 C at common airport elevations). 8 columns were added: -36 (8000/10000 only), -27 (4000/6000/8000/10000), -24 (2000/4000/6000/8000/10000), 35 (all six, at 10000's terminus), 38 (S.L./2000/4000/6000/8000, at 8000's terminus), 42 (S.L./2000/4000/6000, at 6000's terminus), 45 (S.L./2000/4000, at 4000's terminus), 48 (S.L./2000, at 2000's terminus). Every original 10-degree cell is untouched (regression-checked: 1440 evalThreePanel points at every original gridline OAT x 6 PA x 4 weight x 6 wind, byte-identical before/after; a full -40..+50 x 0..10000-ft sweep shows 360 (OAT,PA) pairs that used to return null now return a value, and zero pairs that used to return a value now return null). A residual null band still remains where two ADJACENT pressure-altitude curves have genuinely different printed extents (e.g. PA 1000 ft at OAT -24 C needs both the S.L. and PA-2000 curves, and S.L. is not printed that cold) - that is a real limit of the printed chart, not a data gap, and is correctly flagged rather than extrapolated. See checkpoints/fig8-23.checkpoint.md for the full recipe and per-cell measurements.","The weight-panel reference line sits at OAT-equivalent about +60 C, not at the +50 C gridline, so every pressure-altitude curve ends well short of it. That is correct: the OAT-panel value is carried right to the reference line along a constant-distance line."],"speeds_kias":{"comment":"Approach speed by gross weight, read verbatim from the printed table: 6000 = 111 KIAS (128 MPH), 5500 = 107 KIAS (123 MPH), 5000 = 102 KIAS (117 MPH), 4500 = 98 KIAS (113 MPH). POH example box: 4900 lb = 101 KIAS (116 MPH).","6000":111,"5500":107,"5000":102,"4500":98},"distance_axis":{"unit":"ft","min":500,"max":4000},"oat_panel":{"comment":"Ground roll (ft) at the 6000-lb reference line where each pressure-altitude curve crosses the OAT gridline. Every curve was isolated with a sheared run-length filter, walked stroke-by-stroke and read with a local polynomial fit at each gridline. Three fully independent trace pipelines now agree: the shipped values at the original 10 columns are the mean of the first two, and a third independent re-trace (2026-08-20) reproduces all 45 non-null cells to 2.8 ft rms, max 6.9 ft. null = OAT beyond that curve's printed extent; every extent was re-cut in the same pass by scanning the raw stroke thickness along the fitted path outward until it dies (see notes[4]). TERMINUS COLUMNS (2026-08-21, FIXER2): 8 extra oat_c columns (-36,-27,-24,35,38,42,45,48) were added at each curve's printed terminus, rounded inward to whole degrees, so evalThreePanel no longer returns null in the printed band beyond a curve's last 10-degree gridline (previously ~10% of the readable envelope, e.g. +43C or -24C at common field elevations). Each new cell is the mean of two independent reads on a fresh render (calibration re-verified against the checkpoint's session-4 anchors to <0.5 px): a local-linear fit through clean odd-degree flanking columns (avoiding the fine/heavy gridline that sits on several of the new even-degree columns), and a direct single-column read at the terminus itself. The two methods agree to 4.6 ft rms, 9.3 ft max, in the same range as the original 45-cell trace; monotonicity holds in both OAT and pressure-altitude directions across the full 18-column table. None of the original 10 columns were touched (regression-checked: 1440 evalThreePanel points at every original gridline OAT x 6 PA x 4 weight x 6 wind, byte-identical before/after). See checkpoints/fig8-23.checkpoint.md ADDENDUM 2026-08-21 (terminus close-out) for the full recipe and per-cell measurements.","oat_c":[-40,-36,-30,-27,-24,-20,-10,0,10,20,30,35,38,40,42,45,48,50],"pressure_alt_ft":[0,2000,4000,6000,8000,10000],"distance_ft":[[null,null,null,null,null,1370,1435,1510,1585,1660,1740,1775,1805,1815,1835,1855,1880,1895],[null,null,null,null,1485,1515,1590,1670,1750,1830,1915,1960,1990,2010,2035,2060,2095,null],[null,null,null,1615,1640,1675,1760,1845,1940,2035,2135,2190,2220,2245,2265,2300,null,null],[null,null,1735,1765,1795,1840,1950,2055,2165,2275,2390,2450,2480,2505,2535,null,null,null],[null,1870,1935,1970,2005,2050,2160,2275,2390,2520,2655,2730,2780,null,null,null,null,null],[2025,2080,2155,2195,2230,2285,2420,2555,2700,2850,3000,3075,null,null,null,null,null,null]]},"weight_panel":{"comment":"All nine printed guidelines. at_ref = the 250-ft heavy gridline the guideline leaves the 6000-lb reference line on; the 5500/5000/4500 values were traced independently twice and agree to 3 ft rms (max 7 ft). Every guideline runs from the reference line to the 4500-lb gridline and stops there.","weight_lb":[6000,5500,5000,4500],"guidelines":[{"at_ref":3250,"distance_ft":[3250,2705,2285,1935]},{"at_ref":3000,"distance_ft":[3000,2515,2145,1825]},{"at_ref":2750,"distance_ft":[2750,2320,1990,1695]},{"at_ref":2500,"distance_ft":[2500,2120,1820,1560]},{"at_ref":2250,"distance_ft":[2250,1920,1650,1420]},{"at_ref":2000,"distance_ft":[2000,1725,1495,1290]},{"at_ref":1750,"distance_ft":[1750,1520,1320,1150]},{"at_ref":1500,"distance_ft":[1500,1305,1145,1005]},{"at_ref":1250,"distance_ft":[1250,1080,945,830]}]},"wind_panel":{"headwind":{"comment":"All ten printed headwind guidelines traced from the wind reference line to the 30-kt gridline, twice and independently (agreement 3 ft rms, max 9 ft). Ground roll is strongly wind-sensitive here: about -7.7 %/10 kt at the top of the fan and -8.7 %/10 kt at the bottom.","wind_kt":[0,10,20,30],"guidelines":[{"at_ref":3250,"distance_ft":[3250,3005,2755,2515]},{"at_ref":3000,"distance_ft":[3000,2775,2545,2315]},{"at_ref":2750,"distance_ft":[2750,2545,2330,2120]},{"at_ref":2500,"distance_ft":[2500,2315,2130,1950]},{"at_ref":2250,"distance_ft":[2250,2085,1915,1740]},{"at_ref":2000,"distance_ft":[2000,1850,1690,1535]},{"at_ref":1750,"distance_ft":[1750,1615,1480,1345]},{"at_ref":1500,"distance_ft":[1500,1385,1260,1135]},{"at_ref":1250,"distance_ft":[1250,1160,1050,945]},{"at_ref":1000,"distance_ft":[1000,925,835,750]}]},"tailwind":{"comment":"The tailwind guidelines are printed DASHED and span 0-10 kt only, pivoting on the same reference-line anchors as the headwind fan. They are steep (about 3.9 px of rise per px of run on a 6x render) and mostly buried in the headwind fan, so they are represented by the printed family's one-parameter form distance = at_ref * (1 + 0.030 * kt), i.e. x1.15 at 5 kt and x1.30 at 10 kt. SLOPE EVIDENCE (re-measured from scratch 2026-08-20 after an audit challenged it): the only tailwind-only region on the sheet is the 3250..4000 ft band above the top headwind guideline. Two dashed lines cross it; their pixels were extracted row by row after subtracting a median column background (the graph paper here is itself printed as dashes and dots, so a run-length filter will not remove it). The upper line is the at_ref 3250 guideline - it enters the band at the reference line itself, so its anchor is fixed by geometry rather than by extrapolation - and it fits distance = 3230 + 94.9*kt over kt 0.6..8.0 from 94 points, rms 5.2 ft, with no residual trend: k = 0.0294. The second fits 2960 + 95.6*kt over kt 3.4..9.2, but its intercept is a 3.4-kt extrapolation so it does not constrain k on its own. Forcing both onto the exact 250-ft anchors and solving one global k gives k = 0.029 (rms 19 ft); a matched-filter family scan over the same band peaks between 0.028 and 0.032 and collapses above 0.033. Measured k = 0.029 +/- 0.002; 0.030 is inside that band and is the longer-distance (conservative) end of it, so it is kept. TRAP: the wind box's vertical gridlines lean right with depth - the 0-kt reference line measures x = 2922.3 at y ~ 1640 but x = 2928.7 at y ~ 2620 on the 6x render - so using the bottom-of-sheet wind axis in this band shrinks every kt by about 15% and inflates the apparent k to 0.034-0.035. The 3250 guideline leaves the 4000-ft box top at 7.7 kt, so its 10-kt cell is null (off the printed chart).","wind_kt":[0,5,10],"guidelines":[{"at_ref":3250,"distance_ft":[3250,3735,null]},{"at_ref":3000,"distance_ft":[3000,3450,3900]},{"at_ref":2750,"distance_ft":[2750,3160,3575]},{"at_ref":2500,"distance_ft":[2500,2875,3250]},{"at_ref":2250,"distance_ft":[2250,2590,2925]},{"at_ref":2000,"distance_ft":[2000,2300,2600]},{"at_ref":1750,"distance_ft":[1750,2010,2275]},{"at_ref":1500,"distance_ft":[1500,1725,1950]},{"at_ref":1250,"distance_ft":[1250,1440,1625]},{"at_ref":1000,"distance_ft":[1000,1150,1300]}]}},"validation":{"poh_example":{"oat_c":15,"pa_ft":3000,"weight_lb":4900,"wind_kt":10,"wind_type":"headwind","expect_ft":1300},"reproduced_ft":1276,"intermediate_reads":{"after_oat_panel_at_6000ref":1889,"after_weight_panel":1379},"notes":"Reproduced by running this JSON through the app's own evaluator (app/qa_examples.js, 'ldg roll flaps up') along the POH example path (Section 8 p.8-16 worked example, which states 1300 ft for Fig 8-23): 1276.3 ft, -24 ft = -1.8%, inside the +/-3% gate. Re-checked 2026-08-20 after the PA-2000 hot-end correction; that cell is nowhere near this example's path, so the number is unchanged. The residual is the draftsman's own construction, not the digitized panels. His three horizontal dashes were re-measured independently on my own calibration and land at 1900.4 ft out of the OAT panel, 1407.1 ft out of the weight panel and 1305.6 ft at the distance axis (session-2/3 readings of 1901 / 1408 / 1307 reproduce within 1.5 ft). This JSON gives 1889 ft at a strict linear PA-3000 interpolation, so his eyeball between the 2000 and 4000 curves sits about 11 ft high; his 1407-ft weight-panel exit corresponds on this weight family to a turn at about 4960 lb rather than the stated 4900 lb. Feeding his own drawn intermediate (1407 ft) into this JSON's wind panel returns 1301 ft against his drawn 1306 and the printed 1300. His example vertical dash sits at x=1841.5 against x_of_oat(15)=1842.2, so the OAT axis is right to about 0.1 deg C."},"confidence":{"oat_panel":"high","weight_panel":"high","wind_panel":"medium","notes":"Re-digitized 2026-08-20 from the ACTUAL N8247J POH scan (page 8-53), replacing retired training-copy data whose weight panel was synthetic (factors borrowed from Fig 8-22) and whose tailwind was borrowed. Nothing here is carried over from that file or from any sibling figure. Distance calibration is a least-squares fit over interior heavy gridlines in three separate x-strips; three independent derivations give 93.78 / 93.80 / 93.92 px per 250 ft with a -0.0059 px/px scan skew (residual rms 0.95-1.03 px = 2.5-2.7 ft) and agree to under 2 ft anywhere on the sheet. A quadratic term was tested and is not needed (0.6 px over the whole 3500-ft span). A trapezoid correction for vertical-gridline drift with y (up to 8 px at the top of the sheet) is applied to every read; it fits to 0.5 px rms and IS LOAD-BEARING in the wind box - see the tailwind comment. Values are recorded to 5 ft rather than the guide's half-fine-square (25 ft) grain because the independent trace pipelines agree to about 3 ft rms, so 25-ft quantization would have injected more error than the measurement carries. WHAT IS ACTUALLY VERIFIED: (a) oat_panel - all 45 non-null cells reproduced by a third independent trace to 2.8 ft rms, max 6.9 ft (that one is PA 6000 at -30 C, 0.8 C from its cold end where a local fit is one-sided); the curve count was verified visually on the isolated-stroke mask (exactly 6 pressure-altitude curves) and each curve's two printed ends were re-cut by scanning raw stroke thickness outward along the fitted path. One cell that an earlier revision shipped (PA 2000 at +50 C) had no ink behind it and is now null. One cell is a judgement call and is flagged as such in notes[4]: S.L. at +50 C, whose curve merges into the printed example line about half a degree short of the gridline. (b) weight_panel and headwind fan - 9 and 10 guidelines, count verified on the mask, every shipped path scores higher against the scan's ink than the same path displaced +/-25 ft. (c) wind_panel is rated medium ONLY because of the tailwind family: those lines are dashed, steep and mostly overlaid on the headwind fan, so they are a fitted one-parameter family (two lines measured, k = 0.029 +/- 0.002, 0.030 shipped) rather than ten individually traced curves. Two smaller judgement calls: (1) at_ref is set to the exact 250-ft ladder, since the measured anchor SPACING is 250.0 +/- 6 ft, while the measured anchor POSITIONS scatter about -6 ft (weight fan) and +4 ft (headwind fan) from it - a stroke-geometry bias at the reference line that the independent pipelines reproduce; using the measured positions instead would move results by under 10 ft. (2) The 30-kt column carries an extra +/-9 ft of uncertainty because the printed right border is an 11-px stroke whose centroid (3215) sits 3.5 px outside the 30-kt gridline itself (3211.5); the gridline was used. (d) 2026-08-21: oat_panel gained 8 terminus columns (31 new cells) beyond the 45 original non-null cells, closing the OAT-axis holes described in notes[4]; each new cell is the mean of two independently-parameterized reads on a fresh render whose calibration was re-verified against this file's own anchors to <0.5 px, agreeing with each other to 4.6 ft rms / 9.3 ft max (in the same range as the original 45-cell trace), monotone in both OAT and pressure-altitude across all 18 columns, with zero change to any of the 45 original cells (1440-point evalThreePanel regression sweep, byte-identical). oat_panel stays \"high\"."}};
 D.fig9_23={"figure":"9-23","poh_page":"9-53","source":"N8247J POH Section 9 - Airplane & Systems Description, Figure 9-23, printed page 9-53 (scan page 62) (REPORT: VB-1213, RELEASED 11/12/78). Both lines come from this one plate; the Sea Level Controller supplement carries no chart - see source_notes.","title":"Cabin Altitude VS Airplane Altitude/MAP @ 4.25 psi \u0394P","applicability":"A/F 0157 and Subsequent","aircraft":"N8247J - Pressurization System Sea-Level Cabin Controller, Option No. 77 INSTALLED (Section 11 supplement index item 4; equipment amendment 'Sea Level Controller (77)-1'). The S.L. CONTROLLER line is therefore the applicable controller line; the dashed STD CONTROLLER line on the same plate does NOT apply to this airplane and is deliberately not digitized.","conditions":["Maximum operating differential pressure \u0394P = 4.25 psi; safety relief differential 4.45 psi (Section 9 p.9-50).","S.L. CONTROLLER line applies to the sea-level pressurization controller (installed on N8247J).","MAP line read against the RIGHT (MAP ~ IN-HG) axis; minimum MAP is stated for 2200 RPM."],"source_notes":{"controller_line_from":"Section 9 base manual, Figure 9-23 (p.9-53), solid line labelled 'S.L. CONTROLLER'.","map_line_from":"Section 9 base manual, Figure 9-23 (p.9-53), solid line labelled 'MAP LINE', read on the right-hand MAP ~ IN-HG axis.","sea_level_controller_supplement":"Section 11 Supplement 'PRESSURIZATION SYSTEM SEA-LEVEL CABIN CONTROLLER, OPTION NO. 77', FAA approved 27 MAY 1974, 3 pages. It contains NO figure and NO performance data: Sections 1, 2, 4, 5, 6 and 7 all state 'Text of this section not affected by supplement.' Only Section 3 (Normal Operating Procedures) is amended - set the Cabin Altitude Control outer ring to 1,000 ft above field elevation before starting engines (10,000 ft if unpressurized flight is planned), and select the desired cabin cruise altitude after passing 1,000 ft above field elevation. The supplement therefore neither supersedes nor augments Figure 9-23.","pressurization_figure_inventory":"Section 9 scan pages 53 and 55 = Fig 9-20 environmental systems schematics; 59 = Fig 9-21 pressurization controller; 61 = Fig 9-22 typical flight profile; 62 = Fig 9-23 (this chart); 65 = Fig 9-24/9-25 pressurization and bleed-air valves. Figure 9-23 is the only cabin-pressurization performance chart in the manual.","max_differential":"4.25 psi maximum operating differential pressure, 4.45 psi safety relief (Section 9 p.9-50). This yields approximately 11,000 ft cabin altitude at 25,000 ft cruise altitude; the Oxygen System text (p.9-56) states cabin altitude will not exceed 11,075 ft with the airplane not exceeding 25,000 ft.","controller_schedule":"The Cabin Pressurization Controller has a Cabin Altitude Control (outer selection ring / inner set ring) and a Cabin Rate Control (to approx. 1000 FPM). The STANDARD controller begins pressurizing at 5,000 ft, i.e. minimum selectable cabin altitude is 5,000 ft. The OPTIONAL SEA LEVEL controller (Option 77, installed on N8247J) begins at sea level, i.e. cabin altitude may be selected all the way down to sea level. The controllers are otherwise identical, and the 4.25 psi maximum-\u0394P schedule (the S.L. CONTROLLER line below) is the same. The practical effect on N8247J: takeoff cabin selection is field elevation + 1,000 ft rather than the 5,000 ft floor of the standard controller."},"axes":{"x":{"name":"CABIN ALT","unit":"1000 ft","min_label":"SL","labels":["SL",1,2,3,4,5,6,7,8,9,10,11,12],"note":"SL = sea level = 0 ft"},"y_left":{"name":"AIRPLANE ALT","unit":"1000 ft","labels":["SL",2,4,6,8,10,12,14,16,18,20,22,24,26]},"y_right":{"name":"MAP","unit":"in-Hg","min":19.0,"max":28.0,"labels":[19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0]}},"axis_correspondence":{"comment":"The left AIRPLANE ALT axis and the right MAP axis share the same horizontal gridlines; the right axis is a re-labelling at 1.0 in-Hg per 2000 ft. MAP = 19.0 + airplane_axis_ft/2000. Verified directly on the scan: the printed E\u2192F construction line (labelled 20.4 in-Hg) measures 20.36-20.39 and the printed 20.0 in-Hg floor line measures 19.96-20.00 under this mapping.","map_19_0_at":"airplane SL (0 ft)","map_28_0_at":"airplane 18,000 ft","inhg_per_airplane_1000ft":0.5,"pixels":{"cabin_per_1000ft_px":167.6,"airplane_per_1000ft_px":84.9,"note":"nominal values on the zoom-8 portrait render of scan page 62 (rot=0). The scan is skewed/keystoned, so the actual reading used a bilinear warp fitted to 238 vertical- and 232 horizontal-gridline samples (rms 8 ft cabin / 22 ft airplane)."}},"controller_line":{"name":"S.L. CONTROLLER","style":"solid","comment":"Maximum-differential (4.25 psi) line for the sea-level controller. Straight line. For a given airplane altitude, read across to this line then down for the MINIMUM selectable cabin altitude. Pairs are (cabin_alt_ft, airplane_alt_ft) sampled at each 1000-ft cabin gridline; airplane values rounded to nearest 50 ft. Underlying robust straight fit to 1,849 traced pixel samples: airplane_ft = 9,475 + 1.40881 x cabin_ft, rms 72 ft.","line_extent":"From the left edge (cabin SL, airplane ~9,450 ft) up to cabin ~11,050 ft (airplane ~25,050 ft), just short of the top of the grid. Tabulated to the last full gridline, cabin 11,000 ft.","points":[{"cabin_alt_ft":0,"airplane_alt_ft":9450},{"cabin_alt_ft":1000,"airplane_alt_ft":10900},{"cabin_alt_ft":2000,"airplane_alt_ft":12300},{"cabin_alt_ft":3000,"airplane_alt_ft":13700},{"cabin_alt_ft":4000,"airplane_alt_ft":15100},{"cabin_alt_ft":5000,"airplane_alt_ft":16500},{"cabin_alt_ft":6000,"airplane_alt_ft":17950},{"cabin_alt_ft":7000,"airplane_alt_ft":19350},{"cabin_alt_ft":8000,"airplane_alt_ft":20750},{"cabin_alt_ft":9000,"airplane_alt_ft":22150},{"cabin_alt_ft":10000,"airplane_alt_ft":23550},{"cabin_alt_ft":11000,"airplane_alt_ft":24950}]},"map_line":{"name":"MAP LINE","style":"solid","axis":"right (MAP ~ in-Hg)","comment":"Minimum manifold pressure required to hold a selected cabin altitude (at 2200 RPM). Straight line read against the RIGHT axis. Pairs are (cabin_alt_ft, map_inhg) at each 1000-ft cabin gridline, rounded to 0.01 in-Hg. Underlying robust straight fit to 878 traced pixel samples: MAP = 28.510 - 0.00162015 x cabin_ft (rms 0.022 in-Hg).","line_extent":"From the left edge (cabin SL, MAP ~28.51 in-Hg, slightly above the 28.0 top label - the printed line runs past the top label) down-right to where it meets the printed horizontal 20.0 in-Hg floor line. The drawn floor line begins at cabin ~5,160 ft and runs to the right-hand edge (cabin 12,000); the sloping line's own straight-fit 20.0 crossing is cabin ~5,250 ft. The POH NOTE states 5,200 ft, which is adopted as the terminal point.","points":[{"cabin_alt_ft":0,"map_inhg":28.51},{"cabin_alt_ft":1000,"map_inhg":26.89},{"cabin_alt_ft":2000,"map_inhg":25.27},{"cabin_alt_ft":3000,"map_inhg":23.65},{"cabin_alt_ft":4000,"map_inhg":22.03},{"cabin_alt_ft":5000,"map_inhg":20.41},{"cabin_alt_ft":5200,"map_inhg":20.0}],"poh_note":"All selected cabin altitudes above 5200 ft can be obtained with a minimum 20.0 in-Hg MAP and 2200 RPM, independent of airplane altitude. The chart draws this as a solid horizontal 20.0 in-Hg line from cabin ~5,160 ft to the right edge of the grid.","terminal_point_note":"The (5200, 20.0) terminal point is taken from the printed NOTE rather than from the traced line (which reads 20.09 at cabin 5,200). This keeps the app continuous with core.js's hard 20.0 in-Hg floor above cabin 5,200 ft. It puts a slightly steeper slope on the last 200 ft of the line (-2.05 vs -1.62 in-Hg per 1000 ft); the affected band is under 0.1 in-Hg wide."},"validation":{"check_controller_15000":{"source":"Figure 9-23 SAMPLE PROBLEM steps 1-3, printed page 9-53 (scan page 62)","printed":"airplane 15,000 ft (pt A) -> minimum cabin 3,900 ft (pt C)","my_read":"straight fit gives cabin 3,922 ft at airplane 15,000 ft; interpolating the tabulated rounded points gives 3,929 ft","delta":"+22 ft (fit) / +29 ft (tabulated) = 0.3 of one fine grid square","cross_checks":"The printed construction lines themselves measure 14,982-15,005 ft (A\u2192B horizontal) and cabin 3,885-3,914 ft (B\u2192C vertical) under this calibration."},"check_controller_25000":{"source":"Section 9 printed page 9-50 ('approximately an 11,000 ft Cabin altitude at 25,000 ft cruise altitude'), corroborated on printed page 9-56 ('cabin altitude will not exceed 11,075 feet with airplane not exceeding 25,000 ft altitude when pressurized')","printed":"airplane 25,000 ft -> cabin ~11,000 ft","my_read":"straight fit gives cabin 11,020 ft at airplane 25,000 ft; the tabulated points end at cabin 11,000 / airplane 24,950","delta":"+20 ft"},"check_map_5000":{"source":"Figure 9-23 SAMPLE PROBLEM, minimum-MAP procedure step 3 (pt D -> pt F), printed page 9-53","printed":"cabin 5,000 ft -> 20.4 in-Hg","my_read":"20.41 in-Hg","delta":"+0.01 in-Hg","cross_check":"the printed E\u2192F construction line itself measures 20.36-20.39 in-Hg under this calibration"},"check_map_floor_5200":{"source":"Figure 9-23 NOTE, printed page 9-53","printed":"20.0 in-Hg minimum above cabin 5,200 ft","my_read":"the drawn horizontal 20.0 in-Hg line begins at cabin ~5,160 ft and measures 19.96-20.00 in-Hg; the sloping MAP line's own straight-fit 20.0 crossing is cabin ~5,250 ft","delta":"\u00b145 ft about the printed 5,200 ft"},"check_map_3900":{"source":"Figure 9-23 SAMPLE PROBLEM, minimum-MAP procedure step 3 parenthetical, printed page 9-53","printed":"cabin 3,900 ft -> 22.4 in-Hg","my_read":"22.19 in-Hg","delta":"-0.21 in-Hg","verdict":"DISCREPANCY IN THE POH TEXT, not in the read. The printed pair (3900, 22.4) + (5000, 20.4) implies a slope of -1.82 in-Hg per 1000 ft, which extrapolates to 29.5 in-Hg at cabin SL - well off the top of the plate - and to 20.0 in-Hg at cabin 5,120 ft. The drawn line's slope is -1.62 in-Hg per 1000 ft and is consistent with 28.5 at cabin SL, 20.4 at 5,000 ft and 20.0 at ~5,200 ft. An independent digitization from a different POH copy of the same plate also read 22.2. The drawn line is treated as authoritative."},"cross_check_cabin_8000":{"note":"cabin 8,000 ft falls at airplane 20,750 ft on the new line (archive: 20,750 ft) - i.e. just below FL210, not inside 21,000-22,000. Inversely, airplane 21,000 ft (the POH's worked FL210 example) gives a minimum cabin of ~8,180 ft, consistent with the POH selecting a comfortable 8,500 ft cabin for that leg (p.9-51/9-54)."}},"diff_vs_retired_training_copy":{"comment":"data/_retired_training_poh/fig9-23.json was digitized from a different physical POH copy of the SAME plate (REPORT: VB-1213, RELEASED 11/12/78). The N8247J plate is identical - same sample problem, same numbers, same two controller lines. All differences are re-reading noise.","controller_line_ft":"cabin 0/3000/4000/5000/8000/9000/10000/11000 unchanged; cabin 1000, 2000, 6000, 7000 each +50 ft (10,850\u219210,900; 12,250\u219212,300; 17,900\u219217,950; 19,300\u219219,350). Max difference 50 ft, i.e. a quarter of a fine grid square.","map_line_inhg":"28.5\u219228.51, 26.9\u219226.89, 25.25\u219225.27, 23.65\u219223.65, 22.0\u219222.03, 20.4\u219220.41, 20.0@5200 unchanged. Max difference 0.03 in-Hg.","conclusion":"No aircraft-specific correction was warranted. N8247J's Sea Level Controller (Option 77) changes only the minimum selectable cabin altitude (sea level instead of the standard controller's 5,000 ft floor) - which is precisely the S.L. CONTROLLER line that was already digitized. The 4.25 psi max-\u0394P schedule and the minimum-MAP line are common to both controllers."},"confidence":"high","confidence_notes":"Both lines traced by column tracking on a run-length-filtered binary mask of a zoom-8 render of Actual Scans page 62, then mapped through a bilinear warp fitted to the printed grid (necessary: the scan is skewed, and a single linear px\u2194unit mapping leaves \u00b170 ft of error). Warp residuals: 8 ft rms on cabin, 22 ft rms on airplane altitude. Line fits: controller 1,849 samples / 72 ft rms, MAP 878 samples / 44 ft rms (0.022 in-Hg). Four independent printed construction lines (A\u2192B at 15,000 ft, B\u2192C at cabin 3,900 ft, D at cabin 5,000 ft, E\u2192F at 20.4 in-Hg, plus the 20.0 in-Hg floor line) all reproduce within 18 ft / 0.04 in-Hg, which validates the calibration independently of the curve tracing. The dashed STD CONTROLLER line and the dashed example construction lines were excluded. Only unresolved item: the POH's parenthetical '22.4 in-Hg at cabin 3,900 ft', which conflicts with its own drawn line by 0.21 in-Hg (see validation.check_map_3900)."};
 D.fig9_28={"figure":"9-28","poh_page":"9-60","source":"N8247J POH Section 9 - Airplane & Systems Description, Figure 9-28 'Capacity VS Oxygen Pressure', printed page 9-60 (scan page 69) (REPORT: VB-1213, RELEASED 11/12/78).","title":"Capacity VS Oxygen Pressure","purpose":"Converts an oxygen supply-gauge reading (gage psi) to percent of cylinder capacity, so a partially charged system's duration can be taken off Figure 9-27 and multiplied by that percentage.","poh_note_verbatim":"NOTE: To use above chart: - Check supply gauge in cabin. - Convert to percent of capacity. - Read duration from Oxygen Duration Chart (Figure 9-27) and multiply by percent of capacity. This will give oxygen duration with a partially charged system.","conditions":["Scott 8500-series system, 11 cu ft cylinder (325 liters at 70 F and 760 mm Hg), CHARGED TO 1800 PSIG - stated on the Figure 9-27 plate, printed page 9-58.","Gage pressure, i.e. the cabin supply gauge on the regulator assembly below the copilot's side window.","The companion duration table is Figure 9-27 (printed page 9-58), already digitized as aircraft_tables.json -> oxygen_duration.","Cylinder over-pressure protection: the safety outlet disc ruptures above 2700 psi (printed page 9-59). The chart itself carries no line above 1800 psig."],"axes":{"x":{"name":"% CAPACITY","unit":"percent","min":0,"max":100,"major_labels":[0,10,20,30,40,50,60,70,80,90,100],"fine_square":2,"gridlines":51},"y":{"name":"GAGE PRESSURE - PSI","unit":"psi (gauge)","min":0,"max":2000,"major_labels":[0,250,500,750,1000,1250,1500,1750,2000],"fine_square":50,"gridlines":41}},"line":{"name":"capacity vs gage pressure","style":"solid","count":"the plate carries exactly ONE line - no curve family, no dashed example trace","line_extent":"From the bottom-left frame corner (0 % capacity, 0 psi) up to the right frame at 100 % capacity, where it terminates at 1800 psi. It does NOT continue to the 2000-psi top of the pressure axis; pressures above 1800 psig are off the printed chart.","comment":"Sampled at every printed 10 % gridline by intersecting the traced line with the fitted grid model, then rounded to the nearest 5 psi. Rounding is finer than the guide's 'half a fine square' (25 psi) because this is a single ruled straight line traced from 1,906 pixel samples against a grid model with 2.2 px (3.7 psi) rms - quantizing to 25 psi would add more error than it removes. Raw un-rounded reads are in validation.gridline_reads.","points":[{"pct_capacity":0,"gage_psi":0},{"pct_capacity":10,"gage_psi":185},{"pct_capacity":20,"gage_psi":360},{"pct_capacity":30,"gage_psi":540},{"pct_capacity":40,"gage_psi":715},{"pct_capacity":50,"gage_psi":895},{"pct_capacity":60,"gage_psi":1080},{"pct_capacity":70,"gage_psi":1260},{"pct_capacity":80,"gage_psi":1440},{"pct_capacity":90,"gage_psi":1615},{"pct_capacity":100,"gage_psi":1800}]},"line_by_pressure":{"comment":"The same single line read the other way - at every printed 250-psi gridline - which is the direction the app uses (gauge reading in, percent of capacity out). Rounded to 0.1 % capacity. The 2000-psi gridline is not listed: the printed line ends at 1800 psi / 100 %.","points":[{"gage_psi":0,"pct_capacity":0.0},{"gage_psi":250,"pct_capacity":13.7},{"gage_psi":500,"pct_capacity":28.1},{"gage_psi":750,"pct_capacity":42.0},{"gage_psi":1000,"pct_capacity":55.8},{"gage_psi":1250,"pct_capacity":69.3},{"gage_psi":1500,"pct_capacity":83.4},{"gage_psi":1750,"pct_capacity":97.3},{"gage_psi":1800,"pct_capacity":100.0}]},"linearity":{"verdict":"LINEAR THROUGH THE ORIGIN. The printed line is a straight ruled line from (0 %, 0 psi) to (100 %, 1800 psi). Percent of capacity = gage_psi / 1800 x 100 reproduces the plate everywhere within an eighth of a fine grid square.","measured_straight_fit_chart_units":"gage_psi = 17.97855 x pct_capacity + 0.209 (least squares on 825 traced samples spanning 2.2 % to 96.8 % capacity; rms 6.41 psi, max residual 17.14 psi)","endpoint_slope":"(1798.4 - (-0.2)) / 100 = 17.986 psi per percent, i.e. 1800 psi at 100 % capacity","max_departure_from_strict_proportionality":"5.9 psi at 50 % capacity = 0.12 of a 50-psi fine square; equivalently 0.33 % capacity at 500-1000 psi = 0.16 of a 2 % fine square. Deviations alternate in sign along the line (+3.7, +0.5, -1.6, -2.7, -5.9, -1.2, +1.8, +1.0, -2.9, -1.6 psi at the 10 % gridlines), i.e. trace/ink scatter, not curvature.","curvature_test":"A quadratic fit to the same samples gives 0.0019 psi/%^2 and lowers the rms only from 6.41 to 6.28 psi - the quadratic departs from the straight fit by at most 1.4 psi over the whole span. Independently, the mean residual of the traced pixels from the straight pixel-space fit, binned every 250 px of x, never exceeds 4.1 px (7 psi) and does not bow systematically.","implication_for_the_app":"core.js o2DurationMin's frac = pressurePsig / 1800 IS the chart, not an approximation of it. Clamping frac at 1.0 for readings above 1800 psig is correct in the sense that the printed line stops at 1800 psi / 100 % - the chart offers no reading above that, so anything higher is off-chart and must be clamped and flagged, never extrapolated."},"usage":{"procedure":"1) read the cabin supply gauge (psi); 2) enter this chart to get percent of capacity; 3) take the duration for the number of persons and the altitude from Figure 9-27 (aircraft_tables.oxygen_duration) and multiply it by that percentage.","off_chart":"Below 0 psi and above 1800 psig / 100 % capacity there is no printed line. Clamp and flag."},"validation":{"comment":"Figure 9-28 prints no worked example and no dashed construction trace, so the validation below is (a) two printed anchor points that the line must hit by construction, both verified on the scan, and (b) the independent grid-model cross-check.","anchor_100pct":{"printed":"the line terminates on the right-hand (100 % capacity) frame; the Figure 9-27 plate states the cylinder is CHARGED TO 1800 PSIG, so full capacity must read 1800 psi","my_read":"at the right frame the traced line is at y = 1151.86 px; the printed 1800-psi fine gridline at that same column is at y = 1150.0 px","delta":"1.9 px = 3.1 psi = 0.06 of a fine square","visual_check":"charts-png/crops/fixG_p69_top100.png (zoom 10) - the line meets the right frame one fine square above the 1750-psi major line"},"anchor_origin":{"printed":"the line leaves the bottom-left frame corner, i.e. 0 psi = 0 % capacity","my_read":"the straight fit gives -0.16 psi at the 0 % gridline","delta":"0.2 psi","visual_check":"charts-png/crops/fixG_p69_origin.png (zoom 10) - the line emerges from the corner where the left frame meets the bottom frame"},"anchor_50pct":{"printed":"no printed value; used as a mid-span consistency anchor","my_read":"894.1 psi at 50 % capacity, i.e. 2.9 fine squares above the 750-psi major line","cross_check":"measured independently on charts-png/crops/fixG_p69_anchor50.png as 2.94 fine squares (897 psi)"},"gridline_reads":{"comment":"un-rounded reads at each printed 10 % gridline, psi","pct_capacity":[0,10,20,30,40,50,60,70,80,90,100],"gage_psi":[-0.16,183.72,360.47,538.42,717.31,894.13,1078.83,1261.83,1440.96,1617.13,1798.42]},"inverse_reads":{"comment":"un-rounded reads at each printed 250-psi gridline, percent capacity","gage_psi":[0,250,500,750,1000,1250,1500,1750],"pct_capacity":[0.01,13.72,28.11,41.96,55.85,69.33,83.45,97.34]},"overlay_check":"All eleven computed 10 %-gridline crossings were drawn back onto the raw scan; every marker sits on the printed line (scratch image verify_overlay.png, reproduced by the scripts listed in the checkpoint)."},"confidence":"high","confidence_notes":"Single straight ruled line on a clean 41 x 51 grid, traced by run-length-stripping the grid from a locally-thresholded zoom-8 render of Actual Scans page 69 and RANSAC-fitting the remainder (1,906 inlier pixel clusters, residual rms 6.9 px = 12 psi). The plate is skewed, so pixel-to-unit conversion uses a per-gridline linear model fitted to 194 columns of horizontal gridlines (rms 2.15 px) and 277 rows of vertical gridlines (rms 0.92 px) rather than one global scale. Both printed anchors (origin, and 1800 psig at 100 %) reproduce within 3 psi. No smudged or unreadable region; nothing on the plate was excluded except the page furniture and the printed NOTE text.","notes":"The task brief cited printed page 9-68 for this figure; the figure is actually on printed page 9-60 (scan page 69). The reference to it ('See Figure 9-27 Oxygen Duration chart and Figure 9-28, Capacity VS Oxygen Pressure to determine oxygen duration') is in the body text on printed page 9-59. No handwritten annotations appear on this page."};
-D.version={"version": "1.5", "published": {"ipad": "2026-10-12", "phone": "2026-10-12"}, "built": "2026-10-12"};
+D.version={"version": "1.6", "published": {"ipad": "2026-10-17", "phone": "2026-10-17"}, "built": "2026-10-17"};
 </script>
 <script>
 /* core.js — math engine.
@@ -1617,6 +1630,59 @@ var Core = (function () {
   // physics simulation. See D.wb_n8247j.fuel.burn_model.historical for the old
   // model's description, kept for provenance only — nothing below reads it.
 
+  // ---- liftoff → 50 ft flight path (1.5.obst, owner 2026-10-16) ----
+  // The POH prints the ground roll and the distance over 50 ft and nothing in
+  // between. From liftoff to 50 ft the path is taken as the textbook
+  // constant-load-factor pull-up arc (Raymer / Anderson transition segment),
+  // which at these angles is the parabola through liftoff (slope 0) and the
+  // 50-ft point:   h(x) = 50 · ((x − GR) / (d50 − GR))²,  GR ≤ x ≤ d50.
+  // Its slope at 50 ft is twice the mean (100 ft over the air distance) — for
+  // this aircraft that lands on the steady 2-engine climb gradient (SL / ISA /
+  // 6,000 lb: 16.7% both), so the fit to the 50-ft point IS the climb-gradient
+  // fit here; see docs/TAKEOFF-MINIMUMS.md. It sits below the straight chord,
+  // so it never flatters a DER crossing height. Returns ft above the runway.
+  function liftoffPathAlt(grFt, d50Ft, xFt) {
+    if (grFt == null || d50Ft == null || !isFinite(grFt) || !isFinite(d50Ft) || !(d50Ft > grFt)) return null;
+    if (xFt <= grFt) return 0;
+    if (xFt >= d50Ft) return 50;
+    var u = (xFt - grFt) / (d50Ft - grFt);
+    return 50 * u * u;
+  }
+
+  // ---- runway profile (1.5.obst.2, owner 2026-10-16) ----
+  // NASR gives the elevation of each physical runway end and nothing in
+  // between (TDZE is a maximum over a zone, RWY_GRAD is unpopulated), so the
+  // runway is a straight line between its two end elevations over its
+  // physical length: prof = {e0: takeoff end, e1: far end, len}. A crest
+  // inside the runway makes the real liftoff higher than this — conservative.
+  function rwyElevAt(prof, xFt) {
+    if (!prof || !isFinite(prof.e0) || !isFinite(prof.e1) || !(prof.len > 0)) return null;
+    var u = Math.max(0, Math.min(1, (xFt || 0) / prof.len));
+    return prof.e0 + (prof.e1 - prof.e0) * u;
+  }
+
+  // ---- wind policy (owner standard; a toggle per tab, 1.5.obst.2) ----
+  // headKt: along-runway component, + headwind / − tailwind. ON: credit 50 %
+  // of a headwind, penalize 150 % of a tailwind. The POH distance charts print
+  // a tailwind fan (10 kt): the chart read is capped there (the page says
+  // "TW computed at 10 knots"), while an ACTUAL tailwind past the fan is left
+  // as entered so the chart reports no answer. The climbout path past 50 ft
+  // has no fan and takes the full 150 % (path). OFF: the wind as entered.
+  function windPolicy(headKt, on, fanTwKt) {
+    if (headKt == null || !isFinite(headKt)) return { chart: null, path: null, capped: false };
+    if (!on) return { chart: headKt, path: headKt, capped: false };
+    if (headKt >= 0) return { chart: 0.5 * headKt, path: 0.5 * headKt, capped: false };
+    var tail = -headKt, tw = 1.5 * tail;
+    if (fanTwKt != null && tail > fanTwKt + 1e-9) return { chart: -tail, path: -tw, capped: false };   // past the fan as entered: no chart answer
+    var capped = fanTwKt != null && tw > fanTwKt + 1e-9;
+    return { chart: -(capped ? fanTwKt : tw), path: -tw, capped: capped };
+  }
+  // the largest printed tailwind on a three-panel chart's wind fan (null = none)
+  function chartTailFan(fig) {
+    var tw = fig && fig.wind_panel && fig.wind_panel.tailwind, k = tw && tw.wind_kt;
+    return k && k.length ? Math.max(k[0], k[k.length - 1]) : null;
+  }
+
   function wbData() { return D.wb_n8247j; }
 
   function wbFwdLimit(w) {
@@ -1998,7 +2064,7 @@ var Core = (function () {
     evalServiceCeiling: evalServiceCeiling, ceilingMsl: ceilingMsl,
     cruiseLookup: cruiseLookup, cruiseRows: cruiseRows,
     cruiseWeightKtasCorr: cruiseWeightKtasCorr,
-    wbFwdLimit: wbFwdLimit, wbAftLimit: wbAftLimit, wbDistributeFuel: wbDistributeFuel, wbFuelLoadPlan: wbFuelLoadPlan,
+    wbFwdLimit: wbFwdLimit, wbAftLimit: wbAftLimit, wbDistributeFuel: wbDistributeFuel, wbFuelLoadPlan: wbFuelLoadPlan, liftoffPathAlt: liftoffPathAlt, rwyElevAt: rwyElevAt, windPolicy: windPolicy, chartTailFan: chartTailFan,
     wbConfigEmpty: wbConfigEmpty,
     wbState: wbState, wbCheck: wbCheck, wbBurnLine: wbBurnLine, wbAutoCurtailments: wbAutoCurtailments,
     profileAtAltitude: profileAtAltitude, profileBest: profileBest,
@@ -2051,6 +2117,15 @@ var UI = (function () {
     obstHgtAgl: 200, obstDistNm: 1.0,   // legacy single obstacle (migrated)
     // climbout obstacles: {label, h, hu:'agl'|'msl', d, du:'nm'|'ft'}
     depObstacles: [],
+    // runway profile from the NASR runway-end records when a runway was
+    // picked: {e0: takeoff-end elev, e1: far-end elev, len: physical length}
+    // (1.5.obst.2: liftoff and DER elevations from a straight line between the
+    // ends). null = hand-typed runway, flat at the field elevation.
+    rwyProf: null,
+    // wind policy toggles (settings): 50 % headwind / 150 % tailwind, capped at
+    // the printed tailwind fan for the distance charts — DEP, and LDG + EMER RTN
+    windFactorDep: true, windFactorLdg: true,
+    wbFusModDefaulted: false,   // one-time switch of the fuselage mod to its new default ON (2026-10-17)
     // climbout chart zoom (view preference, not cleared): 0.5 | 1 | 2 | 4 | 8
     depChartZoom: 1,
     // cruise (cruiseMap null = auto-pick row nearest 65% power)
@@ -2144,6 +2219,7 @@ var UI = (function () {
       if (k === 'wbPushed') return isObj(v) && isNum(v.zfw) && isNum(v.fuel);
       if (k === 'wbFuelLoaded') return isObj(v) && isNum(v.wingL) && isNum(v.wingR) && isNum(v.fus);
       if (k === 'wbLoadCur') return isObj(v) && isNum(v.wingL) && isNum(v.wingR) && isNum(v.fus);
+      if (k === 'rwyProf') return isObj(v) && isNum(v.e0) && isNum(v.e1) && isNum(v.len) && v.len > 0;
       if (k === 'depWx' || k === 'ldgWx') return isObj(v) && typeof v.src === 'string';
       if (k === 'emerWx') return isObj(v) && isObj(v.wind);
       return isNum(v);
@@ -2360,7 +2436,7 @@ var UI = (function () {
   // cruise PA, obstacles. Nothing calculates until re-entered. Weight,
   // flaps, margin %/toggles and settings are kept.
   function resetDeparture() {
-    ['fieldElev', 'altimeter', 'oat', 'windDir', 'windSpd', 'rwyHdg', 'rwyLen',
+    ['fieldElev', 'rwyProf', 'altimeter', 'oat', 'windDir', 'windSpd', 'rwyHdg', 'rwyLen',
      'rwyAsda', 'rwyToda', 'rwyLda', 'reqGradient', 'reqGradientTop',
      'reqObstGradient', 'reqObstGradientTop', 'obstacleMsl', 'cruiseAlt']
       .forEach(function (k) { store[k] = null; });
@@ -2637,7 +2713,7 @@ var UI = (function () {
 
   // settings → RESET SETTINGS: display, ASI corr, insets, features, auto
   // reset (incl. the dev hook) back to the shipped defaults. Data untouched.
-  var SETTING_KEYS = ['theme', 'iasUnit', 'cabinCtrl', 'insets', 'features', 'staleHours', 'devStaleSec'];
+  var SETTING_KEYS = ['theme', 'iasUnit', 'cabinCtrl', 'insets', 'features', 'staleHours', 'devStaleSec', 'windFactorDep', 'windFactorLdg'];
   function resetSettings() {
     SETTING_KEYS.forEach(function (k) { store[k] = JSON.parse(JSON.stringify(DEFAULTS[k])); });
     applyInsets(); applyTheme(); saveStore(); rebuildRail(); render();
@@ -3395,7 +3471,7 @@ var Airports = (function () {
   function clearAirportFields() {
     var st = U.store, changed = false;
     if (st.depApt) {
-      ['fieldElev', 'rwyHdg', 'rwyLen', 'rwyAsda', 'rwyToda', 'rwyLda'].forEach(function (k) { st[k] = null; });
+      ['fieldElev', 'rwyProf', 'rwyHdg', 'rwyLen', 'rwyAsda', 'rwyToda', 'rwyLda'].forEach(function (k) { st[k] = null; });
       st.depApt = ''; st.depRwy = ''; st.depWx = null; changed = true;
     }
     if (st.emerRwy || st.emerWx) { st.emerRwy = ''; st.emerRwyHdg = null; st.emerLda = null; st.emerWx = null; st.emerWindDir = null; st.emerWindSpd = null; changed = true; }
@@ -3768,6 +3844,11 @@ var Airports = (function () {
     }
     st.emerRwy = ''; st.emerRwyHdg = null; st.emerLda = null; st.emerWx = null; st.emerWindDir = null; st.emerWindSpd = null;   // EMER follows the new departure runway + weather
     st.fieldElev = Math.round(a.elev);
+    // runway profile: this end's elevation → the other end's, over the
+    // physical length (both NASR RWY_END_ELEV); nothing when either is missing
+    var der = row.rw.ends.filter(function (e2) { return e2.id !== row.e.id; })[0];
+    st.rwyProf = row.e.el != null && der && der.el != null && row.rw.len > 0
+      ? { e0: row.e.el, e1: der.el, len: row.rw.len } : null;
     st.rwyHdg = magHdg(a, row.e);
     st.rwyLen = d.tora; st.rwyToda = d.toda; st.rwyAsda = d.asda; st.rwyLda = d.lda;
     U.set('fieldElev', st.fieldElev);              // persist + render
@@ -4705,6 +4786,7 @@ var Weather = (function () {
     var a = Airports.get(key); if (!a) { onDone(null); return; }
     var st = U.store, tz = Airports.tz(a);
     var etd = st.depEtd, etdZ = !!st.depEtdZulu;   // null = NOW
+    var etdErr = null;   // {text, why}: a typed time that was not accepted stays in the box with the reason
     if (etd != null && etd < Date.now() - 60000) { etd = null; st.depEtd = null; }   // a stale ETD is NOW
     var rec = cacheGet(key), online = null, err = null, busy = false;
     var manual = { dir: null, spd: null };
@@ -4764,19 +4846,57 @@ var Weather = (function () {
       row.appendChild(seg);
       var inp = U.el('input', 'etdin'); inp.type = 'text'; inp.setAttribute('inputmode', 'numeric');
       inp.setAttribute('autocomplete', 'off'); inp.placeholder = 'HHMM';
-      inp.value = etd == null ? '' : fmtEtd(etd, etdZ, tz, now);
+      inp.value = etdErr ? etdErr.text : (etd == null ? '' : fmtEtd(etd, etdZ, tz, now));
       function commit() {
         var s2 = inp.value.trim();
-        if (s2 === '') { etd = null; st.depEtd = null; U.set('depEtd', null); draw(); return; }
+        if (s2 === '') { etdErr = null; etd = null; st.depEtd = null; U.set('depEtd', null); draw(); return; }
         var p = parseEtd(s2, Date.now(), tz, wx.taf ? wx.taf.to : null);
-        if (!p) { inp.value = etd == null ? '' : fmtEtd(etd, etdZ, tz, now); return; }
-        etd = p.ms; etdZ = p.zulu; st.depEtd = etd; st.depEtdZulu = etdZ; U.set('depEtd', etd); draw();
+        if (!p) {
+          // say why, and keep what was typed, instead of silently clearing it
+          // (owner 2026-10-16: a rejected time looked like a dead button)
+          var shaped = /^\s*(\d{1,2}\s*\/\s*)?\d{4}\s*[LlZz]?\s*$/.test(s2);
+          etdErr = { text: s2, why: shaped
+            ? 'ETD ' + s2 + ' not accepted — in the past, or outside ' + (wx.taf ? 'the TAF period ' + fmtZ(wx.taf.from) + '–' + fmtZ(wx.taf.to) : 'the next 30 h') + '.'
+            : 'ETD not read — type HHMM (1430), then tap L or Z.' };
+          draw(); return;
+        }
+        etdErr = null; etd = p.ms; etdZ = p.zulu; st.depEtd = etd; st.depEtdZulu = etdZ; U.set('depEtd', etd); draw();
       }
       inp.addEventListener('change', commit);   // Enter / Tab: document handler (ui.js bindKeyboard)
       inp.addEventListener('focus', function () { setTimeout(function () { try { inp.setSelectionRange(0, inp.value.length); } catch (e) {} }, 0); });
-      row.appendChild(inp);
-      if (etd != null) row.appendChild(U.el('span', 'etdalt', fmtEtd(etd, !etdZ, tz, now)));   // the other clock
+      // the time and its L / Z stay together when the row wraps (iPad, owner 2026-10-16)
+      var tm = U.el('span', 'etdtime'); tm.appendChild(inp);
+      // L / Z beside the time: the phone's number pad has no letters (owner
+      // 2026-10-16), so the zone is a tap — it re-reads whatever is typed with
+      // that suffix. The lit one shows the zone of the time in force.
+      var lz = U.el('div', 'seg etdlz');
+      var applied = 0;
+      [['L', false], ['Z', true]].forEach(function (z) {
+        var zb = U.el('button', etd != null && etdZ === z[1] && !etdErr ? 'on' : '', z[0]);
+        function applyZone(ev) {
+          // pointerdown, with the default prevented: the field keeps its focus
+          // and the keyboard stays up, so nothing moves under the finger. The
+          // commit (which redraws the dialog) waits until the tap has ended —
+          // a redraw mid-tap let the finishing tap land on a chip or the
+          // runway button and undo the zone (owner's devices 2026-10-16).
+          if (ev && ev.preventDefault) ev.preventDefault();
+          if (Date.now() - applied < 700) return;   // the click that follows the pointerdown
+          applied = Date.now();
+          var t = inp.value.trim().replace(/\s*[LlZz]$/, '');
+          if (!t) { inp.focus(); return; }
+          inp.value = t + z[0];
+          for (var q = 0; q < lz.children.length; q++) lz.children[q].className = lz.children[q] === zb ? 'on' : '';
+          setTimeout(commit, 350);
+        }
+        zb.addEventListener('pointerdown', applyZone);
+        zb.addEventListener('click', applyZone);   // keyboard / no-pointer fallback
+        lz.appendChild(zb);
+      });
+      tm.appendChild(lz);
+      row.appendChild(tm);
+      if (etd != null && !etdErr) row.appendChild(U.el('span', 'etdalt', fmtEtd(etd, !etdZ, tz, now)));   // the other clock
       body.appendChild(row);
+      if (etdErr) body.appendChild(U.el('div', 'caution etderr', esc(etdErr.why)));
 
       // METAR
       var mt = wx.metar;
@@ -4929,7 +5049,10 @@ var Weather = (function () {
   if (st.wbWingL_gal === undefined) st.wbWingL_gal = 0;
   if (st.wbWingR_gal === undefined) st.wbWingR_gal = 0;
   if (st.wbFusGal === undefined) st.wbFusGal = 0;
-  if (st.wbFusModOn === undefined) st.wbFusModOn = false;    // +20 gal fuselage mod, unverified
+  // +20 gal fuselage mod: default ON (owner 2026-10-17). Stores saved under the
+  // old default (OFF) are switched once; the Setup toggle rules after that.
+  if (st.wbFusModOn === undefined) st.wbFusModOn = true;
+  if (!st.wbFusModDefaulted) { st.wbFusModOn = true; st.wbFusModDefaulted = true; }
   if (st.wbManualLines === undefined) st.wbManualLines = []; // [{id,label,wt,arm}]
   if (st.wbManualSeq === undefined) st.wbManualSeq = 1;      // next manual-line id
   if (st.features && st.features.wbAutoCurtail === undefined) st.features.wbAutoCurtail = true;
@@ -7127,11 +7250,7 @@ var Weather = (function () {
   // largest printed tailwind on a three-panel chart, so the one chip can state
   // what the factored value does to THIS figure rather than assume every
   // takeoff chart prints the same fan
-  function twFanMax(fig) {
-    var tw = fig && fig.wind_panel && fig.wind_panel.tailwind;
-    var k = tw && tw.wind_kt;
-    return k && k.length ? Math.max(k[0], k[k.length - 1]) : null;
-  }
+  function twFanMax(fig) { return C.chartTailFan(fig); }
 
   // A null distance means the POH chart has no answer for these conditions.
   // rwyGraphic simply omits that line, which reads as "fits the runway" — so
@@ -7201,7 +7320,12 @@ var Weather = (function () {
     return input;
   }
 
-  function obAgl(o) { return o.hu === 'msl' ? o.h - U.store.fieldElev : o.h; }
+  // runway profile (1.5.obst.2): straight line between the NASR physical-end
+  // elevations; a hand-typed runway has none and is flat at the field elevation
+  function rwyElev(st, xFt) { return st.rwyProf ? C.rwyElevAt(st.rwyProf, xFt) : st.fieldElev; }
+  function derElevOf(st) { return rwyElev(st, st.rwyLen == null ? 0 : st.rwyLen); }   // the DER = end of TORA
+  // obstacle height in MSL: AGL entries are ABOVE THE DER (the FAA takeoff-note convention)
+  function obMsl(o) { var st = U.store; return o.hu === 'msl' ? o.h : derElevOf(st) + o.h; }
   function obNm(o) { return o.du === 'ft' ? o.d / NM_FT : o.d; }
 
   function nextLabel(arr) {
@@ -7292,9 +7416,10 @@ var Weather = (function () {
       hf.style.minWidth = '0';
       segBtns(gh, 'Height ref', [['agl', 'AGL'], ['msl', 'MSL']], o.hu, function (u) {
         if (u === o.hu) return;
-        // convert so the physical obstacle stays put — only possible once the
-        // field elevation is entered; before that the number is reinterpreted
-        if (st.fieldElev != null) o.h = u === 'msl' ? o.h + st.fieldElev : o.h - st.fieldElev;
+        // convert so the physical obstacle stays put (AGL = above the DER) —
+        // only possible once the field is entered; before that the number is reinterpreted
+        var dz = derElevOf(st);
+        if (dz != null) o.h = u === 'msl' ? o.h + dz : o.h - dz;
         o.hu = u; save(); build(b);
       });
       // distance row directly underneath, equal field width, selector beside
@@ -7333,9 +7458,13 @@ var Weather = (function () {
     var pa = st.fieldElev != null && st.altimeter != null ? depPA() : null;
     var wind = (st.windDir != null && st.windSpd != null && st.rwyHdg != null) ? windHead() : null;
     var isaDev = pa != null && st.oat != null ? st.oat - C.isaTempC(pa) : null;
-    // factored wind (see CLIMB GRADIENTS below) — defined up here because the
-    // takeoff tailwind chip names the factored value the climb sections use
-    var fw = wind ? (wind.head >= 0 ? 0.5 * wind.head : 1.5 * wind.head) : null; // factored, signed
+    // wind policy (settings › WIND POLICY, owner 2026-10-17): ONE read for the
+    // takeoff distances and the climbout's runway numbers — the policy capped
+    // at the figure's printed tailwind fan — and the full policy (fw) for the
+    // climb past 50 ft, which has no fan. Core.windPolicy.
+    var wpOn = st.windFactorDep !== false;
+    var fw = wind ? C.windPolicy(wind.head, wpOn, null).path : null;   // climb past 50 ft, signed
+    function chartWind(fig) { return wind ? C.windPolicy(wind.head, wpOn, twFanMax(fig)) : { chart: null, capped: false }; }
 
     // ---- conditions ----
     // header row: title left, CLEAR at the very top right of the page (owner)
@@ -7433,9 +7562,10 @@ var Weather = (function () {
       return b;
     }
     var marginIdle = st.toMarginPct > 0 && !st.toMarginTakeoff && !st.toMarginAsda;
-    var mFld = U.num(g, { label: 'Margin', key: 'toMarginPct', unit: '%', min: 0, max: 100, size: 3,
+    var mFld = U.num(g, { label: 'Margin', key: 'toMarginPct', unit: '%', labelUnit: '%', min: 0, max: 100, size: 3,
       extras: [tglBtn('T/O', 'toMarginTakeoff'), tglBtn('ASDA', 'toMarginAsda')] });
     mFld.style.marginLeft = 'auto';
+    mFld.className += ' tomargin';   // phone: compact so it shares the row with FLAPS
     if (marginIdle) mFld.className += ' dimmed';
 
     var to50 = st.flaps === '20' ? D.fig8_03 : D.fig8_05;
@@ -7448,9 +7578,10 @@ var Weather = (function () {
     var twTo = null;
 
     if (condOk) {
-    var rGnd = C.evalThreePanel(roll, st.oat, pa, gw, wind.head);
-    var r50 = C.evalThreePanel(to50, st.oat, pa, gw, wind.head);
-    var rAcc = C.evalThreePanel(acc, st.oat, pa, gw, wind.head);
+    var rGnd = C.evalThreePanel(roll, st.oat, pa, gw, chartWind(roll).chart);
+    var r50 = C.evalThreePanel(to50, st.oat, pa, gw, chartWind(to50).chart);
+    var rAcc = C.evalThreePanel(acc, st.oat, pa, gw, chartWind(acc).chart);
+    var twCapped = chartWind(roll).capped || chartWind(to50).capped || chartWind(acc).capped;
 
     // OPT-style: legend values + declared-distance graphic. Each distance
     // checks its own limit: ground roll vs TORA, over-50 vs TODA, accel-stop
@@ -7471,19 +7602,14 @@ var Weather = (function () {
       if (st.toMarginAsda) mparts.push('ACCEL-STOP');
       s.appendChild(U.el('div', 'note', 'MARGIN +' + st.toMarginPct + '% applied to ' + mparts.join(' and ') + '.'));
     }
-    // one tailwind chip for the whole tab (see TW_RE above). A tailwind past the
-    // fan for the entered wind is past it for the factored value too, so the
-    // whole story is told here and the climbout section stays quiet.
+    if (twCapped) s.appendChild(U.el('div', 'note', 'TW computed at ' + twFanMax(to50) + ' knots.'));
+    // one tailwind chip for the whole tab (see TW_RE above): the climbout reads
+    // the same charts with the same wind, so the whole story is told here
     var toWarn = rGnd.warn.concat(r50.warn, rAcc.warn);
     twTo = twSeen(toWarn);
     if (twTo) {
-      var to50Fan = twFanMax(to50);
-      var pathToo = U.feat('depPath') && to50Fan != null && Math.abs(fw) > to50Fan;
       toWarn = dropTw(toWarn);
-      toWarn.push('tailwind ' + twTo.kt + ' kt beyond the printed ' + twTo.fan +
-        '-kt fan — no POH data for takeoff distance' +
-        (pathToo ? ', nor for the climbout path, which factors it to ' +
-          Math.abs(fw).toFixed(0) + ' kt (150% tailwind penalty)' : ''));
+      toWarn.push('tailwind ' + twTo.kt + ' kt beyond the printed ' + twTo.fan + '-kt fan — no POH data for takeoff distance');
     }
     U.warnChips(s, toWarn);
     } else {
@@ -7506,8 +7632,7 @@ var Weather = (function () {
     if (spd.obstacle) { var s2 = U.spdFmt(spd.obstacle); U.res(o, '50-ft speed', s2.main, null, s2.sub); }
 
     // ---- shared climb data: speeds, gear penalty, integrated climbout paths ----
-    // Wind policy (user standard): credit only 50% of headwind, penalize 150%
-    // of tailwind (fw, computed at the top of render).
+    // fw (top of render) carries the wind policy for the climb past 50 ft.
     var twinSpdK = wSel(D.aircraft_tables.climb_speeds_kias.twin_engine_by_weight, gw);
     var seSpdK = D.aircraft_tables.climb_speeds_kias.single_engine_all_weights;
     // Fig 8-10 NOTE 2 is a PRINTED chart note, applied to the chart reading —
@@ -7531,7 +7656,8 @@ var Weather = (function () {
     ];
 
     var obs = sanitizeObstacles(st);
-    var rwyNm = null, startNm = null, maxAgl = 800, r50f = null, pTwin = null, pSe = null, checked;
+    var rwyNm = null, startNm = null, liftNm = null, maxAgl = 800, r50f = null, grF = null, pTwin = null, pSe = null, checked;
+    var startElev = null, liftElev = null, derElev = null;   // runway profile (MSL): TORA start, liftoff, DER
 
     function climbPathPts(fig, spdKias) {
       // integrate the POH ROC chart in 100-ft steps: t = dh/ROC, d = GS*t —
@@ -7543,10 +7669,20 @@ var Weather = (function () {
         return { pts: null, kind: 'nodata', warn: r50f ? r50f.warn.slice() : [],
           blocked: 'takeoff distance over 50 ft has no chart answer here — the start of the path is unknown' };
       }
-      var pts = [[startNm, 50]], d = startNm, agl, blocked = null, kind = null, warn = [];
-      for (agl = 50; agl < maxAgl; agl += 100) {
-        var msl = st.fieldElev + agl;
-        var paA = pa + agl;
+      var pts = [], d = startNm, h, blocked = null, kind = null, warn = [];   // pts: [nm, ft MSL]
+      // liftoff → 50 ft: the pull-up arc (Core.liftoffPathAlt) sampled from
+      // the ground roll's end, so the path starts on the runway, not at 50 ft
+      if (liftNm != null && liftNm < startNm) {
+        for (var k = 0; k < 8; k++) {
+          var xk = liftNm + (startNm - liftNm) * k / 8;
+          pts.push([xk, liftElev + C.liftoffPathAlt(liftNm, startNm, xk)]);
+        }
+      }
+      pts.push([startNm, liftElev + 50]);
+      // h = height above the liftoff point; the chart reads at that MSL
+      for (h = 50; h < maxAgl; h += 100) {
+        var msl = liftElev + h;
+        var paA = pa + (msl - st.fieldElev);
         var oatA = C.tempAloft(st.oat, st.fieldElev, msl);
         var rc = C.evalClimbChart(fig, oatA, paA, gw);
         pushWarn(warn, rc.warn);
@@ -7561,7 +7697,7 @@ var Weather = (function () {
         var tas = tasFromKias(spdKias, msl, oatA).tasKt;
         var gs = Math.max(20, tas - fw);
         d += gs * (100 / rc.v) / 60;
-        pts.push([d, agl + 100]);
+        pts.push([d, msl + 100]);
       }
       return { pts: pts, blocked: blocked, kind: kind, warn: warn };
     }
@@ -7571,7 +7707,7 @@ var Weather = (function () {
     function pathAltAt(p, x) {
       var pts = p && p.pts, i;
       if (!pts || pts.length < 2) return null;
-      if (x < pts[0][0]) return null; // before the 50-ft point
+      if (x < pts[0][0]) return null; // before liftoff
       for (i = 0; i < pts.length - 1; i++) {
         if (x >= pts[i][0] && x <= pts[i + 1][0]) {
           return C.lin(x, pts[i][0], pts[i + 1][0], pts[i][1], pts[i + 1][1]);
@@ -7588,17 +7724,17 @@ var Weather = (function () {
     function lineClear(p, req) {
       if (req.grad == null || req.top == null) return null;
       if (!p || startNm == null) return { status: 'na', why: p && p.blocked ? p.blocked : 'no climb path' };
-      var topAgl = req.top - st.fieldElev;
-      if (topAgl <= 35 || req.grad <= 0) return { status: 'ok', min: null };
-      var dEnd = rwyNm + (topAgl - 35) / req.grad;
+      var lineBase = derElev + 35;   // the line starts at the DER, 35 ft above it
+      if (req.top <= lineBase || req.grad <= 0) return { status: 'ok', min: null };
+      var dEnd = rwyNm + (req.top - lineBase) / req.grad;
       if (startNm >= dEnd) {
         // the line reaches its top before the aircraft even makes 50 ft
-        return { status: 'viol', min: 50 - topAgl, atNm: dEnd - rwyNm };
+        return { status: 'viol', min: (liftElev + 50) - req.top, atNm: dEnd - rwyNm };
       }
       var x = Math.max(rwyNm, startNm), minM = null, atX = null, na = false, last = false;
       while (!last) {
         if (x >= dEnd) { x = dEnd; last = true; }
-        var la = 35 + (x - rwyNm) * req.grad;
+        var la = lineBase + (x - rwyNm) * req.grad;
         var alt = pathAltAt(p, x);
         if (alt == null) { na = true; break; }
         var m = alt - la;
@@ -7612,15 +7748,22 @@ var Weather = (function () {
 
     if (condOk) {
       rwyNm = st.rwyLen / NM_FT;
-      // start point: 50-ft crossing at the end of takeoff distance over 50 ft,
-      // computed with FACTORED wind for conservatism in this chart (raw chart
-      // value — the personal margin % is a runway-planning tool, not POH data)
-      r50f = C.evalThreePanel(to50, st.oat, pa, gw, fw);
+      // start point: 50-ft crossing at the end of takeoff distance over 50 ft —
+      // the SAME chart read as TAKEOFF above (policy wind capped at the fan; raw
+      // chart value — the personal margin % is a runway-planning tool, not POH data)
+      r50f = C.evalThreePanel(to50, st.oat, pa, gw, chartWind(to50).chart);
       startNm = r50f.v != null ? r50f.v / NM_FT : null;
-      var maxNeedAgl = 0;
-      obs.forEach(function (ob) { maxNeedAgl = Math.max(maxNeedAgl, obAgl(ob)); });
+      grF = C.evalThreePanel(roll, st.oat, pa, gw, chartWind(roll).chart);
+      liftNm = grF.v != null ? grF.v / NM_FT : null;
+      // the runway's elevations along the straight profile: start of TORA,
+      // liftoff (end of the ground roll), DER (end of TORA)
+      startElev = rwyElev(st, 0);
+      derElev = derElevOf(st);
+      liftElev = grF.v != null ? rwyElev(st, grF.v) : startElev;
+      var maxNeedAgl = 0;   // height above liftoff the paths must reach
+      obs.forEach(function (ob) { maxNeedAgl = Math.max(maxNeedAgl, obMsl(ob) - liftElev); });
       REQS.forEach(function (rq) {
-        if (rq.grad != null && rq.top != null) maxNeedAgl = Math.max(maxNeedAgl, rq.top - st.fieldElev);
+        if (rq.grad != null && rq.top != null) maxNeedAgl = Math.max(maxNeedAgl, rq.top - liftElev);
       });
       maxAgl = Math.max(maxNeedAgl + 400, 800);
       pTwin = climbPathPts(D.fig8_09, twinSpdK);
@@ -7628,12 +7771,12 @@ var Weather = (function () {
       // per-obstacle check against BOTH paths (owner: obstacle applies to both
       // climbouts — green only when 2-eng AND OEI clear it)
       checked = obs.map(function (ob) {
-        var agl = obAgl(ob);
+        var msl = obMsl(ob);
         var x = rwyNm + obNm(ob);
         var a2 = pathAltAt(pTwin, x);
         var ase = pathAltAt(pSe, x);
-        var m2 = a2 == null ? null : a2 - agl;
-        var mse = ase == null ? null : ase - agl;
+        var m2 = a2 == null ? null : a2 - msl;
+        var mse = ase == null ? null : ase - msl;
         var status;
         if (m2 == null || mse == null) status = 'na';
         else status = (m2 >= 0 && mse >= 0) ? 'ok' : 'viol';
@@ -7641,13 +7784,13 @@ var Weather = (function () {
         if (m2 != null && mse != null) worst = Math.min(m2, mse);
         else if (m2 != null) worst = m2;
         else if (mse != null) worst = mse;
-        return { ob: ob, agl: agl, x: x, m2: m2, mse: mse, status: status, worst: worst };
+        return { ob: ob, msl: msl, x: x, m2: m2, mse: mse, status: status, worst: worst };
       });
     } else {
       // obstacles can be entered any time; nothing is checked until the
       // departure conditions exist
       checked = obs.map(function (ob) {
-        return { ob: ob, agl: null, x: null, m2: null, mse: null, status: 'na', worst: null };
+        return { ob: ob, msl: null, x: null, m2: null, mse: null, status: 'na', worst: null };
       });
     }
 
@@ -7745,7 +7888,7 @@ var Weather = (function () {
       twin0.v == null || twinT.v == null ? 'warn' : null,
       'TOC = ' + U.fmtComma(topAlt) + ' ft MSL');
     U.res(o, '2-eng gradient', ctr((twinGrad == null ? '—' : twinGrad.toFixed(0)) + ' <small>ft/nm</small>'),
-      twinGrad == null ? 'warn' : null, '*at TOC, wind factored');
+      twinGrad == null ? 'warn' : null, '*at TOC');
     verdictPair(o, pTwin, false);
 
     // single-engine row — the engine-failure cell family (red-tinted)
@@ -7768,17 +7911,16 @@ var Weather = (function () {
         : (se0.v == null || seT.v == null ? 'warn' : (se0.v < 100 ? 'warn' : null)), null);
     rRt.className += ' engfail';
     var rGr = U.res(o, 'OEI gradient', ctr((seGrad == null ? '—' : seGrad.toFixed(0)) + ' <small>ft/nm</small>'),
-      seGrad == null ? 'warn' : null, '*at TOC, wind factored, gear UP');
+      seGrad == null ? 'warn' : null, '*at TOC, gear UP');
     rGr.className += ' engfail';
     verdictPair(o, pSe, true);
 
     U.warnChips(s, twin0.warn.concat(twinT.warn, se0.warn, seT.warn, twinTas.warn, seTas.warn));
     s.appendChild(U.el('div', 'footnote', U.isPhone() ?
-      '* 50% of headwind, 150% of tailwind. Standard temp lapse rate.' :
-      '* 50% of headwind, 150% of tailwind penalized (HW ' + wind.head.toFixed(0) + ' kt → ' +
-      fw.toFixed(0) + ' kt used). Standard temp lapse rate. Obstacle / ATC verdicts check the ' +
-      'integrated climbout path against each required-gradient line (from the runway end at ' +
-      '35 ft to its top altitude) — the whole climb, not the gradient at TOC alone.'));
+      '* Standard temp lapse rate.' :
+      '* Standard temp lapse rate. Obstacle / ATC verdicts check the integrated climbout path against ' +
+      'each required-gradient line (from the DER at 35 ft to its top altitude) — the whole climb, not ' +
+      'the gradient at TOC alone.'));
     } // condOk
     } // depGrad
 
@@ -7849,7 +7991,7 @@ var Weather = (function () {
             p.blocked + '. ' + unchecked.join(', ') + ' NOT checked.');
         } else {
           U.res(parent, label, 'N/A', 'bad',
-            unchecked.join(', ') + ' before the 50-ft point — takeoff distance itself is the limit');
+            unchecked.join(', ') + ' before liftoff — takeoff distance itself is the limit');
         }
         return;
       }
@@ -7881,28 +8023,21 @@ var Weather = (function () {
     zbtn(zoom === 1 ? 'FIT' : zoom + '×', 1, zoom !== 1);
     zbtn('+', zi < ZOOMS.length - 1 ? ZOOMS[zi + 1] : null, false);
     s.appendChild(zrow);
-    s.appendChild(climboutSvg(st, pTwin.pts, pSe.pts, checked, maxAgl, startNm, rwyNm, REQS, zoom));
+    s.appendChild(climboutSvg(st, pTwin.pts, pSe.pts, checked, maxAgl, startNm, rwyNm, REQS, zoom,
+      { start: startElev, lift: liftElev, der: derElev }));
+    if (chartWind(to50).capped || chartWind(roll).capped) s.appendChild(U.el('div', 'note', 'TW computed at ' + twFanMax(to50) + ' knots.'));
+    s.appendChild(derNotes(st, grF, r50f, pTwin, pSe, rwyNm, liftElev, derElev));
     var pathWarn = [];
     pushWarn(pathWarn, r50f.warn);
     pushWarn(pathWarn, pTwin.warn);
     pushWarn(pathWarn, pSe.warn);
     if (pTwin.blocked) pushWarn(pathWarn, ['2-eng path incomplete — ' + pTwin.blocked]);
     if (pSe.blocked) pushWarn(pathWarn, ['OEI path incomplete — ' + pSe.blocked]);
-    // TAKEOFF already carries the tailwind chip whenever the entered wind is
-    // past the fan; the only case left for this section is a wind inside the
-    // fan that the 150% penalty pushes outside it.
-    var twPath = twSeen(pathWarn);
+    // TAKEOFF already carries the tailwind chip (same chart, same wind read)
     pathWarn = dropTw(pathWarn);
-    if (twPath && !twTo) {
-      // cause before consequence: this is why the paths below are incomplete
-      pathWarn.unshift('tailwind ' + Math.abs(wind.head).toFixed(0) + ' kt factors to ' + twPath.kt +
-        ' kt here (150% tailwind penalty) — beyond the printed ' + twPath.fan +
-        '-kt fan, so there is no POH data for the climbout path');
-    }
     U.warnChips(s, pathWarn);
     s.appendChild(U.el('div', 'footnote',
-      'Winds factored 50% HW / 150% TW. OEI path assumes engine fails at liftoff with ' +
-      'propeller feathered, gear up, at Vyse.'));
+      'Climbout flight path assumes propeller feathered, gear up, at Vyse.'));
     } // condOk (verdicts + chart)
     } // depPath
 
@@ -7953,86 +8088,130 @@ var Weather = (function () {
     } // depCeil
   }
 
-  function climboutSvg(st, twinPts, sePts, checked, maxAglFull, startNm, rwyNm, reqs, zoom) {
+  // IFR TAKEOFF MINIMUMS notes under the climbout chart (owner 2026-10-16):
+  // the FAA's newer takeoff-minimums wording lets the operator clear the
+  // obstacles by taking off X ft before the DER, by crossing the DER at X ft,
+  // or by a higher gradient to a height (the gradient lines above). The first
+  // two are read here from the same factored-wind POH distances the chart is
+  // drawn from (no personal margin %). DER crossing heights are above the
+  // DER ELEVATION (NASR runway-end record when a runway was picked; the field
+  // elevation otherwise). Assumption: an engine failure below 50 ft is an
+  // abort, so the continued-takeoff OEI path starts at 50 ft.
+  function derNotes(st, grF, r50f, pTwin, pSe, rwyNm, liftElev, derElev) {
+    var box = U.el('div', 'dernotes');
+    box.appendChild(U.el('div', 'dnh', '<u>IFR TAKEOFF MINIMUMS</u>'));
+    var tora = st.rwyLen, gr = grF && grF.v != null ? grF.v : null, d50 = r50f && r50f.v != null ? r50f.v : null;
+    if (gr == null) {
+      box.appendChild(U.el('div', 'dnl warn', 'T/O ground roll: no chart answer here.'));
+    } else if (gr >= tora) {
+      box.appendChild(U.el('div', 'dnl bad', 'Check takeoff ground roll.'));
+    } else {
+      box.appendChild(U.el('div', 'dnl', 'T/O occurs ' + U.fmtComma(Math.round(tora - gr)) + ' ft prior to DER.'));
+      if (d50 != null) {
+        var aeo, oei;
+        // heights above the DER: path MSL (from the liftoff elevation on the
+        // runway profile) less the DER elevation (profile at the end of TORA)
+        if (tora >= d50) {
+          // past the 50-ft point: the integrated climb paths (2-eng gear up; OEI Vyse, feathered, gear up)
+          aeo = pathAltAtNm(pTwin, rwyNm); oei = pathAltAtNm(pSe, rwyNm);
+        } else {
+          // between liftoff and 50 ft: the pull-up arc, one path for both (engine failure here = abort)
+          aeo = oei = liftElev + C.liftoffPathAlt(gr, d50, tora);
+        }
+        function hh(v) { return v == null ? '—' : U.fmtComma(Math.round(v - derElev)) + '\''; }
+        box.appendChild(U.el('div', 'dnl', 'Aircraft crosses DER at ' + hh(aeo) + ' AEO / ' + hh(oei) + ' OEI.'));
+      }
+    }
+    box.appendChild(U.el('div', 'dnl', 'Assumption: Eng fail at/above 50\''));
+    return box;
+  }
+  // height of an integrated path (nm, ft AGL above the field) at x nm; null off the path
+  function pathAltAtNm(p, x) {
+    var pts = p && p.pts, i;
+    if (!pts || pts.length < 2 || x < pts[0][0]) return null;
+    for (i = 0; i < pts.length - 1; i++) {
+      if (x >= pts[i][0] && x <= pts[i + 1][0]) return C.lin(x, pts[i][0], pts[i + 1][0], pts[i][1], pts[i + 1][1]);
+    }
+    return p.blocked ? null : pts[pts.length - 1][1];
+  }
+
+  function climboutSvg(st, twinPts, sePts, checked, maxAglFull, startNm, rwyNm, reqs, zoom, geo) {
     var W = U.chartW(640), H = 230, padL = 48, padR = 12, padT = 10, padB = 22;
     zoom = zoom || 1;
-    // the data extends to maxAglFull; the VIEW is the fit extents ÷ zoom,
-    // anchored at the runway start (svg clips whatever falls outside)
-    var maxAgl = maxAglFull / zoom;
+    // vertical axis in MSL (1.5.obst.2): the floor sits at the runway's lowest
+    // point; the data extends maxAglFull above the liftoff elevation; the VIEW
+    // is the fit extents ÷ zoom, anchored at the runway start (svg clips
+    // whatever falls outside)
+    var floor = Math.min(geo.start, geo.der, geo.lift);
+    var viewH = (geo.lift + maxAglFull - floor) / zoom;
+    var top = floor + viewH;
     var maxObX = 0;
     checked.forEach(function (c) { maxObX = Math.max(maxObX, c.x); });
-    // required-gradient lines: DER at 35 ft → own top altitude
-    var lines = [];
+    // required-gradient lines: DER, 35 ft above it → own top altitude
+    var lineBase = geo.der + 35, lines = [];
     (reqs || []).forEach(function (rq) {
-      if (rq.grad == null || rq.top == null || rq.grad <= 0) return;
-      var topAgl = rq.top - st.fieldElev;
-      if (topAgl <= 35) return;
-      lines.push({ tag: rq.tag, grad: rq.grad, topAgl: topAgl, dashes: rq.dashes,
-        dEnd: rwyNm + (topAgl - 35) / rq.grad });
+      if (rq.grad == null || rq.top == null || rq.grad <= 0 || rq.top <= lineBase) return;
+      lines.push({ tag: rq.tag, grad: rq.grad, top: rq.top, dashes: rq.dashes, dEnd: rwyNm + (rq.top - lineBase) / rq.grad });
     });
     var maxLineX = 0;
     lines.forEach(function (l) { maxLineX = Math.max(maxLineX, l.dEnd * 1.08); });
     var maxX = Math.max(maxObX * 1.25, maxLineX,
       (twinPts && twinPts.length ? twinPts[twinPts.length - 1][0] : 2), rwyNm + 1) / zoom;
     function x(nm) { return padL + (W - padL - padR) * nm / maxX; }
-    function y(agl) { return H - padB - (H - padT - padB) * agl / maxAgl; }
+    function y(msl) { return H - padB - (H - padT - padB) * (msl - floor) / viewH; }
     function path(pts) {
       return pts.map(function (p, i) { return (i ? 'L' : 'M') + x(p[0]).toFixed(1) + ',' + y(p[1]).toFixed(1); }).join(' ');
     }
-    // y-axis labeled in MSL (owner 2026-08-23), gridlines dimmed; steps
-    // follow the VIEW range so a zoomed-in chart still has readable rungs
+    // y-axis rungs on ROUND MSL values (owner 2026-08-23 / 2026-10-04), gridlines
+    // dimmed; steps follow the VIEW range so a zoomed-in chart still has rungs
     var gl = '';
-    var stepA = maxAgl > 3000 ? 1000 : (maxAgl > 1500 ? 500 : (maxAgl > 600 ? 200 : (maxAgl > 250 ? 100 : 50)));
-    if (U.isPhone()) {
-      // phone (owner 2026-10-04): rungs on ROUND MSL values (1,000s when the
-      // view allows — never field-elevation offsets like 1,200 / 2,200), and
-      // only as many labels as the short axis can carry
-      var fe = st.fieldElev, mult = 1;
-      while (maxAgl / (stepA * mult) > 6) mult = mult === 1 ? 2 : (mult === 2 ? 5 : mult * 2);
-      for (var msl = Math.ceil(fe / stepA) * stepA; msl - fe <= maxAgl; msl += stepA) {
-        var yy = y(msl - fe);
-        gl += '<line class="svg-grid-dim" x1="' + padL + '" y1="' + yy + '" x2="' + (W - padR) + '" y2="' + yy + '"/>';
-        if (Math.round(msl / stepA) % mult === 0 && yy > 20) {
-          gl += '<text class="svg-axis" x="' + (padL - 4) + '" y="' + (yy + 4) + '" text-anchor="end">' + U.fmtComma(msl) + '</text>';
-        }
+    var stepA = viewH > 3000 ? 1000 : (viewH > 1500 ? 500 : (viewH > 600 ? 200 : (viewH > 250 ? 100 : 50)));
+    var mult = 1;
+    if (U.isPhone()) { while (viewH / (stepA * mult) > 6) mult = mult === 1 ? 2 : (mult === 2 ? 5 : mult * 2); }
+    var first = Math.ceil(floor / stepA) * stepA, lastMsl = first;
+    for (var msl = first; msl <= top; msl += stepA) lastMsl = msl;
+    for (msl = first; msl <= top; msl += stepA) {
+      var yy = y(msl);
+      gl += '<line class="svg-grid-dim" x1="' + padL + '" y1="' + yy + '" x2="' + (W - padR) + '" y2="' + yy + '"/>';
+      if (Math.round(msl / stepA) % mult === 0 && yy > 20) {
+        gl += U.isPhone()
+          ? '<text class="svg-axis" x="' + (padL - 4) + '" y="' + (yy + 4) + '" text-anchor="end">' + U.fmtComma(msl) + '</text>'
+          : '<text class="svg-axis" x="4" y="' + (yy + 4) + '">' + U.fmtComma(msl) + (msl === lastMsl ? ' FT MSL' : '') + '</text>';
       }
-      gl += '<text class="svg-axis" x="4" y="10" font-size="9">FT MSL</text>';
-    } else
-    for (var a = 0; a <= maxAgl; a += stepA) {
-      var isTop = a + stepA > maxAgl;
-      gl += '<line class="svg-grid-dim" x1="' + padL + '" y1="' + y(a) + '" x2="' + (W - padR) + '" y2="' + y(a) + '"/>' +
-        '<text class="svg-axis" x="4" y="' + (y(a) + 4) + '">' + U.fmtComma(st.fieldElev + a) +
-        (isTop ? ' FT MSL' : '') + '</text>';
     }
+    if (U.isPhone()) gl += '<text class="svg-axis" x="4" y="10" font-size="9">FT MSL</text>';
     var nmStep = maxX > 20 ? 5 : (maxX > 6 ? 2 : (maxX > 2.5 ? 1 : (maxX > 1 ? 0.5 : 0.25)));
     if (U.isPhone()) { while (maxX / nmStep > 7) nmStep *= 2; }   // narrow axis: fewer distance labels
     for (var n = 0; n <= maxX + 1e-9; n += nmStep) {
       gl += '<text class="svg-axis" x="' + x(n) + '" y="' + (H - 6) + '" text-anchor="middle">' +
         (n % 1 ? n.toFixed(2).replace(/0+$/, '') : n) + 'nm</text>';
     }
+    // runway band on the surface — ink-bright (owner); drawn along the profile,
+    // so a sloped runway reads as sloped
+    var rx0 = x(0), ry0 = y(geo.start), rx1 = x(rwyNm), ry1 = y(geo.der);
     var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;display:block">' + gl +
-      // runway band on the surface — ink-bright to stand out (owner)
-      '<rect class="svg-bandink" x="' + x(0) + '" y="' + (y(0) - 3) + '" width="' + (x(rwyNm) - x(0)) + '" height="6"/>' +
-      '<text class="svg-axis" x="' + x(rwyNm / 2) + '" y="' + (y(0) - 8) + '" text-anchor="middle" font-size="9">RWY</text>';
-    // 50-ft crossing marker
+      '<polygon class="svg-bandink" points="' + rx0 + ',' + (ry0 - 3) + ' ' + rx1 + ',' + (ry1 - 3) + ' ' + rx1 + ',' + (ry1 + 3) + ' ' + rx0 + ',' + (ry0 + 3) + '"/>' +
+      '<text class="svg-axis" x="' + x(rwyNm / 2) + '" y="' + (Math.min(ry0, ry1) - 8) + '" text-anchor="middle" font-size="9">RWY</text>';
+    // 50-ft crossing marker: from the surface under it up to the path
     if (startNm != null) {
-      svg += '<line x1="' + x(startNm) + '" y1="' + y(0) + '" x2="' + x(startNm) + '" y2="' + y(50) +
+      var surf = startNm <= rwyNm ? rwyElev(st, startNm * NM_FT) : geo.der;
+      svg += '<line x1="' + x(startNm) + '" y1="' + y(surf) + '" x2="' + x(startNm) + '" y2="' + y(geo.lift + 50) +
         '" stroke="currentColor" opacity="0.5" stroke-width="1.5" stroke-dasharray="3 3"/>';
     }
     // required-gradient lines (Obstacle, ATC) — departure-procedure basis:
-    // from the departure end of the runway at 35 ft AGL, rising at the
-    // required ft/nm, STOPPING at each requirement's own top altitude. Kept
-    // quiet: thin, dim, distinct dash patterns, tiny end labels, no legend.
+    // from the DER at 35 ft above it, rising at the required ft/nm, STOPPING
+    // at each requirement's own top altitude. Kept quiet: thin, dim, distinct
+    // dash patterns, tiny end labels, no legend.
     lines.forEach(function (l, li) {
       // clip the line to the VIEW (right edge or top) — the label only shows
       // where the line's visible end is, never pinned into frame
       var dEnd = Math.min(maxX, l.dEnd);
-      var aglEnd = Math.min(l.topAgl, 35 + (dEnd - rwyNm) * l.grad);
-      if (aglEnd > maxAgl) { aglEnd = maxAgl; dEnd = rwyNm + (maxAgl - 35) / l.grad; }
-      svg += '<line x1="' + x(rwyNm) + '" y1="' + y(35) + '" x2="' + x(dEnd) + '" y2="' + y(aglEnd) +
+      var mslEnd = Math.min(l.top, lineBase + (dEnd - rwyNm) * l.grad);
+      if (mslEnd > top) { mslEnd = top; dEnd = rwyNm + (top - lineBase) / l.grad; }
+      svg += '<line x1="' + x(rwyNm) + '" y1="' + y(lineBase) + '" x2="' + x(dEnd) + '" y2="' + y(mslEnd) +
         '" stroke="currentColor" opacity="0.5" stroke-width="1.5" stroke-dasharray="' + l.dashes + '"/>';
       if (dEnd >= l.dEnd - 1e-9) {
-        svg += '<text class="svg-axis" x="' + (x(dEnd) - 4) + '" y="' + Math.max(y(aglEnd) - 4 + (li ? 12 : 0), 20) +
+        svg += '<text class="svg-axis" x="' + (x(dEnd) - 4) + '" y="' + Math.max(y(mslEnd) - 4 + (li ? 12 : 0), 20) +
           '" text-anchor="end" font-size="9">' + l.tag + ' ' + l.grad + '</text>';
       }
     });
@@ -8042,8 +8221,8 @@ var Weather = (function () {
       var col = c.status === 'ok' ? '#3fd68f' : (c.status === 'viol' ? '#ff6b6b' : '#ffb347');
       // no clamping: an obstacle above/beyond the zoomed view clips out of
       // frame rather than pinning to the edge where it would misread
-      var ox = x(c.x), oy = y(Math.max(0, c.agl));
-      svg += '<line x1="' + ox + '" y1="' + y(0) + '" x2="' + ox + '" y2="' + (oy + 4) +
+      var ox = x(c.x), oy = y(Math.max(floor, c.msl));
+      svg += '<line x1="' + ox + '" y1="' + y(floor) + '" x2="' + ox + '" y2="' + (oy + 4) +
         '" stroke="' + col + '" stroke-width="2.5"/>' +
         '<circle cx="' + ox + '" cy="' + oy + '" r="4" fill="' + col + '"/>';
       var flip = ox > W - 70;
@@ -8209,8 +8388,12 @@ var Weather = (function () {
 
   function renderLanding(page, title, fig50, figRoll, st, pa, wind, gw, appRows, seen, eff) {
     var s = U.sect(page, title);
-    var r50 = C.evalThreePanel(fig50, st.oat, pa, gw, wind.head);
-    var roll = C.evalThreePanel(figRoll, st.oat, pa, gw, wind.head);
+    // wind policy (settings › WIND POLICY, landing toggle): 50 % HW / 150 % TW,
+    // the tailwind capped at the chart's printed fan (Core.windPolicy)
+    var wpOn = U.store.windFactorLdg !== false;
+    var wp50 = C.windPolicy(wind.head, wpOn, C.chartTailFan(fig50)), wpRoll = C.windPolicy(wind.head, wpOn, C.chartTailFan(figRoll));
+    var r50 = C.evalThreePanel(fig50, st.oat, pa, gw, wp50.chart);
+    var roll = C.evalThreePanel(figRoll, st.oat, pa, gw, wpRoll.chart);
     var app = interpApproach(appRows, gw);
     // +250% air-distance option (POH caution): dashed extension on the
     // over-50 line — ground roll + 2.5 × (over-50 − ground roll)
@@ -8232,6 +8415,7 @@ var Weather = (function () {
     // landing checks against LDA (owner 2026-08-23); no LDA entered → TORA
     U.rwyGraphic(s, entries, eff.lda,
       { rwLabel: eff.ldaSrc + ' ' + U.fmtComma(eff.lda) + ' FT' });
+    if (wp50.capped || wpRoll.capped) s.appendChild(U.el('div', 'note', 'TW computed at ' + C.chartTailFan(fig50) + ' knots.'));
     U.warnChips(s, newWarns(seen, r50.warn.concat(roll.warn)));
     return s;
   }
@@ -8960,8 +9144,12 @@ var Weather = (function () {
 
   function renderLanding(page, title, fig50, figRoll, st, pa, wind, gw, appRows, seen) {
     var s = U.sect(page, title);
-    var r50 = C.evalThreePanel(fig50, st.ldgOat, pa, gw, wind.head);
-    var roll = C.evalThreePanel(figRoll, st.ldgOat, pa, gw, wind.head);
+    // wind policy (settings › WIND POLICY, landing toggle): 50 % HW / 150 % TW,
+    // the tailwind capped at the chart's printed fan (Core.windPolicy)
+    var wpOn = U.store.windFactorLdg !== false;
+    var wp50 = C.windPolicy(wind.head, wpOn, C.chartTailFan(fig50)), wpRoll = C.windPolicy(wind.head, wpOn, C.chartTailFan(figRoll));
+    var r50 = C.evalThreePanel(fig50, st.ldgOat, pa, gw, wp50.chart);
+    var roll = C.evalThreePanel(figRoll, st.ldgOat, pa, gw, wpRoll.chart);
     var app = interpApproach(appRows, gw);
     // +250% air-distance option (POH caution): dashed extension on the
     // over-50 line — ground roll + 2.5 × (over-50 − ground roll)
@@ -8981,6 +9169,7 @@ var Weather = (function () {
     rApp.style.flex = '0 1 auto';
     rApp.style.minWidth = '0';
     U.rwyGraphic(s, entries, st.ldgLda, { rwLabel: 'LDA ' + U.fmtComma(st.ldgLda) + ' FT' });
+    if (wp50.capped || wpRoll.capped) s.appendChild(U.el('div', 'note', 'TW computed at ' + C.chartTailFan(fig50) + ' knots.'));
     U.warnChips(s, newWarns(seen, r50.warn.concat(roll.warn)));
     return s;
   }
@@ -9448,6 +9637,20 @@ var Weather = (function () {
     });
 
     // ---- feature toggles ----
+    // wind policy (owner 2026-10-17): the only place the policy is described
+    var sW = U.sect(page, 'WIND POLICY');
+    var gW = U.el('div', 'grid'); sW.appendChild(gW);
+    U.seg(gW, { label: 'Departure 50 / 150', key: 'windFactorDep', choices: [{ v: true, label: 'ON' }, { v: false, label: 'OFF' }] });
+    U.seg(gW, { label: 'Landing · Emer Rtn 50 / 150', key: 'windFactorLdg', choices: [{ v: true, label: 'ON' }, { v: false, label: 'OFF' }] });
+    sW.appendChild(U.el('div', 'note',
+      'Applies 50% of the headwind component or 150% of the tailwind component to Takeoff Ground Roll, ' +
+      'Takeoff Over 50 ft, Accel-Stop, Climbout Flight Path, and Landing Distances.'));
+    sW.appendChild(U.el('div', 'note',
+      '<b>ON</b>: Max tailwind component is 10 knots — the performance charts end at 10 knots tailwind. ' +
+      '150% of the tailwind component is factored up to the chart limit of 10 knots (a 4-knot tailwind runs the ' +
+      'chart at 6 knots; a 10-knot tailwind is run at 10 knots). The app tells you when less than 150% is applied ' +
+      '(<b>TW computed at 10 knots</b>). 150% is always applied to climb gradients (a 10-knot tailwind is run at 15 knots).'));
+    sW.appendChild(U.el('div', 'note', '<b>OFF</b>: Wind components are used as entered.'));
     var sF = U.sect(page, 'FEATURES');
     sF.appendChild(U.el('div', 'note',
       'Turn off what you don\'t use — sections disappear from their tab, and a tab with nothing ' +
